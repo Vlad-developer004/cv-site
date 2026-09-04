@@ -6,6 +6,7 @@ import { GithubIcon } from '@/components/icons';
 import { LogoLink } from '@/components/logo-link';
 
 const GITHUB_USERNAME = 'Vlad-developer004';
+const SITE_REPO_URL = `https://github.com/${GITHUB_USERNAME}/cv-site`;
 
 export async function SiteFooter({ locale }: { locale: Locale }) {
   const { t } = await initTranslations(locale);
@@ -86,7 +87,12 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
               &copy; {year} {t('name', { ns: 'hero' })}. {t('footer.rights', { ns: 'common' })}
             </p>
             <div className="flex items-center gap-4">
-              <p>{t('footer.builtWith', { ns: 'common' })}</p>
+              <p>
+                {t('footer.builtWith', { ns: 'common' })}{' '}
+                <a href={SITE_REPO_URL} target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-primary">
+                  {t('footer.sourceCode', { ns: 'common' })}
+                </a>
+              </p>
               <a
                 href="#top"
                 aria-label={t('footer.backToTop', { ns: 'common' })}

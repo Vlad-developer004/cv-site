@@ -52,6 +52,13 @@ export async function generateMetadata(
         i18nConfig.locales.map((l) => [l, l === i18nConfig.defaultLocale ? '/' : `/${l}`])
       ),
     },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon.png', type: 'image/png' },
+      ],
+      apple: '/icon.png',
+    },
   };
 }
 

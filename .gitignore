@@ -43,3 +43,6 @@ next-env.d.ts
 
 # internal working notes — contains private personal details, never publish
 CONTEXT.md
+
+CLAUDE.md
+AGENTS.md

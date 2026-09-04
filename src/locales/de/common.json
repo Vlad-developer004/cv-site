@@ -19,7 +19,8 @@
     "builtWith": "Erstellt mit Next.js, Tailwind CSS und motion.",
     "rights": "Alle Rechte vorbehalten.",
     "navigation": "Navigation",
-    "backToTop": "Nach oben"
+    "backToTop": "Nach oben",
+    "sourceCode": "Quellcode ansehen"
   },
   "months": {
     "jan": "Jan",
