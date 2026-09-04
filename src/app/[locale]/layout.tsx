@@ -1,0 +1,86 @@
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google';
+import '../globals.css';
+import { i18nConfig, type Locale } from '@/i18nConfig';
+import initTranslations from '@/lib/i18n';
+import TranslationsProvider from '@/components/translations-provider';
+import { ThemeProvider } from '@/components/theme-provider';
+import { SiteHeader } from '@/components/site-header';
+import { SiteFooter } from '@/components/site-footer';
+import { ScrollProgress } from '@/components/scroll-progress';
+import { SitePreloader } from '@/components/site-preloader';
+import { AmbientBackground } from '@/components/ambient-background';
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
+
+const playfair = Playfair_Display({
+  variable: '--font-playfair',
+  subsets: ['latin'],
+  style: ['italic'],
+});
+
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = (await params) as { locale: Locale };
+  const { t } = await initTranslations(locale);
+
+  const titles: Record<Locale, string> = {
+    en: 'Vladyslav Tieriekhov — Full-Stack Developer',
+    de: 'Vladyslav Tieriekhov — Full-Stack Entwickler',
+    ru: 'Владислав Терехов — Full-Stack разработчик',
+    uk: 'Владислав Тєрєхов — Full-Stack розробник',
+  };
+
+  return {
+    title: titles[locale],
+    description: t('tagline', { ns: 'hero' }),
+    alternates: {
+      languages: Object.fromEntries(
+        i18nConfig.locales.map((l) => [l, l === i18nConfig.defaultLocale ? '/' : `/${l}`])
+      ),
+    },
+  };
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = (await params) as { locale: Locale };
+  const { resources } = await initTranslations(locale);
+
+  return (
+    <html lang={locale} suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          <TranslationsProvider locale={locale} resources={resources[locale] as Record<string, unknown>}>
+            <SitePreloader />
+            <div className="page-reveal flex min-h-full flex-1 flex-col">
+              <AmbientBackground />
+              <ScrollProgress />
+              <SiteHeader locale={locale} />
+              <main className="flex-1">{children}</main>
+              <SiteFooter locale={locale} />
+            </div>
+          </TranslationsProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

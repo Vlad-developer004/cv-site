@@ -1,0 +1,252 @@
+{
+  "eyebrow": "Ausgewählte Projekte",
+  "headingLead": "Meine",
+  "headingAccent": "Projekte",
+  "subheading": "Bewusst geplante Nebenprojekte, jedes gebaut mit den Praktiken, die ein echtes Produktionssystem braucht — keine bloßen Demos, und keine Wiederholung des Vorherigen.",
+  "readMore": "Mehr lesen",
+  "detailLabels": {
+    "back": "Zurück zu den Projekten",
+    "overview": "Überblick",
+    "architecture": "Architektur & Entscheidungen",
+    "challenges": "Herausforderungen",
+    "highlights": "Highlights",
+    "stack": "Tech-Stack",
+    "links": "Links",
+    "problem": "Problem",
+    "solution": "Lösung"
+  },
+  "items": [
+    {
+      "id": "bus-tickets",
+      "name": "Buchungsplattform für Busfahrkarten",
+      "status": "Nebenprojekt",
+      "description": "Eine Buchungsplattform für Busfahrkarten — mein eigenes Nebenprojekt: hauptsächlich Backend, mit etwas Frontend-Arbeit, auf Basis von MongoDB. Praktische Erfahrung mit einer wachsenden Codebasis statt einem einmaligen Build.",
+      "stack": [
+        "MongoDB",
+        "Node.js",
+        "Express"
+      ],
+      "links": {
+        "repo": null,
+        "live": null
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "Eine Buchungsplattform für Busfahrkarten — mein eigenes Nebenprojekt, über Zeit gebaut und erweitert statt einmal veröffentlicht und liegen gelassen. Ich habe hauptsächlich am Backend gearbeitet, mit etwas Frontend-Arbeit am Buchungsablauf.",
+        "architecture": [
+          "Geschichtetes Backend: Routen → Controller → eine Service-Schicht (Mail, Tickets, Tokens, Nutzer) → Mongoose-Modelle, statt Logik in den Route-Handlern",
+          "JWT-Authentifizierung mit getrennten Access- und Refresh-Tokens, mit eigenem Token-Service und Token-Modell in MongoDB",
+          "Zahlungen über Fondy, ein ukrainisches Zahlungsgateway, im Sandbox-/Testmodus — es wird nie echtes Geld abgebucht; Anfragen werden mit einem SHA-1-Hash über die sortierten Parameter plus einem Secret Key signiert",
+          "Ein Telegram-Bot im Backend für Bestellübersicht auf Admin-Seite"
+        ],
+        "challenges": [
+          {
+            "problem": "Die Suche wurde mit wachsenden Routen und Fahrplänen langsamer",
+            "solution": "Die Stadt-/Flugsuche in MongoDB indexiert, statt im Anwendungscode zu filtern."
+          },
+          {
+            "problem": "Einem Zahlungs-Callback eines Drittanbieters vertrauen",
+            "solution": "Der Server berechnet Fondys Signatur beim Callback neu und prüft sie, bevor eine Zahlung als bestätigt markiert wird — der clientseitige Redirect allein wird nie vertraut."
+          },
+          {
+            "problem": "Sessions über eine zustandslose API hinweg verwalten",
+            "solution": "Auf kurzlebige Access-Tokens plus Refresh-Tokens umgestellt, statt Sessions serverseitig zu speichern."
+          }
+        ],
+        "highlights": [
+          "Das älteste Projekt in diesem Portfolio — über Zeit gepflegt und erweitert statt einmal gebaut",
+          "Eine echte Zahlungsintegration eines Drittanbieters (Fondy, nur Testmodus — kein echtes Geld) mit signierten Anfragen und Callback-Verifizierung, kein simulierter Checkout",
+          "Überwiegend Backend-Arbeit, mit genug Frontend-Beteiligung, um den gesamten Ablauf zu verstehen"
+        ]
+      }
+    },
+    {
+      "id": "shop",
+      "name": "Leaf & Cup — E-Commerce-Plattform",
+      "status": "Nebenprojekt",
+      "description": "Eine vollständige E-Commerce-Plattform mit Fokus auf die Engineering-Praktiken, die im Produktionsbetrieb zählen: Docker + CI/CD, Stripe-Zahlungen im Testmodus (eingebettetes Payment Element, idempotente Webhooks) — es wird nie echtes Geld abgebucht, rollenbasiertes Admin-Panel und Playwright End-to-End-Tests.",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "Stripe",
+        "Auth.js",
+        "Docker",
+        "Playwright"
+      ],
+      "links": {
+        "repo": null,
+        "live": "https://leaf-cup-roan.vercel.app/"
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "Ein E-Commerce-Shop für Tee, gebaut um die Teile abzudecken, die Portfolio-Demos meist auslassen: Zahlungen, Lagerbestand und Admin-Betrieb — nicht nur ein Produktraster.",
+        "architecture": [
+          "Next.js App Router + TypeScript, Prisma/PostgreSQL, Auth.js v5 mit Credentials und Google OAuth (PrismaAdapter, JWT-Sessions)",
+          "Ein Gast-Warenkorb, identifiziert über ein httpOnly-Cookie, wird beim Login in den Konto-Warenkorb übernommen",
+          "Stripes eingebettetes Payment Element im Testmodus — es wird nie echtes Geld abgebucht; der Webhook, nicht der clientseitige Redirect, ist die Quelle der Wahrheit für eine bezahlte Bestellung, und er ist idempotent (er prüft, ob die Bestellung noch PENDING ist, bevor er sie ändert, da Stripe dasselbe Event erneut senden kann)",
+          "Lagerbestand wird auf jeder Ebene geprüft: begrenzt in der UI, erneut geprüft in Server Actions und über ein atomares Update mit einer Bedingung dekrementiert, sodass zwei nahezu gleichzeitige Checkouts ihn nicht negativ werden lassen",
+          "Ein rollenbasiertes Admin-Panel — Produkte, Kategorien und Bestellstatus-Übergänge, die serverseitig validiert werden, nicht nur in der UI versteckt"
+        ],
+        "challenges": [
+          {
+            "problem": "Next.js erlaubt keine Cookie-Änderung während eines normalen Server-Component-Renders",
+            "solution": "Das Warenkorb-Modul in ein read-only getCart() für das Rendern und ein schreibbares getOrCreateCart() nur für Server Actions aufgeteilt."
+          },
+          {
+            "problem": "Ein Redirect für angemeldete Besucher auf /sign-in fing die Server Action ab, die den Gast-Warenkorb direkt nach dem Login synchronisiert",
+            "solution": "Anfragen mit Next.js' internem Server-Action-Header von diesem Redirect ausgenommen."
+          },
+          {
+            "problem": "Produktbilder, live von Wikimedia geladen, waren langsam und stießen gelegentlich auf einen 429-Fehler",
+            "solution": "Einmalig heruntergeladen, nach AVIF neu kodiert und selbst gehostet, statt bei jeder Anfrage von einem Drittanbieter zu laden."
+          }
+        ],
+        "highlights": [
+          "Stripe durchgängig eingebunden mit webhook-gesteuertem Status (nur Testmodus, kein echtes Geld) — kein simulierter Checkout-Button",
+          "Lagerbestand kann selbst bei gleichzeitigen Checkouts nicht negativ werden — auf Datenbankebene erzwungen, nicht nur in der UI",
+          "Admin-CRUD (Produkte/Kategorien/Bestellungen) ist vollwertiger Teil der App, abgedeckt durch Playwright End-to-End-Tests"
+        ]
+      }
+    },
+    {
+      "id": "rechtsform",
+      "name": "Webanwendung zur Formular-Digitalisierung",
+      "status": "Live",
+      "description": "Eine Single-Page-Application zur Digitalisierung von Rechtsformularen mit DSGVO-orientierter clientseitiger Architektur: sensible Daten verbleiben ausschließlich im Session Storage, mit strikter clientseitiger Datensanitisierung. Unterstützt 14 Sprachen, digitale Signaturen und clientseitige PDF-Generierung.",
+      "stack": [
+        "React",
+        "Vite",
+        "TypeScript",
+        "pdf-lib",
+        "Vercel"
+      ],
+      "links": {
+        "repo": null,
+        "live": "https://www.pkh-formular.de/"
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "Ein schrittweiser Assistent, der das offizielle Formular zur Prozesskostenhilfe ausfüllt — pro bono für eine Anwaltskanzlei gebaut, damit Antragstellende ein dichtes amtliches Formular nicht allein entschlüsseln müssen. Er reicht nie etwas im Namen der Antragstellenden ein, sondern hilft nur beim korrekten Ausfüllen.",
+        "architecture": [
+          "Reine Client-App mit React (CRA) — i18next für 14 Sprachen, framer-motion für den Assistenten, pdf-lib für das PDF, react-signature-canvas für die Unterschrift — kein Backend, nichts wird jemals irgendwohin gesendet",
+          "Ein 10-Abschnitte-Assistent (A–J), der das echte amtliche Formular abbildet, plus ein Schritt für Dokument-Uploads und ein Prüfbildschirm vor der Unterschrift",
+          "Das Formular selbst wird immer auf Deutsch ausgefüllt — obwohl die Oberfläche in 14 Sprachen übersetzt ist, macht ein Zustimmungsschritt klar, dass das amtliche Dokument auf Deutsch bleiben muss",
+          "Das fertige PDF mit eingebetteter Unterschrift und angehängten Dokumenten wird vollständig clientseitig erzeugt, indem die Daten mit pdf-lib über das echte amtliche Formularlayout gelegt werden"
+        ],
+        "challenges": [
+          {
+            "problem": "Sensible Daten (Einkommen, Miete, Kontoauszüge) ohne Backend zum Speichern",
+            "solution": "Den gesamten Ablauf bewusst clientseitig gehalten; der Kompromiss ist fehlende serverseitige Validierung, daher besondere Sorgfalt bei der clientseitigen Sanitisierung."
+          },
+          {
+            "problem": "Ein langes amtliches Formular ist allein einschüchternd auszufüllen",
+            "solution": "In einen geführten Schritt-für-Schritt-Assistenten mit Prüfbildschirm aufgeteilt, statt eines langen Formulars."
+          }
+        ],
+        "highlights": [
+          "Kein Backend — bewusste Designentscheidung für Datenschutz, keine Abkürzung",
+          "Vollständig deployed und funktionsfähig, nicht nur eine lokale Demo",
+          "Reicht nichts im Namen der Antragstellenden ein — hilft nur beim korrekten Ausfüllen des amtlichen Formulars, sodass die rechtliche Verantwortung dort bleibt, wo sie hingehört"
+        ]
+      }
+    },
+    {
+      "id": "jarvis",
+      "name": "Lokaler KI-Sprachassistent",
+      "status": "In Arbeit",
+      "description": "Ein hochperformanter lokaler Sprachassistent, der Speech-to-Text- und Text-to-Speech-Modelle mit einem LLM für komplexe Kontextverarbeitung kombiniert — über 300 Sprachbefehle mit 150–200 ms Latenz auf gewöhnlicher Hardware.",
+      "stack": [
+        "Python",
+        "GigaAM STT",
+        "Silero TTS",
+        "LLM-APIs"
+      ],
+      "links": {
+        "repo": null,
+        "live": null
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "Ein lokaler, offline laufender Sprachassistent für Windows (Russisch/Ukrainisch), der weit über Sprachbefehle hinausgeht — Systemsteuerung, Gaming-Integrationen, Diktierfunktion und ein kleines Ökosystem installierbarer Erweiterungen, standardmäßig ganz ohne Cloud-Aufruf.",
+        "architecture": [
+          "Eine mehrstufige Pipeline: Audioaufnahme → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → eine hybride Intent-Schicht → ein Dispatcher, der zu Dutzenden Action-Modulen routet → Silero-TTS für die Antwort",
+          "Hybrides Intent-Matching, nicht nur Keyword-Suche: zuerst schnelles Keyword-/Fuzzy-Matching, mit semantischer Satz-Embedding-Suche (lokal gecacht) als Fallback für Formulierungen, die es noch nicht exakt gesehen hat",
+          "Ein HUD auf CustomTkinter-Basis (Zustände Laden/Bereit/Zuhören/Sprechen) läuft im Hintergrund-Thread mit Tray-Symbol, hinter einer strikten, reihenfolgeabhängigen Startsequenz, die native Windows-DLL-Konflikte umgeht",
+          "Ein eigener Spielmodus: engere Schwellenwerte für die Spracherkennung während des Spielens, plus Live-Telemetrie für Euro Truck Simulator 2 über UDP und Profile pro Spiel",
+          "Über Sprachbefehle hinaus: freihändiges Diktieren in jedes fokussierte Fenster, OCR, ein Zwischenablage-Manager, ein Befehls-„Tresor“ für eigene Makros und ein installierbarer Erweiterungskatalog"
+        ],
+        "challenges": [
+          {
+            "problem": "Das Laden PyTorch-/CUDA-naher Bibliotheken zum falschen Zeitpunkt verursachte native Abstürze oder DLL-Konflikte beim Start",
+            "solution": "Eine strikte, reihenfolgeabhängige Startsequenz erzwungen — CUDA/pynvml werden gestubbt, bevor Torch lädt, danach DLLs vorab geladen und Modelle in einem Hintergrund-Thread aufgewärmt, bevor UI oder Audio-Loop starten."
+          },
+          {
+            "problem": "Exaktes Keyword-Matching verpasste alles, was leicht anders formuliert war",
+            "solution": "Einen semantischen Fallback ergänzt — Satz-Embedding-Suche über einen lokalen Cache — der nur greift, wenn das schnelle Keyword-/Fuzzy-Matching nicht sicher trifft."
+          },
+          {
+            "problem": "Die Spracherkennung reagierte während lauter Spiele zu empfindlich",
+            "solution": "Ein eigener Spielmodus setzt engere VAD-Schwellenwerte ein und liest Live-Telemetrie, statt sich für spielspezifische Zustände allein auf Sprache zu verlassen."
+          }
+        ],
+        "highlights": [
+          "Standardmäßig wirklich offline — ASR, Intent-Matching und TTS laufen komplett lokal; der einzige optionale Cloud-Aufruf ist für freies Chatten",
+          "Dutzende Action-Module weit über „App öffnen“ hinaus: Systembereinigung, Diktieren, OCR, Zwischenablage, E-Mail, Kalender, Git-Commits, Gaming-Integrationen",
+          "Eine hybride Keyword- + Semantik-Intent-Schicht statt einer starren Befehlsliste",
+          "Als eigenständiger Windows-Build mit sauberer Startsequenz gepackt, kein Skript, das man im Terminal startet"
+        ]
+      }
+    },
+    {
+      "id": "paper-trader",
+      "name": "Krypto-Paper-Trading-Simulator",
+      "status": "Fertig",
+      "description": "Eine Demo-Trading-Plattform (virtuelles Guthaben von 10.000 $, Live-Kurse für BTC/ETH/SOL), gebaut um finanzielle Präzision und Korrektheit zu demonstrieren: Ganzzahl-Arithmetik in kleinsten Einheiten, race-condition-sichere Kontostandsänderungen über abgesicherte Transaktionen, Limit-Orders und eine abgeleitete PnL-Rangliste.",
+      "stack": [
+        "Express",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "React",
+        "Vite"
+      ],
+      "links": {
+        "repo": null,
+        "live": "https://paper-trader-ten-pi.vercel.app/"
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "Gezielt gebaut, um zu zeigen, was ein Next.js-Monolith wie Leaf & Cup nicht zeigt: ein getrenntes Backend, Live-WebSocket-Preisstreaming und race-condition-sichere Trade-Ausführung — genau die Art von Korrektheitsfehler, die in einer Demo unsichtbar, im Produktionsbetrieb aber teuer ist.",
+        "architecture": [
+          "Getrennte Services aus einem Repo: ein Express/TypeScript-Backend und ein Vite/React-Frontend, jeweils als eigener Vercel-Service deployed",
+          "Das Frontend verbindet sich direkt mit Binances öffentlichem WebSocket für Live-Kurse — das Backend ist nur für Trades und Kontostände zuständig, nie fürs Streaming",
+          "Geld wird als Ganzzahl-Cent gespeichert, Krypto-Mengen als 1e8-Minimaleinheiten — keine Fließkomma-Arithmetik in der Nähe von Kontostand, Preis oder PnL",
+          "Kontostandsändernde Operationen laufen in abgesicherten Datenbank-Transaktionen, damit zwei gleichzeitige Trades denselben Kontostand nicht beschädigen können",
+          "Limit-Orders werden über einen ~5-Minuten-Sweep innerhalb des Backend-Prozesses selbst abgewickelt, der sich darauf verlässt, dass die Plattform eine warme Instanz am Leben hält, statt auf einen externen Scheduler — mit einem manuellen GitHub-Actions-Workflow als Fallback"
+        ],
+        "challenges": [
+          {
+            "problem": "Zwei Trades treffen gleichzeitig auf denselben Kontostand",
+            "solution": "Kontostandsänderungen in Transaktionen mit Row-Level-Locks verpackt, sodass einer auf den anderen wartet, statt dass beide einen veralteten Stand lesen."
+          },
+          {
+            "problem": "Fließkomma-Arithmetik verliert stillschweigend Cent-Beträge",
+            "solution": "Alle Beträge als Ganzzahlen in der kleinsten Einheit dargestellt und erst zur Anzeige in Dezimalform formatiert."
+          },
+          {
+            "problem": "Die Deploy-Plattform übernahm das Modulformat des Backends nicht zuverlässig in die deployte Funktion",
+            "solution": "Das Backend zu einer einzigen gebündelten Datei gebaut und dieses Build-Artefakt committed, da die Plattform vor dem Build bei einem frischen Deploy prüft, ob die Entry-Point-Datei im Repo existiert."
+          }
+        ],
+        "highlights": [
+          "Das Projekt mit dem stärksten Fokus auf Korrektheit statt Features — bei einer Trading-App ist Präzision keine Option",
+          "Limit-Orders und eine abgeleitete PnL-Rangliste, nicht nur eine simple Kauf-Demo",
+          "Bewusst in getrennte Services aufgeteilt (anders als Leaf & Cup), gezielt um Service-Grenzen und Live-Datenstreaming zu üben",
+          "Vollständig lokalisiert (DE/EN/RU/UK)"
+        ]
+      }
+    }
+  ]
+}

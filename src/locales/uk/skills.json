@@ -1,0 +1,33 @@
+{
+  "headingLead": "Мої",
+  "headingAccent": "навички",
+  "levels": { "advanced": "Просунутий", "comfortable": "Впевнено", "familiar": "Знайомий" },
+  "usedIn": "Використав у",
+  "groups": [
+    {
+      "id": "languages",
+      "name": "Мови програмування",
+      "items": ["TypeScript", "JavaScript (ES6+)", "Python", "SQL", "HTML5", "CSS3/SCSS"]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "items": ["React", "Next.js", "Vue.js", "Vite", "Tailwind CSS", "Framer Motion / motion"]
+    },
+    {
+      "id": "backend",
+      "name": "Backend",
+      "items": ["Node.js", "Express", "RESTful API", "JWT-автентифікація", "WebSockets"]
+    },
+    {
+      "id": "data",
+      "name": "Дані та ORM",
+      "items": ["PostgreSQL", "MongoDB", "Mongoose", "Prisma ORM"]
+    },
+    {
+      "id": "ai",
+      "name": "AI та інструменти",
+      "items": ["Claude Code", "LLM API", "Speech-to-Text / Text-to-Speech пайплайни", "Git", "Docker", "Playwright", "Vercel"]
+    }
+  ]
+}

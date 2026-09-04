@@ -1,0 +1,26 @@
+{
+  "eyebrow": "What I bring",
+  "headingLead": "What I",
+  "headingAccent": "focus on",
+  "seeIn": "See it in",
+  "pillars": [
+    {
+      "id": "privacy",
+      "title": "Privacy & Data Protection",
+      "description": "GDPR-conscious architecture by default — data minimization, client-side processing where possible, and transparent handling of cookies and personal data.",
+      "linkedProjectIds": ["rechtsform", "shop"]
+    },
+    {
+      "id": "ai",
+      "title": "AI & LLM Tooling",
+      "description": "Integrating speech-to-text, text-to-speech and LLM APIs into complete, low-latency projects — not just calling an API, but engineering around its constraints.",
+      "linkedProjectIds": ["jarvis"]
+    },
+    {
+      "id": "fullstack",
+      "title": "Full-Stack TypeScript",
+      "description": "React, Next.js and Node.js end to end, with correctness where it matters most: payments, concurrent balance updates, and race-condition-safe transactions.",
+      "linkedProjectIds": ["shop", "paper-trader", "bus-tickets"]
+    }
+  ]
+}

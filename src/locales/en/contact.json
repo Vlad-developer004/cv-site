@@ -1,0 +1,28 @@
+{
+  "eyebrow": "Get in touch",
+  "headingLead": "Let's",
+  "headingAccent": "build",
+  "headingMid": "something",
+  "headingItalic": "that works.",
+  "description": "I'm actively looking for a full-stack role and happy to talk about any of the projects above in more detail.",
+  "email": "terehovvlad29@gmail.com",
+  "github": "Vlad-developer004",
+  "cta": "Send an email",
+  "location": "Berlin, Germany",
+  "form": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name...",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Your message...",
+    "submit": "Send message",
+    "sending": "Sending...",
+    "success": "Thanks! I'll get back to you soon.",
+    "error": "Something went wrong — please email me directly instead."
+  },
+  "infoHeading": "Contact information",
+  "locationLabel": "Location",
+  "availabilityHeading": "Currently available",
+  "availabilityDescription": "Looking for a full-time role as a full-stack developer, and open to adjacent roles where these skills are useful too. Open to interviews and calls."
+}

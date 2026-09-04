@@ -1,0 +1,50 @@
+{
+  "eyebrow": "Wer ich bin",
+  "headingLead": "Über",
+  "headingAccent": "mich",
+  "quote": "Mir ist ein Projekt, das unter echten Bedingungen wirklich funktioniert, lieber als zehn abgeschlossene Tutorials.",
+  "softSkills": [
+    {
+      "id": "learner",
+      "title": "Selbstständig lernend",
+      "description": "Ich lerne, indem ich echte, unbequeme Projekte baue — nicht, indem ich Tutorials folge."
+    },
+    {
+      "id": "precision",
+      "title": "Präzise",
+      "description": "Race-condition-sichere Kontostände, strikte clientseitige Datenverarbeitung — Korrektheit ist für mich kein Nice-to-have."
+    },
+    {
+      "id": "fast-learner",
+      "title": "Schnell lernfähig",
+      "description": "Deutsch in 7 Monaten von B1 auf B2 gebracht, neue Tech-Stacks lerne ich genauso schnell — ich finde mich rasch in neuen Umgebungen zurecht."
+    },
+    {
+      "id": "ownership",
+      "title": "Ende-zu-Ende-Verantwortung",
+      "description": "Vom Datenbankschema über CI/CD bis zum Admin-Panel — ich bringe Projekte vollständig zu Ende."
+    },
+    {
+      "id": "ai-workflow",
+      "title": "KI als Teil des Workflows",
+      "description": "Claude Code und ähnliche Tools sind Teil meines täglichen Entwicklungsprozesses — schnellere Iteration, während ich für Code und Entscheidungen verantwortlich bleibe."
+    },
+    {
+      "id": "debugging",
+      "title": "Ursachenorientiertes Debugging",
+      "description": "Vom nativen DLL-Absturz beim Start von Jarvis bis zur Race Condition bei Bestellzahlungen — ich suche die eigentliche Ursache eines Bugs, nicht nur das Symptom."
+    }
+  ],
+  "facts": [
+    { "label": "Standort", "value": "Berlin, Deutschland" },
+    { "label": "Ausbildung", "value": "B.Sc. Informatik, mit Auszeichnung" },
+    { "label": "Sprachen", "value": "4 — EN, DE, RU, UK" },
+    { "label": "Arbeitserlaubnis", "value": "Uneingeschränkter Arbeitsmarktzugang in Deutschland" }
+  ],
+  "paragraphs": [
+    "Ich bin Full-Stack-Entwickler und baue vollständige, produktionsreif gedachte Systeme — Authentifizierung, Zahlungen, race-condition-sichere Transaktionen, CI/CD — nicht nur einzelne Features. Ich habe einen B.Sc. in Informatik mit Auszeichnung von der Nationalen Universität „Zaporizhzhia Polytechnic“ und suche aktuell eine Vollzeitstelle.",
+    "Meine Universität ist in Anabin mit H+ bewertet (gleichwertig zu einer deutschen Hochschule), die formale Anerkennung meines Abschlusses steht aber noch aus. Ich habe uneingeschränkten Zugang zum deutschen Arbeitsmarkt — kein Visum-Sponsoring nötig. Ich lebe in Berlin und habe ein zertifiziertes Deutsch-Niveau B2.",
+    "Statt bei Tutorials stehenzubleiben, baue ich vollständige, anspruchsvolle Projekte: eine E-Commerce-Plattform mit Zahlungen im Testmodus und CI/CD, einen lokalen KI-Sprachassistenten, ein Tool zur Digitalisierung von Formularen sowie einen Krypto-Paper-Trading-Simulator mit Fokus auf finanzielle Präzision und Race-Condition-Sicherheit.",
+    "Meine Bachelorarbeit befasste sich mit Algorithmen zur Kennzeichenerkennung unter schwierigen Wetterbedingungen — mein erster tieferer Einstieg in Computer Vision, der meine Denkweise über Robustheit in Software geprägt hat."
+  ]
+}

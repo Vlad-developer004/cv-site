@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "about": "About",
+    "expertise": "Expertise",
+    "projects": "Projects",
+    "timeline": "Journey",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "themeToggle": {
+    "toDark": "Switch to dark theme",
+    "toLight": "Switch to light theme"
+  },
+  "languageSwitcher": {
+    "label": "Language"
+  },
+  "githubActivity": "GitHub activity",
+  "footer": {
+    "builtWith": "Built with Next.js, Tailwind CSS and motion.",
+    "rights": "All rights reserved.",
+    "navigation": "Navigation",
+    "backToTop": "Back to top"
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "May",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec"
+  },
+  "weekdays": {
+    "mon": "Mon",
+    "wed": "Wed",
+    "fri": "Fri"
+  }
+}

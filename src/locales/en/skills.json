@@ -1,0 +1,33 @@
+{
+  "headingLead": "My",
+  "headingAccent": "skill set",
+  "levels": { "advanced": "Advanced", "comfortable": "Comfortable", "familiar": "Familiar" },
+  "usedIn": "Used in",
+  "groups": [
+    {
+      "id": "languages",
+      "name": "Languages",
+      "items": ["TypeScript", "JavaScript (ES6+)", "Python", "SQL", "HTML5", "CSS3/SCSS"]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "items": ["React", "Next.js", "Vue.js", "Vite", "Tailwind CSS", "Framer Motion / motion"]
+    },
+    {
+      "id": "backend",
+      "name": "Backend",
+      "items": ["Node.js", "Express", "RESTful APIs", "JWT Auth", "WebSockets"]
+    },
+    {
+      "id": "data",
+      "name": "Data & ORM",
+      "items": ["PostgreSQL", "MongoDB", "Mongoose", "Prisma ORM"]
+    },
+    {
+      "id": "ai",
+      "name": "AI & Tools",
+      "items": ["Claude Code", "LLM APIs", "Speech-to-Text / Text-to-Speech pipelines", "Git", "Docker", "Playwright", "Vercel"]
+    }
+  ]
+}

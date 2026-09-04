@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "about": "Обо мне",
+    "expertise": "Специализация",
+    "projects": "Проекты",
+    "timeline": "Путь",
+    "skills": "Навыки",
+    "contact": "Контакты"
+  },
+  "themeToggle": {
+    "toDark": "Включить тёмную тему",
+    "toLight": "Включить светлую тему"
+  },
+  "languageSwitcher": {
+    "label": "Язык"
+  },
+  "githubActivity": "Активность на GitHub",
+  "footer": {
+    "builtWith": "Сделано на Next.js, Tailwind CSS и motion.",
+    "rights": "Все права защищены.",
+    "navigation": "Навигация",
+    "backToTop": "Наверх"
+  },
+  "months": {
+    "jan": "Янв",
+    "feb": "Фев",
+    "mar": "Мар",
+    "apr": "Апр",
+    "may": "Май",
+    "jun": "Июн",
+    "jul": "Июл",
+    "aug": "Авг",
+    "sep": "Сен",
+    "oct": "Окт",
+    "nov": "Ноя",
+    "dec": "Дек"
+  },
+  "weekdays": {
+    "mon": "Пн",
+    "wed": "Ср",
+    "fri": "Пт"
+  }
+}

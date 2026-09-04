@@ -1,0 +1,33 @@
+{
+  "headingLead": "Мои",
+  "headingAccent": "навыки",
+  "levels": { "advanced": "Продвинутый", "comfortable": "Уверенно", "familiar": "Знаком" },
+  "usedIn": "Использовал в",
+  "groups": [
+    {
+      "id": "languages",
+      "name": "Языки программирования",
+      "items": ["TypeScript", "JavaScript (ES6+)", "Python", "SQL", "HTML5", "CSS3/SCSS"]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "items": ["React", "Next.js", "Vue.js", "Vite", "Tailwind CSS", "Framer Motion / motion"]
+    },
+    {
+      "id": "backend",
+      "name": "Backend",
+      "items": ["Node.js", "Express", "RESTful API", "JWT-аутентификация", "WebSockets"]
+    },
+    {
+      "id": "data",
+      "name": "Данные и ORM",
+      "items": ["PostgreSQL", "MongoDB", "Mongoose", "Prisma ORM"]
+    },
+    {
+      "id": "ai",
+      "name": "AI и инструменты",
+      "items": ["Claude Code", "LLM API", "Speech-to-Text / Text-to-Speech пайплайны", "Git", "Docker", "Playwright", "Vercel"]
+    }
+  ]
+}

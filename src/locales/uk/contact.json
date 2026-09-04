@@ -1,0 +1,28 @@
+{
+  "eyebrow": "На зв'язку",
+  "headingLead": "Давайте",
+  "headingAccent": "разом",
+  "headingMid": "створимо те,",
+  "headingItalic": "що реально працює.",
+  "description": "Активно шукаю full-stack позицію і готовий детально розповісти про будь-який із проєктів вище.",
+  "email": "terehovvlad29@gmail.com",
+  "github": "Vlad-developer004",
+  "cta": "Написати на пошту",
+  "location": "Берлін, Німеччина",
+  "form": {
+    "nameLabel": "Ім'я",
+    "namePlaceholder": "Ваше ім'я...",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Повідомлення",
+    "messagePlaceholder": "Ваше повідомлення...",
+    "submit": "Надіслати",
+    "sending": "Надсилання...",
+    "success": "Дякую! Відповім найближчим часом.",
+    "error": "Щось пішло не так — напишіть мені напряму на пошту."
+  },
+  "infoHeading": "Контактна інформація",
+  "locationLabel": "Локація",
+  "availabilityHeading": "Наразі доступний",
+  "availabilityDescription": "Шукаю роботу full-stack розробником, а також відкритий до суміжних ролей, де можуть знадобитися мої навички. Відкритий для інтерв'ю та дзвінків."
+}

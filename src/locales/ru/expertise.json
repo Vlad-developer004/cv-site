@@ -1,0 +1,26 @@
+{
+  "eyebrow": "Что я приношу",
+  "headingLead": "На чём я",
+  "headingAccent": "специализируюсь",
+  "seeIn": "Видно в проекте",
+  "pillars": [
+    {
+      "id": "privacy",
+      "title": "Приватность и защита данных",
+      "description": "Архитектура с учётом GDPR по умолчанию — минимизация данных, обработка на клиенте там, где это возможно, прозрачная работа с cookie и персональными данными.",
+      "linkedProjectIds": ["rechtsform", "shop"]
+    },
+    {
+      "id": "ai",
+      "title": "AI и LLM-инструменты",
+      "description": "Интеграция speech-to-text, text-to-speech и LLM API в законченные проекты с низкой задержкой — не просто вызов API, а инженерная работа вокруг его ограничений.",
+      "linkedProjectIds": ["jarvis"]
+    },
+    {
+      "id": "fullstack",
+      "title": "Full-Stack TypeScript",
+      "description": "React, Next.js и Node.js от начала до конца, с точностью там, где это критично: платежи, конкурентное обновление баланса, транзакции, защищённые от гонок.",
+      "linkedProjectIds": ["shop", "paper-trader", "bus-tickets"]
+    }
+  ]
+}

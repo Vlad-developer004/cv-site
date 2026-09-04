@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "about": "Про мене",
+    "expertise": "Спеціалізація",
+    "projects": "Проєкти",
+    "timeline": "Шлях",
+    "skills": "Навички",
+    "contact": "Контакти"
+  },
+  "themeToggle": {
+    "toDark": "Увімкнути темну тему",
+    "toLight": "Увімкнути світлу тему"
+  },
+  "languageSwitcher": {
+    "label": "Мова"
+  },
+  "githubActivity": "Активність на GitHub",
+  "footer": {
+    "builtWith": "Створено на Next.js, Tailwind CSS та motion.",
+    "rights": "Усі права захищено.",
+    "navigation": "Навігація",
+    "backToTop": "Нагору"
+  },
+  "months": {
+    "jan": "Січ",
+    "feb": "Лют",
+    "mar": "Бер",
+    "apr": "Кві",
+    "may": "Тра",
+    "jun": "Чер",
+    "jul": "Лип",
+    "aug": "Сер",
+    "sep": "Вер",
+    "oct": "Жов",
+    "nov": "Лис",
+    "dec": "Гру"
+  },
+  "weekdays": {
+    "mon": "Пн",
+    "wed": "Ср",
+    "fri": "Пт"
+  }
+}

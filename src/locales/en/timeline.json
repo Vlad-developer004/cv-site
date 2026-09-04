@@ -1,0 +1,43 @@
+{
+  "eyebrow": "Timeline",
+  "headingLead": "My",
+  "headingAccent": "journey",
+  "items": [
+    {
+      "date": "2022 – 2026",
+      "icon": "education",
+      "title": "B.Sc. Computer Science, with honors",
+      "description": "Zaporizhzhia Polytechnic National University. Core focus: software architecture, full-stack web development, databases, algorithms & data structures, OOP."
+    },
+    {
+      "date": "2024",
+      "icon": "language",
+      "title": "German B1 certified",
+      "description": "Completed a BAMF integration course; passed the 'Leben in Deutschland' orientation test with a perfect score (33/33)."
+    },
+    {
+      "date": "2025",
+      "icon": "language",
+      "title": "German B2 certified",
+      "description": "Completed a profession-focused German language course targeting the German IT job market."
+    },
+    {
+      "date": "2026",
+      "icon": "thesis",
+      "title": "Bachelor's thesis: license plate recognition",
+      "description": "Studied algorithms for license plate recognition under difficult weather conditions — my first deep dive into computer vision."
+    },
+    {
+      "date": "2026",
+      "icon": "diploma",
+      "title": "University rated H+ in Anabin",
+      "description": "My university is rated H+ in Anabin, Germany's database of foreign institutions — equivalent to a German university. Formal recognition (Anerkennung) of my specific degree is still ahead."
+    },
+    {
+      "date": "2026",
+      "icon": "job",
+      "title": "Open to full-time roles",
+      "description": "Graduated and continuing to build portfolio projects — open to full-stack opportunities and interviews."
+    }
+  ]
+}

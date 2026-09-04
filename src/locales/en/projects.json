@@ -1,0 +1,252 @@
+{
+  "eyebrow": "Featured work",
+  "headingLead": "My",
+  "headingAccent": "projects",
+  "subheading": "Deliberately-scoped pet projects, each built with the practices a real production system needs — not just demos, and not a repeat of the last.",
+  "readMore": "Read more",
+  "detailLabels": {
+    "back": "Back to projects",
+    "overview": "Overview",
+    "architecture": "Architecture & decisions",
+    "challenges": "Challenges",
+    "highlights": "Highlights",
+    "stack": "Tech stack",
+    "links": "Links",
+    "problem": "Problem",
+    "solution": "Solution"
+  },
+  "items": [
+    {
+      "id": "bus-tickets",
+      "name": "Bus Ticket Booking Platform",
+      "status": "Pet project",
+      "description": "A bus ticket booking platform — my own side project: mainly backend, with some frontend work, built on MongoDB. Hands-on experience working with a growing codebase over time rather than a one-off build.",
+      "stack": [
+        "MongoDB",
+        "Node.js",
+        "Express"
+      ],
+      "links": {
+        "repo": null,
+        "live": null
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "A bus ticket booking platform — my own side project, built and extended over time rather than shipped once and abandoned. I worked mainly on the backend, with some frontend work on the booking flow.",
+        "architecture": [
+          "Layered backend: routes → controllers → a service layer (mail, tickets, tokens, users) → Mongoose models, instead of logic living in route handlers",
+          "JWT auth split into access and refresh tokens, with a dedicated token service and token model in MongoDB",
+          "Payments through Fondy, a Ukrainian payment gateway, in sandbox/test mode — no real money is ever charged; requests are signed with an SHA-1 hash over the sorted parameters plus a secret key",
+          "A Telegram bot wired into the backend for admin-side order visibility"
+        ],
+        "challenges": [
+          {
+            "problem": "Search getting slower as routes and schedules grew",
+            "solution": "Indexed the city/flight lookups in MongoDB instead of filtering in application code."
+          },
+          {
+            "problem": "Trusting a third-party payment callback",
+            "solution": "The server recomputes Fondy's signature on the callback and verifies it before marking a payment confirmed — it never trusts the client-side redirect alone."
+          },
+          {
+            "problem": "Managing sessions across a stateless API",
+            "solution": "Switched to short-lived access tokens plus refresh tokens instead of storing sessions server-side."
+          }
+        ],
+        "highlights": [
+          "The oldest project in this portfolio — kept alive and extended over time instead of a single build",
+          "A genuine third-party payment integration (Fondy, test mode only — no real charges) with signed requests and callback verification, not a mocked checkout",
+          "Mostly backend work, with enough frontend involvement to understand the whole user journey"
+        ]
+      }
+    },
+    {
+      "id": "shop",
+      "name": "Leaf & Cup — E-Commerce Platform",
+      "status": "Pet project",
+      "description": "A full e-commerce platform with a focus on the engineering practices that matter in production: Docker + CI/CD, Stripe payments in test mode (embedded Payment Element, idempotent webhooks) — no real money is ever charged, a role-based admin panel, and Playwright end-to-end tests.",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "Stripe",
+        "Auth.js",
+        "Docker",
+        "Playwright"
+      ],
+      "links": {
+        "repo": null,
+        "live": "https://leaf-cup-roan.vercel.app/"
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "A tea shop e-commerce platform built to cover the parts of a store that portfolio demos usually skip: payments, inventory, and admin operations — not just a product grid.",
+        "architecture": [
+          "Next.js App Router + TypeScript, Prisma/PostgreSQL, Auth.js v5 with Credentials and Google OAuth (PrismaAdapter, JWT sessions)",
+          "A guest cart identified by an httpOnly cookie, merged into the account's cart on login",
+          "Stripe's embedded Payment Element in test mode — no real money is ever charged; the webhook, not the client redirect, is the source of truth for a paid order, and it's idempotent (it checks the order is still PENDING before mutating it, since Stripe can resend the same event)",
+          "Stock is enforced at every layer: clamped in the UI, re-checked in server actions, and decremented via an atomic update with a stock-not-below-quantity guard, so two near-simultaneous checkouts can't push it negative",
+          "A role-based admin panel — products, categories, and order status transitions that are validated server-side, not just hidden in the UI"
+        ],
+        "challenges": [
+          {
+            "problem": "Next.js doesn't allow mutating cookies during a normal server-component render",
+            "solution": "Split the cart module into a read-only getCart() for rendering and a writable getOrCreateCart() usable only from Server Actions."
+          },
+          {
+            "problem": "A redirect meant for logged-in visitors on /sign-in was intercepting the Server Action that syncs the guest cart right after login",
+            "solution": "Exempted requests carrying Next's internal Server Action header from that redirect."
+          },
+          {
+            "problem": "Product images fetched live from Wikimedia were slow and occasionally hit a 429",
+            "solution": "Downloaded and re-encoded them to AVIF once, and self-hosted them instead of fetching from a third party on every request."
+          }
+        ],
+        "highlights": [
+          "Stripe wired end-to-end with webhook-driven state (test mode only, no real charges) — not a mocked checkout button",
+          "Stock can't go negative even under concurrent checkouts, enforced at the database level, not just the UI",
+          "Admin CRUD (products/categories/orders) is a first-class part of the app, covered by Playwright end-to-end tests"
+        ]
+      }
+    },
+    {
+      "id": "rechtsform",
+      "name": "Legal Form Digitization Web App",
+      "status": "Live",
+      "description": "A single-page application that digitizes legal paperwork, with a GDPR-oriented client-side architecture: sensitive data stays in session storage only, with strict client-side sanitization. Supports 14 languages, digital signatures, and client-side PDF generation.",
+      "stack": [
+        "React",
+        "Vite",
+        "TypeScript",
+        "pdf-lib",
+        "Vercel"
+      ],
+      "links": {
+        "repo": null,
+        "live": "https://www.pkh-formular.de/"
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "A step-by-step assistant that fills out the official German legal-aid form (Prozesskostenhilfe) — built pro bono for a lawyer's practice so applicants don't have to decode a dense official form alone. It never submits anything on the applicant's behalf, only helps fill it out correctly.",
+        "architecture": [
+          "Client-only React (CRA) app — i18next for 14 languages, framer-motion for the wizard, pdf-lib for the PDF, react-signature-canvas for signing — no backend, so nothing is ever sent anywhere",
+          "A 10-section wizard (A–J) mirroring the real official form, plus a document-upload step and a review screen before signing",
+          "The form itself is always completed in German — even though the interface is translated into 14 languages, a consent step makes clear the legal document has to stay in German",
+          "The finished PDF, with the embedded signature and attached documents, is generated entirely client-side by overlaying data onto the actual official template with pdf-lib"
+        ],
+        "challenges": [
+          {
+            "problem": "Sensitive data (income, rent, bank statements) with no backend to store it",
+            "solution": "Kept the entire flow client-side by design; the trade-off is no server-side validation, so extra care went into client-side sanitization."
+          },
+          {
+            "problem": "A long official form is intimidating to fill out alone",
+            "solution": "Broke it into a guided step-by-step wizard with a review screen, instead of one long form."
+          }
+        ],
+        "highlights": [
+          "Zero backend by design — a privacy constraint, not a shortcut",
+          "Deployed and fully working end-to-end, not just a local demo",
+          "Doesn't submit anything on the applicant's behalf — it only helps fill out the official form correctly, keeping legal responsibility where it belongs"
+        ]
+      }
+    },
+    {
+      "id": "jarvis",
+      "name": "Local AI Voice Assistant",
+      "status": "In progress",
+      "description": "A high-performance local voice assistant integrating speech-to-text and text-to-speech models with an LLM for complex context handling, driving over 300 voice commands with 150–200ms latency on modest hardware.",
+      "stack": [
+        "Python",
+        "GigaAM STT",
+        "Silero TTS",
+        "LLM APIs"
+      ],
+      "links": {
+        "repo": null,
+        "live": null
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "A local, offline voice assistant for Windows (Russian/Ukrainian) that goes well beyond voice commands — system control, gaming integrations, dictation, and a small ecosystem of installable extensions, all running without a single cloud call by default.",
+        "architecture": [
+          "A layered pipeline: audio capture → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → a hybrid intent layer → a dispatcher routing to dozens of action modules → Silero TTS for the reply",
+          "Hybrid intent matching, not just keyword spotting: fast keyword/fuzzy matching first, falling back to semantic sentence-embedding search (cached locally) for phrasing it hasn't seen exactly before",
+          "A CustomTkinter HUD (loading/idle/listening/speaking states) runs in a background thread with a system tray icon, behind a strict, order-sensitive startup sequence that works around native Windows DLL conflicts",
+          "A dedicated game mode: tighter voice-detection thresholds while playing, plus live telemetry for Euro Truck Simulator 2 over UDP and per-game profiles",
+          "Beyond voice commands: hands-free dictation into any focused window, OCR, a clipboard manager, a command 'vault' for custom macros, and an installable extensions catalog"
+        ],
+        "challenges": [
+          {
+            "problem": "Loading PyTorch/CUDA-adjacent libraries at the wrong moment caused native crashes or DLL conflicts on startup",
+            "solution": "Enforced a strict, order-sensitive startup sequence — stubbing CUDA/pynvml before torch loads, then preloading DLLs and warming up models in a background thread before the UI or audio loop starts."
+          },
+          {
+            "problem": "Exact keyword matching missed anything phrased slightly differently",
+            "solution": "Added a semantic fallback — sentence-embedding search over a local cache — used only when the fast keyword/fuzzy match doesn't confidently hit."
+          },
+          {
+            "problem": "Voice detection was too trigger-happy during games with loud audio",
+            "solution": "A dedicated game mode swaps in tighter VAD thresholds and reads live telemetry instead of relying on voice alone for game-specific status."
+          }
+        ],
+        "highlights": [
+          "Genuinely offline by default — ASR, intent matching and TTS all run locally; the only optional cloud call is for open-ended chat",
+          "Dozens of action modules well beyond 'open an app': system cleanup, dictation, OCR, clipboard, email, calendar, git commits, game integrations",
+          "A hybrid keyword + semantic intent layer instead of a rigid command list",
+          "Packaged into a standalone Windows build with a proper startup sequence, not just a script run from a terminal"
+        ]
+      }
+    },
+    {
+      "id": "paper-trader",
+      "name": "Crypto Paper-Trading Simulator",
+      "status": "Done",
+      "description": "A demo trading platform ($10,000 virtual balance, live BTC/ETH/SOL quotes) built to demonstrate financial precision and correctness: integer minor-unit math, race-condition-safe balance updates via guarded transactions, limit orders, and a derived PnL leaderboard.",
+      "stack": [
+        "Express",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "React",
+        "Vite"
+      ],
+      "links": {
+        "repo": null,
+        "live": "https://paper-trader-ten-pi.vercel.app/"
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "Built specifically to demonstrate what a Next.js monolith like Leaf & Cup doesn't: a split backend, live WebSocket price streaming, and race-condition-safe trade execution — the kind of correctness bug that's invisible in a demo but expensive in production.",
+        "architecture": [
+          "Split services from one repo: an Express/TypeScript backend and a Vite/React frontend, each deployed as its own Vercel service",
+          "The frontend connects directly to Binance's public WebSocket for live prices — the backend is only involved for trades and balances, never for streaming",
+          "Money is stored as integer cents and crypto quantities as 1e8 minor-units — no floating-point math anywhere near balance, price, or PnL",
+          "Balance-changing operations run inside guarded database transactions so two simultaneous trades can't corrupt the same balance",
+          "Limit orders fill via a ~5-minute sweep running inside the backend process itself, relying on the platform keeping a warm instance alive instead of an external scheduler — with a manual GitHub Actions workflow kept as a fallback"
+        ],
+        "challenges": [
+          {
+            "problem": "Two trades hitting the same balance at the same time",
+            "solution": "Wrapped balance changes in transactions with row-level guards, so one waits for the other instead of both reading a stale balance."
+          },
+          {
+            "problem": "Floating-point math silently loses cents",
+            "solution": "Represented all amounts as integers in the smallest unit and only format to decimal for display."
+          },
+          {
+            "problem": "The deployment platform didn't reliably carry the backend's module format into the deployed function",
+            "solution": "Built the backend to a single bundled file and committed that build artifact, since the platform checks the entrypoint exists in the repo before running the build on a fresh deploy."
+          }
+        ],
+        "highlights": [
+          "The project most focused on correctness rather than features — precision isn't optional in a trading app",
+          "Limit orders and a derived PnL leaderboard, not just a spot-buy demo",
+          "Deliberately split into separate services (unlike Leaf & Cup) specifically to practice service boundaries and live data streaming",
+          "Fully localized (DE/EN/RU/UK)"
+        ]
+      }
+    }
+  ]
+}

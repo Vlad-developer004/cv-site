@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "about": "Über mich",
+    "expertise": "Schwerpunkte",
+    "projects": "Projekte",
+    "timeline": "Werdegang",
+    "skills": "Kenntnisse",
+    "contact": "Kontakt"
+  },
+  "themeToggle": {
+    "toDark": "Dunkles Design aktivieren",
+    "toLight": "Helles Design aktivieren"
+  },
+  "languageSwitcher": {
+    "label": "Sprache"
+  },
+  "githubActivity": "GitHub-Aktivität",
+  "footer": {
+    "builtWith": "Erstellt mit Next.js, Tailwind CSS und motion.",
+    "rights": "Alle Rechte vorbehalten.",
+    "navigation": "Navigation",
+    "backToTop": "Nach oben"
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mär",
+    "apr": "Apr",
+    "may": "Mai",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Okt",
+    "nov": "Nov",
+    "dec": "Dez"
+  },
+  "weekdays": {
+    "mon": "Mo",
+    "wed": "Mi",
+    "fri": "Fr"
+  }
+}
