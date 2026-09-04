@@ -46,3 +46,6 @@ CONTEXT.md
 
 CLAUDE.md
 AGENTS.md
+
+.vercel
+.env*
