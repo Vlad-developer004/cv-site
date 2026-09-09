@@ -10,7 +10,7 @@ import { Reveal } from '@/components/reveal';
 import { GithubIcon } from '@/components/icons';
 
 type Detail = {
-  overview: string;
+  overview: string | string[];
   architecture: string[];
   challenges: { problem: string; solution: string }[];
   highlights: string[];
@@ -22,7 +22,7 @@ type Project = {
   status: string;
   description: string;
   stack: string[];
-  links: { repo: string | null; live: string | null };
+  links: { repo: string | null; repoClient?: string | null; live: string | null };
   detail: Detail;
 };
 
@@ -86,14 +86,22 @@ export default async function ProjectDetailPage({
               </div>
             )}
             <div className="relative aspect-video w-full">
-              <Image src={screenshot.src} alt={project.name} fill className="object-cover object-top" sizes="768px" />
+              <Image src={screenshot.src} alt={project.name} fill priority className="object-cover object-top" sizes="768px" />
             </div>
           </div>
         </Reveal>
       )}
 
       <Reveal delay={0.14}>
-        <p className="mt-8 text-lg leading-relaxed text-foreground/90">{project.detail.overview}</p>
+        <div className="mt-8 space-y-4">
+          {(Array.isArray(project.detail.overview) ? project.detail.overview : [project.detail.overview]).map(
+            (para, i) => (
+              <p key={i} className="text-lg leading-relaxed text-foreground/90">
+                {para}
+              </p>
+            )
+          )}
+        </div>
       </Reveal>
 
       <Reveal delay={0.18}>
@@ -101,9 +109,9 @@ export default async function ProjectDetailPage({
           {project.stack.map((tech) => (
             <span
               key={tech}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${tagTone(tech)}`}
+              className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium ${tagTone(tech)}`}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-current" />
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
               {tech}
             </span>
           ))}
@@ -115,7 +123,7 @@ export default async function ProjectDetailPage({
           <h2 className="text-lg font-semibold text-foreground">{labels.architecture}</h2>
           <ul className="mt-4 space-y-3">
             {project.detail.architecture.map((point, i) => (
-              <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-muted-foreground">
+              <li key={i} className="flex gap-3 text-base leading-relaxed text-muted-foreground">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                 <span>{point}</span>
               </li>
@@ -129,15 +137,19 @@ export default async function ProjectDetailPage({
           <h2 className="text-lg font-semibold text-foreground">{labels.challenges}</h2>
           <div className="mt-4 space-y-4">
             {project.detail.challenges.map((c, i) => (
-              <div key={i} className="glass rounded-xl p-5">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  {labels.problem}
-                </p>
-                <p className="mt-1 text-[15px] text-foreground/90">{c.problem}</p>
-                <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-primary">
-                  {labels.solution}
-                </p>
-                <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground">{c.solution}</p>
+              <div key={i} className="glass overflow-hidden rounded-xl">
+                <div className="border-l-2 border-foreground/25 py-4 pl-4 pr-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {labels.problem}
+                  </p>
+                  <p className="mt-1 text-base text-foreground/90">{c.problem}</p>
+                </div>
+                <div className="border-l-2 border-primary bg-primary/5 py-4 pl-4 pr-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                    {labels.solution}
+                  </p>
+                  <p className="mt-1 text-base leading-relaxed text-muted-foreground">{c.solution}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -149,7 +161,7 @@ export default async function ProjectDetailPage({
           <h2 className="text-lg font-semibold text-foreground">{labels.highlights}</h2>
           <ul className="mt-4 space-y-3">
             {project.detail.highlights.map((point, i) => (
-              <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-foreground/90">
+              <li key={i} className="flex gap-3 text-base leading-relaxed text-foreground/90">
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
                 <span>{point}</span>
               </li>
@@ -158,7 +170,7 @@ export default async function ProjectDetailPage({
         </section>
       </Reveal>
 
-      {(project.links.repo || project.links.live) && (
+      {(project.links.repo || project.links.repoClient || project.links.live) && (
         <Reveal delay={0.34}>
           <section className="mt-12 border-t border-border pt-8">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
@@ -171,6 +183,14 @@ export default async function ProjectDetailPage({
                   className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   <GithubIcon className="h-4 w-4" /> Code
+                </a>
+              )}
+              {project.links.repoClient && (
+                <a
+                  href={project.links.repoClient}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary"
+                >
+                  <GithubIcon className="h-4 w-4" /> {labels.frontendCode}
                 </a>
               )}
               {project.links.live && (

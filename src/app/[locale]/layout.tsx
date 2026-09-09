@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google';
+import { Geist, Playfair_Display } from 'next/font/google';
 import '../globals.css';
 import { i18nConfig, type Locale } from '@/i18nConfig';
 import initTranslations from '@/lib/i18n';
@@ -13,11 +13,6 @@ import { AmbientBackground } from '@/components/ambient-background';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
   subsets: ['latin'],
 });
 
@@ -44,10 +39,16 @@ export async function generateMetadata(
     uk: 'Владислав Тєрєхов — Full-Stack розробник',
   };
 
+  const description = t('tagline', { ns: 'hero' });
+  const siteUrl = 'https://vt-cv-site.vercel.app';
+  const path = locale === i18nConfig.defaultLocale ? '/' : `/${locale}`;
+
   return {
+    metadataBase: new URL(siteUrl),
     title: titles[locale],
-    description: t('tagline', { ns: 'hero' }),
+    description,
     alternates: {
+      canonical: path,
       languages: Object.fromEntries(
         i18nConfig.locales.map((l) => [l, l === i18nConfig.defaultLocale ? '/' : `/${l}`])
       ),
@@ -58,6 +59,19 @@ export async function generateMetadata(
         { url: '/icon.png', type: 'image/png' },
       ],
       apple: '/icon.png',
+    },
+    openGraph: {
+      title: titles[locale],
+      description,
+      url: path,
+      siteName: 'Vladyslav Tieriekhov',
+      locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titles[locale],
+      description,
     },
   };
 }
@@ -73,7 +87,7 @@ export default async function LocaleLayout({
   const { resources } = await initTranslations(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}>
+    <html lang={locale} suppressHydrationWarning className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <TranslationsProvider locale={locale} resources={resources[locale] as Record<string, unknown>}>

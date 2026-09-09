@@ -4,7 +4,7 @@
   "headingAccent": "build",
   "headingMid": "something",
   "headingItalic": "that works.",
-  "description": "I'm actively looking for a full-stack role and happy to talk about any of the projects above in more detail.",
+  "description": "I'm open to full-stack roles and happy to talk about any of the projects above in more detail.",
   "email": "terehovvlad29@gmail.com",
   "github": "Vlad-developer004",
   "cta": "Send an email",
@@ -24,5 +24,5 @@
   "infoHeading": "Contact information",
   "locationLabel": "Location",
   "availabilityHeading": "Currently available",
-  "availabilityDescription": "Looking for a full-time role as a full-stack developer, and open to adjacent roles where these skills are useful too. Open to interviews and calls."
+  "availabilityDescription": "Open to a full-time role as a full-stack developer, and to adjacent roles where these skills are useful too. Open to interviews and calls."
 }

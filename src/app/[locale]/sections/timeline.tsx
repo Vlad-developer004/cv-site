@@ -1,14 +1,15 @@
 import type { TFunction } from 'i18next';
-import { Award, Briefcase, GraduationCap, Languages, Microscope } from 'lucide-react';
+import { Award, Briefcase, Code2, GraduationCap, MessageCircle, Microscope } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 import { TiltCard } from '@/components/tilt-card';
 
 type TimelineItem = { date: string; icon: string; title: string; description: string };
 
 const ICONS: Record<string, typeof GraduationCap> = {
+  start: Code2,
   education: GraduationCap,
   thesis: Microscope,
-  language: Languages,
+  language: MessageCircle,
   diploma: Award,
   job: Briefcase,
 };
@@ -23,13 +24,13 @@ export function Timeline({ t }: { t: TFunction }) {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,color-mix(in_oklch,var(--primary)_10%,transparent),transparent_55%)]"
       />
 
-      <div className="relative mx-auto max-w-4xl px-5 py-14 sm:px-6 sm:py-20">
+      <div className="relative mx-auto max-w-4xl px-5 py-11 sm:px-6 sm:py-16">
         <Reveal>
-          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+          <span className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-widest text-primary">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
             {t('eyebrow', { ns: 'timeline' })}
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight sm:mt-3 sm:text-4xl">
             {t('headingLead', { ns: 'timeline' })}{' '}
             <span className="text-primary">{t('headingAccent', { ns: 'timeline' })}</span>
           </h2>

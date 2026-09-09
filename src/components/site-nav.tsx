@@ -1,28 +1,42 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const REFERENCE_LINE = 120;
 
 export function SiteNav({ navItems }: { navItems: { href: string; label: string }[] }) {
   const [active, setActive] = useState(navItems[0]?.href ?? '');
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const sections = navItems
       .map((item) => document.getElementById(item.href.slice(1)))
       .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (visible) setActive(`#${visible.target.id}`);
-      },
-      { rootMargin: '-40% 0px -50% 0px', threshold: 0 },
-    );
+    function update() {
+      rafRef.current = null;
+      let current = sections[0];
+      for (const el of sections) {
+        if (el.getBoundingClientRect().top <= REFERENCE_LINE) current = el;
+      }
+      setActive((prev) => (prev === `#${current.id}` ? prev : `#${current.id}`));
+    }
 
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    function onScroll() {
+      if (rafRef.current !== null) return;
+      rafRef.current = requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
   }, [navItems]);
 
   return (

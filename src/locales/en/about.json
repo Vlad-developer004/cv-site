@@ -15,9 +15,9 @@
       "description": "Race-condition-safe balances, strict client-side data handling — correctness isn't optional to me."
     },
     {
-      "id": "fast-learner",
-      "title": "Fast learner",
-      "description": "Went from German B1 to B2 in 7 months, and pick up new tech stacks just as fast — comfortable adapting to new environments."
+      "id": "resilient",
+      "title": "Sees things through",
+      "description": "Moved to Germany and went from B1 to B2 German in 7 months — while continuing to ship real projects the whole time."
     },
     {
       "id": "ownership",
@@ -38,11 +38,11 @@
   "facts": [
     { "label": "Location", "value": "Berlin, Germany" },
     { "label": "Education", "value": "B.Sc. Computer Science, with honors" },
-    { "label": "Languages", "value": "4 — EN, DE, RU, UK" },
+    { "label": "Languages", "value": "4 — DE, EN, UK, RU" },
     { "label": "Work authorization", "value": "Full labor market access in Germany, no visa needed" }
   ],
   "paragraphs": [
-    "I'm a full-stack developer who builds complete, production-minded systems — authentication, payments, race-condition-safe transactions, CI/CD — not just isolated features. I hold a B.Sc. in Computer Science with honors from Zaporizhzhia Polytechnic National University, and I'm currently looking for a full-time role.",
+    "I got into programming as a teenager back in 2020 — starting out self-taught, through YouTube and books, and that hobby grew into a profession. Today I'm a full-stack developer who builds complete, production-minded systems — authentication, payments, race-condition-safe transactions, CI/CD — not just isolated features. I hold a B.Sc. in Computer Science with honors from Zaporizhzhia Polytechnic National University. Currently open to full-time full-stack opportunities.",
     "My university is rated H+ in Anabin (equivalent to a German university), though formal recognition (Anerkennung) of my specific degree is still pending. I have full, unrestricted access to the German labor market — no visa sponsorship needed. I'm based in Berlin and certified at German B2 level.",
     "Rather than stopping at tutorials, I build complete, non-trivial projects to learn: an e-commerce platform with test-mode payments and CI/CD, a local AI voice assistant, a legal-form digitization tool, and a crypto paper-trading simulator focused on financial precision and race-condition safety.",
     "My Bachelor's thesis explored algorithms for license plate recognition under difficult weather conditions — a first deep dive into computer vision that shaped how I think about robustness in software."

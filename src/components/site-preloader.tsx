@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-const MIN_VISIBLE_MS = 700;
-const EXIT_MS = 700;
+const MIN_VISIBLE_MS = 150;
+const EXIT_MS = 300;
 const CIRCUMFERENCE = 2 * Math.PI * 35;
 
 export function SitePreloader() {
@@ -11,23 +11,15 @@ export function SitePreloader() {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    const start = Date.now();
+    // The page is already server-rendered by the time this mounts — no need
+    // to wait for window 'load' (every image/font network-wide). Just cover
+    // the brief hydration flash.
+    const timer = setTimeout(() => {
+      setExiting(true);
+      setTimeout(() => setVisible(false), EXIT_MS);
+    }, MIN_VISIBLE_MS);
 
-    function finish() {
-      const elapsed = Date.now() - start;
-      const remaining = Math.max(0, MIN_VISIBLE_MS - elapsed);
-      setTimeout(() => {
-        setExiting(true);
-        setTimeout(() => setVisible(false), EXIT_MS);
-      }, remaining);
-    }
-
-    if (document.readyState === 'complete') {
-      finish();
-    } else {
-      window.addEventListener('load', finish, { once: true });
-      return () => window.removeEventListener('load', finish);
-    }
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -41,8 +33,8 @@ export function SitePreloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-100 flex items-center justify-center bg-background transition-opacity duration-600 ease-out ${
-        exiting ? 'opacity-0 delay-150' : 'opacity-100'
+      className={`fixed inset-0 z-100 flex items-center justify-center bg-background transition-opacity duration-300 ease-out ${
+        exiting ? 'pointer-events-none opacity-0' : 'opacity-100'
       }`}
     >
       <div

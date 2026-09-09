@@ -1,6 +1,6 @@
 import type { TFunction } from 'i18next';
 import type { ComponentType, CSSProperties } from 'react';
-import { Bot, Code2, Database, Drama, Layout, Mic, Server, Table2, Waves, Webhook } from 'lucide-react';
+import { Bot, Code2, Database, Drama, FileText, KeyRound, Layout, Mic, Server, Table2, Waves, Webhook, Wrench } from 'lucide-react';
 import {
   SiClaudecode,
   SiCss,
@@ -18,6 +18,7 @@ import {
   SiPrisma,
   SiPython,
   SiReact,
+  SiStripe,
   SiTailwindcss,
   SiTypescript,
   SiVercel,
@@ -38,6 +39,7 @@ const GROUP_ICONS: Record<string, IconComp> = {
   backend: Server,
   data: Database,
   ai: Bot,
+  tools: Wrench,
 };
 
 const TECH: Record<string, { Icon: IconComp; color?: string; tier: 1 | 2 | 3 }> = {
@@ -63,6 +65,9 @@ const TECH: Record<string, { Icon: IconComp; color?: string; tier: 1 | 2 | 3 }> 
   'JWT-аутентификация': { Icon: SiJsonwebtokens, color: '#EC4899', tier: 2 },
   'JWT-автентифікація': { Icon: SiJsonwebtokens, color: '#EC4899', tier: 2 },
   WebSockets: { Icon: Waves, color: '#38BDF8', tier: 2 },
+  'Auth.js': { Icon: KeyRound, color: '#22C55E', tier: 2 },
+  Stripe: { Icon: SiStripe, color: '#635BFF', tier: 2 },
+  'pdf-lib': { Icon: FileText, color: '#F59E0B', tier: 2 },
   PostgreSQL: { Icon: SiPostgresql, color: '#4A90D9', tier: 3 },
   MongoDB: { Icon: SiMongodb, color: '#47A248', tier: 2 },
   Mongoose: { Icon: SiMongodb, color: '#88231E', tier: 2 },
@@ -128,8 +133,12 @@ export function Skills({ t }: { t: TFunction }) {
     tier === 3 ? levels.advanced : tier === 2 ? levels.comfortable : levels.familiar;
 
   return (
-    <section id="skills" className="section-divider">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20">
+    <section id="skills" className="section-divider relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_100%,color-mix(in_oklch,var(--primary)_9%,transparent),transparent_55%)]"
+      />
+      <div className="relative mx-auto max-w-6xl px-5 py-11 sm:px-6 sm:py-16">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {t('headingLead', { ns: 'skills' })}{' '}
@@ -139,7 +148,7 @@ export function Skills({ t }: { t: TFunction }) {
 
         <Reveal delay={0.05}>
           <div className="mt-5 flex flex-wrap gap-2.5">
-            {TIER_ORDER.map((tier) => (
+            {TIER_ORDER.filter((tier) => tierCounts[tier] > 0).map((tier) => (
               <span
                 key={tier}
                 className="glass inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium"

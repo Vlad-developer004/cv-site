@@ -76,6 +76,10 @@ export function GithubActivity({ t }: { t: TFunction }) {
             </a>
           </div>
 
+          <p className="mb-4 max-w-3xl text-sm text-muted-foreground">
+            {t('githubActivityNote', { ns: 'common' })}
+          </p>
+
           <Suspense fallback={<HeatmapSkeleton />}>
             <HeatmapData t={t} />
           </Suspense>

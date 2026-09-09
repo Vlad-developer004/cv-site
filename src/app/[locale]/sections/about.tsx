@@ -46,14 +46,14 @@ export function About({ t }: { t: TFunction }) {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,color-mix(in_oklch,var(--primary)_10%,transparent),transparent_55%)]"
       />
 
-      <div className="relative mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20">
+      <div className="relative mx-auto max-w-6xl px-5 py-11 sm:px-6 sm:py-16">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <Reveal>
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-widest text-primary">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
               {t('eyebrow', { ns: 'about' })}
             </span>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-bold tracking-tight sm:mt-3 sm:text-4xl">
               {t('headingLead', { ns: 'about' })}{' '}
               <span className="text-primary">{t('headingAccent', { ns: 'about' })}</span>
             </h2>

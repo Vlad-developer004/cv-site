@@ -30,13 +30,13 @@ export function Expertise({ t, locale }: { t: TFunction; locale: Locale }) {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,color-mix(in_oklch,var(--primary)_10%,transparent),transparent_55%)]"
       />
 
-      <div className="relative mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20">
+      <div className="relative mx-auto max-w-6xl px-5 py-11 sm:px-6 sm:py-16">
         <Reveal>
-          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+          <span className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-widest text-primary">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
             {t('eyebrow', { ns: 'expertise' })}
           </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight sm:mt-3 sm:text-4xl">
             {t('headingLead', { ns: 'expertise' })}{' '}
             <span className="text-primary">{t('headingAccent', { ns: 'expertise' })}</span>
           </h2>
@@ -61,13 +61,13 @@ export function Expertise({ t, locale }: { t: TFunction; locale: Locale }) {
                     <h3 className="mt-5 text-lg font-medium text-foreground group-hover:text-primary">
                       {pillar.title}
                     </h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                    <p className="mt-2 text-base leading-relaxed text-muted-foreground">
                       {pillar.description}
                     </p>
                   </Link>
 
                   <div className="mt-auto border-t border-border/60 p-6 pt-4">
-                    <span className="block text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                    <span className="block text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       {seeIn}
                     </span>
                     <div className="mt-2 flex min-h-16 flex-wrap items-start gap-1.5">
@@ -78,12 +78,12 @@ export function Expertise({ t, locale }: { t: TFunction; locale: Locale }) {
                           <Link
                             key={pid}
                             href={localizePath(`/projects/${pid}`, locale)}
-                            className="group/chip inline-flex items-center gap-1.5 rounded-full border border-border py-1.5 pl-1 pr-2.5 text-[13px] font-medium text-foreground/80 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary"
+                            className="group/chip inline-flex items-center gap-1.5 rounded-full border border-border py-1.5 pl-1 pr-2.5 text-sm font-medium text-foreground/80 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary"
                           >
                             <span
-                              className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${tone?.icon ?? 'bg-primary/10 text-primary'}`}
+                              className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${tone?.icon ?? 'bg-primary/10 text-primary'}`}
                             >
-                              <ProjIcon className="h-3 w-3" />
+                              <ProjIcon className="h-3.5 w-3.5" />
                             </span>
                             {projectName(pid)}
                             <ArrowUpRight className="h-3 w-3 shrink-0 opacity-0 transition-opacity group-hover/chip:opacity-100" />

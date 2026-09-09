@@ -1,7 +1,7 @@
 {
-  "eyebrow": "Featured work",
-  "headingLead": "My",
-  "headingAccent": "projects",
+  "eyebrow": "Portfolio",
+  "headingLead": "The last",
+  "headingAccent": "5 projects",
   "subheading": "Deliberately-scoped pet projects, each built with the practices a real production system needs — not just demos, and not a repeat of the last.",
   "readMore": "Read more",
   "detailLabels": {
@@ -12,6 +12,7 @@
     "highlights": "Highlights",
     "stack": "Tech stack",
     "links": "Links",
+    "frontendCode": "Code (frontend)",
     "problem": "Problem",
     "solution": "Solution"
   },
@@ -20,19 +21,23 @@
       "id": "bus-tickets",
       "name": "Bus Ticket Booking Platform",
       "status": "Pet project",
-      "description": "A bus ticket booking platform — my own side project: mainly backend, with some frontend work, built on MongoDB. Hands-on experience working with a growing codebase over time rather than a one-off build.",
+      "description": "A bus ticket booking platform — a side project built with a friend: I mainly handled the backend, he handled the frontend. Hands-on experience working with a growing codebase over time rather than a one-off build.",
       "stack": [
         "MongoDB",
         "Node.js",
         "Express"
       ],
       "links": {
-        "repo": null,
+        "repo": "https://github.com/shurik302/transfer-rework-server",
+        "repoClient": "https://github.com/shurik302/transfer_rework",
         "live": null
       },
       "highlight": false,
       "detail": {
-        "overview": "A bus ticket booking platform — my own side project, built and extended over time rather than shipped once and abandoned. I worked mainly on the backend, with some frontend work on the booking flow.",
+        "overview": [
+          "A bus ticket booking platform — a side project built with a friend, extended over time rather than shipped once and abandoned. I took the backend plus the part of the frontend tied directly to it — auth, forms, wiring the frontend and backend into one working system; the base UI and markup were his. Even back then, that was an early experience of building something not alone, but together with someone else.",
+          "I shared my backend work as files over chat at the time instead of git commits, so the repo's commit history doesn't fully reflect my actual contribution. Since then I've moved to a normal git workflow — commits, PRs, CI/CD, like the other projects in this portfolio."
+        ],
         "architecture": [
           "Layered backend: routes → controllers → a service layer (mail, tickets, tokens, users) → Mongoose models, instead of logic living in route handlers",
           "JWT auth split into access and refresh tokens, with a dedicated token service and token model in MongoDB",
@@ -56,7 +61,8 @@
         "highlights": [
           "The oldest project in this portfolio — kept alive and extended over time instead of a single build",
           "A genuine third-party payment integration (Fondy, test mode only — no real charges) with signed requests and callback verification, not a mocked checkout",
-          "Mostly backend work, with enough frontend involvement to understand the whole user journey"
+          "Backend plus the frontend pieces tied to it (auth, forms) — not just code on my own side, but wiring frontend and backend into one system",
+          "One of my first experiences building something not alone, but together with someone else"
         ]
       }
     },
@@ -76,7 +82,7 @@
         "Playwright"
       ],
       "links": {
-        "repo": null,
+        "repo": "https://github.com/Vlad-developer004/leaf-cup",
         "live": "https://leaf-cup-roan.vercel.app/"
       },
       "highlight": false,
@@ -128,7 +134,11 @@
       },
       "highlight": false,
       "detail": {
-        "overview": "A step-by-step assistant that fills out the official German legal-aid form (Prozesskostenhilfe) — built pro bono for a lawyer's practice so applicants don't have to decode a dense official form alone. It never submits anything on the applicant's behalf, only helps fill it out correctly.",
+        "overview": [
+          "A step-by-step assistant that fills out the official German legal-aid form (Prozesskostenhilfe) — built unpaid for someone I know personally, so applicants don't have to decode a dense official form alone. It never submits anything on the applicant's behalf, only helps fill it out correctly.",
+          "Later, the German Federal Ministry of Justice itself launched a similar tool — \"Justiz-Services\" — as a pilot — one more confirmation that I was solving a real, current problem.",
+          "I'm not publishing the code publicly for now: the UI closely mirrors the official form for collecting personal and financial data, and out in the open it would be a ready-made template for fraudulent clones. The whole project is built around privacy anyway — no backend, data stays only in the user's browser — and not publishing the repo follows the same logic. With a concrete prospect with an employer, I'm happy to walk through the code directly."
+        ],
         "architecture": [
           "Client-only React (CRA) app — i18next for 14 languages, framer-motion for the wizard, pdf-lib for the PDF, react-signature-canvas for signing — no backend, so nothing is ever sent anywhere",
           "A 10-section wizard (A–J) mirroring the real official form, plus a document-upload step and a review screen before signing",
@@ -169,7 +179,10 @@
       },
       "highlight": false,
       "detail": {
-        "overview": "A local, offline voice assistant for Windows (Russian/Ukrainian) that goes well beyond voice commands — system control, gaming integrations, dictation, and a small ecosystem of installable extensions, all running without a single cloud call by default.",
+        "overview": [
+          "A local, offline voice assistant for Windows (Russian/Ukrainian) that goes well beyond voice commands — system control, gaming integrations, dictation, and a small ecosystem of installable extensions, all running without a single cloud call by default.",
+          "It's a large, actively evolving project, so for now it's developed locally on my own machine, without a public repo or production deployment."
+        ],
         "architecture": [
           "A layered pipeline: audio capture → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → a hybrid intent layer → a dispatcher routing to dozens of action modules → Silero TTS for the reply",
           "Hybrid intent matching, not just keyword spotting: fast keyword/fuzzy matching first, falling back to semantic sentence-embedding search (cached locally) for phrasing it hasn't seen exactly before",
@@ -213,7 +226,7 @@
         "Vite"
       ],
       "links": {
-        "repo": null,
+        "repo": "https://github.com/Vlad-developer004/paper-trader",
         "live": "https://paper-trader-ten-pi.vercel.app/"
       },
       "highlight": false,

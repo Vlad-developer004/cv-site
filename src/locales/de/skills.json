@@ -17,7 +17,7 @@
     {
       "id": "backend",
       "name": "Backend",
-      "items": ["Node.js", "Express", "RESTful APIs", "JWT-Authentifizierung", "WebSockets"]
+      "items": ["Node.js", "Express", "RESTful APIs", "JWT-Authentifizierung", "WebSockets", "Auth.js", "Stripe", "pdf-lib"]
     },
     {
       "id": "data",
@@ -26,8 +26,13 @@
     },
     {
       "id": "ai",
-      "name": "KI & Tools",
-      "items": ["Claude Code", "LLM-APIs", "Speech-to-Text-/Text-to-Speech-Pipelines", "Git", "Docker", "Playwright", "Vercel"]
+      "name": "KI",
+      "items": ["Claude Code", "LLM-APIs", "Speech-to-Text-/Text-to-Speech-Pipelines"]
+    },
+    {
+      "id": "tools",
+      "name": "Tools & DevOps",
+      "items": ["Git", "Docker", "Playwright", "Vercel"]
     }
   ]
 }

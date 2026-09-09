@@ -55,7 +55,7 @@ export function Hero({ t }: { t: TFunction }) {
         <div className="flex flex-col gap-6">
           <Reveal>
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
               {t('eyebrow', { ns: 'hero' })}
             </span>
           </Reveal>
@@ -110,9 +110,9 @@ export function Hero({ t }: { t: TFunction }) {
               <a href={`https://github.com/${GITHUB_USERNAME}`} aria-label="GitHub" className="rounded-full border border-border p-2 hover:text-primary hover:border-primary/50">
                 <GithubIcon className="h-4 w-4" />
               </a>
-              <span className="pointer-events-none rounded-full border border-border p-2 opacity-40">
+              <a href="https://www.linkedin.com/in/vladyslav-tieriekhov" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="rounded-full border border-border p-2 hover:text-primary hover:border-primary/50">
                 <LinkedinIcon className="h-4 w-4" />
-              </span>
+              </a>
               <a href={`mailto:${t('email', { ns: 'contact' })}`} aria-label="Email" className="rounded-full border border-border p-2 hover:text-primary hover:border-primary/50">
                 <Mail className="h-4 w-4" />
               </a>
@@ -146,11 +146,6 @@ export function Hero({ t }: { t: TFunction }) {
                   <Icon className={size ?? 'h-5 w-5 sm:h-6 sm:w-6'} style={{ color }} />
                 </span>
               ))}
-            </div>
-
-            <div className="glass absolute left-4 top-4 hidden rounded-xl px-4 py-3 sm:block">
-              <div className="text-2xl font-bold text-primary">{t('statValue', { ns: 'hero' })}</div>
-              <div className="text-xs text-muted-foreground">{t('statLabel', { ns: 'hero' })}</div>
             </div>
 
             <div className="glass absolute bottom-4 right-4 flex items-center gap-2 rounded-xl px-4 py-3">

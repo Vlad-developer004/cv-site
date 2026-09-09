@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, MessageSquare, Send, User } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 import { TiltCard } from '@/components/tilt-card';
-import { GithubIcon } from '@/components/icons';
+import { GithubIcon, LinkedinIcon } from '@/components/icons';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -62,16 +62,20 @@ export function Contact() {
     <section id="contact" className="section-divider relative overflow-hidden">
       <div
         aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,color-mix(in_oklch,var(--primary)_70%,transparent)_25%,color-mix(in_oklch,var(--primary)_70%,transparent)_75%,transparent)]"
+      />
+      <div
+        aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,color-mix(in_oklch,var(--primary)_16%,transparent),transparent_60%)]"
       />
       <div className="relative mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-24">
         <Reveal>
           <div className="text-center">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-widest text-primary">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
               {t('eyebrow', { ns: 'contact' })}
             </span>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-bold tracking-tight sm:mt-3 sm:text-4xl">
               {t('headingLead', { ns: 'contact' })}{' '}
               <span className="text-primary">{t('headingAccent', { ns: 'contact' })}</span>{' '}
               {t('headingMid', { ns: 'contact' })}{' '}
@@ -87,55 +91,66 @@ export function Contact() {
           <Reveal delay={0.06}>
             <TiltCard className="h-full" disableTilt>
               <form onSubmit={onSubmit} className="flex h-full flex-col gap-4 p-6">
-                <div>
-                  <label htmlFor="contact-name" className="text-sm font-medium text-foreground">
-                    {form.nameLabel}
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder={form.namePlaceholder}
-                    className="mt-1.5 w-full rounded-lg border border-border bg-background/50 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary/50"
-                  />
-                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="contact-name" className="text-sm font-medium text-foreground">
+                      {form.nameLabel}
+                    </label>
+                    <div className="relative mt-1.5">
+                      <User className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <input
+                        id="contact-name"
+                        type="text"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder={form.namePlaceholder}
+                        className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
+                      />
+                    </div>
+                  </div>
 
-                <div>
-                  <label htmlFor="contact-email" className="text-sm font-medium text-foreground">
-                    {form.emailLabel}
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    required
-                    value={replyTo}
-                    onChange={(e) => setReplyTo(e.target.value)}
-                    placeholder={form.emailPlaceholder}
-                    className="mt-1.5 w-full rounded-lg border border-border bg-background/50 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary/50"
-                  />
+                  <div>
+                    <label htmlFor="contact-email" className="text-sm font-medium text-foreground">
+                      {form.emailLabel}
+                    </label>
+                    <div className="relative mt-1.5">
+                      <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <input
+                        id="contact-email"
+                        type="email"
+                        required
+                        value={replyTo}
+                        onChange={(e) => setReplyTo(e.target.value)}
+                        placeholder={form.emailPlaceholder}
+                        className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex flex-1 flex-col">
                   <label htmlFor="contact-message" className="text-sm font-medium text-foreground">
                     {form.messageLabel}
                   </label>
-                  <textarea
-                    id="contact-message"
-                    required
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder={form.messagePlaceholder}
-                    rows={5}
-                    className="mt-1.5 w-full flex-1 resize-none rounded-lg border border-border bg-background/50 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary/50"
-                  />
+                  <div className="relative mt-1.5 flex flex-1 flex-col">
+                    <MessageSquare className="pointer-events-none absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground" />
+                    <textarea
+                      id="contact-message"
+                      required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder={form.messagePlaceholder}
+                      rows={5}
+                      className="w-full flex-1 resize-none rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
+                    />
+                  </div>
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="btn-shine group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
+                  className="btn-shine group inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 sm:w-auto"
                 >
                   {status === 'sending' ? form.sending : form.submit}
                   <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -193,6 +208,23 @@ export function Contact() {
                       <span className="block text-xs text-muted-foreground">GitHub</span>
                       <span className="block text-sm font-medium text-foreground group-hover:text-primary">
                         {github}
+                      </span>
+                    </span>
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/vladyslav-tieriekhov"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-3 group"
+                  >
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <LinkedinIcon className="h-4 w-4" />
+                    </span>
+                    <span>
+                      <span className="block text-xs text-muted-foreground">LinkedIn</span>
+                      <span className="block text-sm font-medium text-foreground group-hover:text-primary">
+                        vladyslav-tieriekhov
                       </span>
                     </span>
                   </a>

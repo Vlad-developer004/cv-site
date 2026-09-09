@@ -4,16 +4,28 @@
   "headingAccent": "Werdegang",
   "items": [
     {
+      "date": "2020",
+      "icon": "start",
+      "title": "Erste Schritte im Programmieren",
+      "description": "Als Teenager begonnen, mir das Programmieren selbst beizubringen — YouTube, Bücher, erste Pet-Projekte, die bis heute nicht erhalten sind. Genau da wurde mir klar, dass ich das professionell machen will."
+    },
+    {
       "date": "2022 – 2026",
       "icon": "education",
       "title": "B.Sc. Informatik, mit Auszeichnung",
       "description": "Nationale Universität „Zaporizhzhia Polytechnic“. Schwerpunkte: Softwarearchitektur, Full-Stack-Webentwicklung, Datenbanken, Algorithmen & Datenstrukturen, OOP."
     },
     {
+      "date": "Seit 2022",
+      "icon": "diploma",
+      "title": "Uni mit Anabin-Bewertung H+",
+      "description": "Meine Universität ist in Anabin, Deutschlands Datenbank ausländischer Hochschulen, mit H+ bewertet — gleichwertig zu einer deutschen Hochschule. Die formale Anerkennung (Anerkennungsverfahren) meines Abschlusses steht noch aus."
+    },
+    {
       "date": "2024",
       "icon": "language",
       "title": "Deutsch B1",
-      "description": "Integrationskurs (BAMF) abgeschlossen; Test „Leben in Deutschland“ mit voller Punktzahl bestanden (33/33)."
+      "description": "Integrationskurs (BAMF) abgeschlossen; Test „Leben in Deutschland“ mit voller Punktzahl bestanden (33/33) — dieselbe Sorgfalt, mit der ich auch an Code herangehe."
     },
     {
       "date": "2025",
@@ -22,22 +34,16 @@
       "description": "Berufssprachkurs für den deutschen IT-Arbeitsmarkt abgeschlossen."
     },
     {
-      "date": "2026",
+      "date": "Sommer 2026",
       "icon": "thesis",
       "title": "Bachelorarbeit: Kennzeichenerkennung",
       "description": "Untersuchung von Algorithmen zur Kennzeichenerkennung unter schwierigen Wetterbedingungen — mein erster tieferer Einstieg in Computer Vision."
     },
     {
-      "date": "2026",
-      "icon": "diploma",
-      "title": "Uni mit Anabin-Bewertung H+",
-      "description": "Meine Universität ist in Anabin, Deutschlands Datenbank ausländischer Hochschulen, mit H+ bewertet — gleichwertig zu einer deutschen Hochschule. Die formale Anerkennung (Anerkennungsverfahren) meines Abschlusses steht noch aus."
-    },
-    {
-      "date": "2026",
+      "date": "August 2026",
       "icon": "job",
       "title": "Offen für Vollzeitstellen",
-      "description": "Studium abgeschlossen, baue weiter am Portfolio — offen für Full-Stack-Möglichkeiten und Gespräche."
+      "description": "Studium mit Auszeichnung abgeschlossen, dabei parallel zum Studium ein Portfolio produktionsreif gebauter Projekte aufgebaut. Offen für Full-Stack-Möglichkeiten und Gespräche."
     }
   ]
 }

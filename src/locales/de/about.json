@@ -15,9 +15,9 @@
       "description": "Race-condition-sichere Kontostände, strikte clientseitige Datenverarbeitung — Korrektheit ist für mich kein Nice-to-have."
     },
     {
-      "id": "fast-learner",
-      "title": "Schnell lernfähig",
-      "description": "Deutsch in 7 Monaten von B1 auf B2 gebracht, neue Tech-Stacks lerne ich genauso schnell — ich finde mich rasch in neuen Umgebungen zurecht."
+      "id": "resilient",
+      "title": "Bleibt am Ball",
+      "description": "Nach dem Umzug nach Deutschland die Sprache in 7 Monaten von B1 auf B2 gebracht — und die ganze Zeit über weiter an echten Projekten gebaut."
     },
     {
       "id": "ownership",
@@ -38,11 +38,11 @@
   "facts": [
     { "label": "Standort", "value": "Berlin, Deutschland" },
     { "label": "Ausbildung", "value": "B.Sc. Informatik, mit Auszeichnung" },
-    { "label": "Sprachen", "value": "4 — EN, DE, RU, UK" },
+    { "label": "Sprachen", "value": "4 — DE, EN, UK, RU" },
     { "label": "Arbeitserlaubnis", "value": "Uneingeschränkter Arbeitsmarktzugang in Deutschland" }
   ],
   "paragraphs": [
-    "Ich bin Full-Stack-Entwickler und baue vollständige, produktionsreif gedachte Systeme — Authentifizierung, Zahlungen, race-condition-sichere Transaktionen, CI/CD — nicht nur einzelne Features. Ich habe einen B.Sc. in Informatik mit Auszeichnung von der Nationalen Universität „Zaporizhzhia Polytechnic“ und suche aktuell eine Vollzeitstelle.",
+    "Fürs Programmieren begeistert habe ich mich schon als Teenager, 2020 — angefangen mit Selbststudium über YouTube und Bücher, und aus dieser Leidenschaft wurde ein Beruf. Heute bin ich Full-Stack-Entwickler und baue vollständige, produktionsreif gedachte Systeme — Authentifizierung, Zahlungen, race-condition-sichere Transaktionen, CI/CD — nicht nur einzelne Features. Ich habe einen B.Sc. in Informatik mit Auszeichnung von der Nationalen Universität „Zaporizhzhia Polytechnic“. Aktuell offen für Vollzeitmöglichkeiten im Full-Stack-Bereich.",
     "Meine Universität ist in Anabin mit H+ bewertet (gleichwertig zu einer deutschen Hochschule), die formale Anerkennung meines Abschlusses steht aber noch aus. Ich habe uneingeschränkten Zugang zum deutschen Arbeitsmarkt — kein Visum-Sponsoring nötig. Ich lebe in Berlin und habe ein zertifiziertes Deutsch-Niveau B2.",
     "Statt bei Tutorials stehenzubleiben, baue ich vollständige, anspruchsvolle Projekte: eine E-Commerce-Plattform mit Zahlungen im Testmodus und CI/CD, einen lokalen KI-Sprachassistenten, ein Tool zur Digitalisierung von Formularen sowie einen Krypto-Paper-Trading-Simulator mit Fokus auf finanzielle Präzision und Race-Condition-Sicherheit.",
     "Meine Bachelorarbeit befasste sich mit Algorithmen zur Kennzeichenerkennung unter schwierigen Wetterbedingungen — mein erster tieferer Einstieg in Computer Vision, der meine Denkweise über Robustheit in Software geprägt hat."

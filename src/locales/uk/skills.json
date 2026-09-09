@@ -17,7 +17,7 @@
     {
       "id": "backend",
       "name": "Backend",
-      "items": ["Node.js", "Express", "RESTful API", "JWT-автентифікація", "WebSockets"]
+      "items": ["Node.js", "Express", "RESTful API", "JWT-автентифікація", "WebSockets", "Auth.js", "Stripe", "pdf-lib"]
     },
     {
       "id": "data",
@@ -26,8 +26,13 @@
     },
     {
       "id": "ai",
-      "name": "AI та інструменти",
-      "items": ["Claude Code", "LLM API", "Speech-to-Text / Text-to-Speech пайплайни", "Git", "Docker", "Playwright", "Vercel"]
+      "name": "AI",
+      "items": ["Claude Code", "LLM API", "Speech-to-Text / Text-to-Speech пайплайни"]
+    },
+    {
+      "id": "tools",
+      "name": "Інструменти та DevOps",
+      "items": ["Git", "Docker", "Playwright", "Vercel"]
     }
   ]
 }

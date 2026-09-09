@@ -16,7 +16,6 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-playfair);
   --radius-sm: calc(var(--radius) * 0.5);
   --radius-md: calc(var(--radius) * 0.75);
@@ -119,6 +118,7 @@
 
   .section-divider {
     position: relative;
+    scroll-margin-top: 5rem;
   }
 
   .section-divider::after {

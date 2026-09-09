@@ -1,7 +1,7 @@
 {
-  "eyebrow": "Ausgewählte Projekte",
-  "headingLead": "Meine",
-  "headingAccent": "Projekte",
+  "eyebrow": "Portfolio",
+  "headingLead": "Die letzten",
+  "headingAccent": "5 Projekte",
   "subheading": "Bewusst geplante Nebenprojekte, jedes gebaut mit den Praktiken, die ein echtes Produktionssystem braucht — keine bloßen Demos, und keine Wiederholung des Vorherigen.",
   "readMore": "Mehr lesen",
   "detailLabels": {
@@ -12,6 +12,7 @@
     "highlights": "Highlights",
     "stack": "Tech-Stack",
     "links": "Links",
+    "frontendCode": "Code (Frontend)",
     "problem": "Problem",
     "solution": "Lösung"
   },
@@ -20,19 +21,23 @@
       "id": "bus-tickets",
       "name": "Buchungsplattform für Busfahrkarten",
       "status": "Nebenprojekt",
-      "description": "Eine Buchungsplattform für Busfahrkarten — mein eigenes Nebenprojekt: hauptsächlich Backend, mit etwas Frontend-Arbeit, auf Basis von MongoDB. Praktische Erfahrung mit einer wachsenden Codebasis statt einem einmaligen Build.",
+      "description": "Eine Buchungsplattform für Busfahrkarten — ein gemeinsames Nebenprojekt mit einem Bekannten: Ich habe hauptsächlich das Backend übernommen, er das Frontend. Praktische Erfahrung mit einer wachsenden Codebasis statt einem einmaligen Build.",
       "stack": [
         "MongoDB",
         "Node.js",
         "Express"
       ],
       "links": {
-        "repo": null,
+        "repo": "https://github.com/shurik302/transfer-rework-server",
+        "repoClient": "https://github.com/shurik302/transfer_rework",
         "live": null
       },
       "highlight": false,
       "detail": {
-        "overview": "Eine Buchungsplattform für Busfahrkarten — mein eigenes Nebenprojekt, über Zeit gebaut und erweitert statt einmal veröffentlicht und liegen gelassen. Ich habe hauptsächlich am Backend gearbeitet, mit etwas Frontend-Arbeit am Buchungsablauf.",
+        "overview": [
+          "Eine Buchungsplattform für Busfahrkarten — ein gemeinsames Nebenprojekt mit einem Bekannten, über Zeit gebaut und erweitert statt einmal veröffentlicht und liegen gelassen. Ich habe das Backend übernommen sowie den Teil des Frontends, der direkt daran hängt — Authentifizierung, Formulare, die Verbindung von Frontend und Backend zu einem funktionierenden Ganzen; das grundlegende UI und Markup kamen von ihm. Schon damals war das eine Erfahrung, nicht allein, sondern im Zusammenspiel mit jemand anderem zu entwickeln.",
+          "Meine Backend-Arbeit habe ich damals noch per Datei im Chat geteilt statt über Git-Commits, deshalb spiegelt die Commit-Historie im Repo meinen tatsächlichen Anteil nicht vollständig wider. Inzwischen arbeite ich mit einem normalen Git-Workflow — Commits, PRs, CI/CD, wie in den anderen Projekten in diesem Portfolio."
+        ],
         "architecture": [
           "Geschichtetes Backend: Routen → Controller → eine Service-Schicht (Mail, Tickets, Tokens, Nutzer) → Mongoose-Modelle, statt Logik in den Route-Handlern",
           "JWT-Authentifizierung mit getrennten Access- und Refresh-Tokens, mit eigenem Token-Service und Token-Modell in MongoDB",
@@ -56,7 +61,8 @@
         "highlights": [
           "Das älteste Projekt in diesem Portfolio — über Zeit gepflegt und erweitert statt einmal gebaut",
           "Eine echte Zahlungsintegration eines Drittanbieters (Fondy, nur Testmodus — kein echtes Geld) mit signierten Anfragen und Callback-Verifizierung, kein simulierter Checkout",
-          "Überwiegend Backend-Arbeit, mit genug Frontend-Beteiligung, um den gesamten Ablauf zu verstehen"
+          "Backend plus die daran hängenden Frontend-Teile (Authentifizierung, Formulare) — nicht nur Code auf der eigenen Seite, sondern Frontend und Backend zu einem System verbunden",
+          "Eine der ersten Erfahrungen, nicht allein, sondern im Zusammenspiel mit jemand anderem zu entwickeln"
         ]
       }
     },
@@ -76,7 +82,7 @@
         "Playwright"
       ],
       "links": {
-        "repo": null,
+        "repo": "https://github.com/Vlad-developer004/leaf-cup",
         "live": "https://leaf-cup-roan.vercel.app/"
       },
       "highlight": false,
@@ -128,7 +134,11 @@
       },
       "highlight": false,
       "detail": {
-        "overview": "Ein schrittweiser Assistent, der das offizielle Formular zur Prozesskostenhilfe ausfüllt — pro bono für eine Anwaltskanzlei gebaut, damit Antragstellende ein dichtes amtliches Formular nicht allein entschlüsseln müssen. Er reicht nie etwas im Namen der Antragstellenden ein, sondern hilft nur beim korrekten Ausfüllen.",
+        "overview": [
+          "Ein schrittweiser Assistent, der das offizielle Formular zur Prozesskostenhilfe ausfüllt — unentgeltlich für eine Privatperson aus meinem Bekanntenkreis gebaut, damit Antragstellende ein dichtes amtliches Formular nicht allein entschlüsseln müssen. Er reicht nie etwas im Namen der Antragstellenden ein, sondern hilft nur beim korrekten Ausfüllen.",
+          "Später hat das Bundesministerium der Justiz selbst ein ähnliches Tool — „Justiz-Services“ — als Pilotprojekt gestartet — ein weiterer Beleg dafür, dass ich ein reales, aktuelles Problem gelöst habe.",
+          "Den Code veröffentliche ich bisher nicht öffentlich: Die Oberfläche bildet das offizielle Formular für personenbezogene und finanzielle Daten exakt nach, und öffentlich zugänglich wäre das eine fertige Vorlage für betrügerische Klone. Das ganze Projekt ist ohnehin auf Datenschutz ausgelegt — kein Backend, Daten bleiben nur im Browser der Nutzer —, und der Verzicht auf ein öffentliches Repo folgt derselben Logik. Bei einer konkreten Perspektive mit einem Arbeitgeber zeige ich den Code gerne direkt."
+        ],
         "architecture": [
           "Reine Client-App mit React (CRA) — i18next für 14 Sprachen, framer-motion für den Assistenten, pdf-lib für das PDF, react-signature-canvas für die Unterschrift — kein Backend, nichts wird jemals irgendwohin gesendet",
           "Ein 10-Abschnitte-Assistent (A–J), der das echte amtliche Formular abbildet, plus ein Schritt für Dokument-Uploads und ein Prüfbildschirm vor der Unterschrift",
@@ -169,7 +179,10 @@
       },
       "highlight": false,
       "detail": {
-        "overview": "Ein lokaler, offline laufender Sprachassistent für Windows (Russisch/Ukrainisch), der weit über Sprachbefehle hinausgeht — Systemsteuerung, Gaming-Integrationen, Diktierfunktion und ein kleines Ökosystem installierbarer Erweiterungen, standardmäßig ganz ohne Cloud-Aufruf.",
+        "overview": [
+          "Ein lokaler, offline laufender Sprachassistent für Windows (Russisch/Ukrainisch), der weit über Sprachbefehle hinausgeht — Systemsteuerung, Gaming-Integrationen, Diktierfunktion und ein kleines Ökosystem installierbarer Erweiterungen, standardmäßig ganz ohne Cloud-Aufruf.",
+          "Das Projekt ist umfangreich und wird aktiv weiterentwickelt, deshalb entsteht es bisher lokal auf meinem Rechner, ohne öffentliches Repo oder Produktions-Deployment."
+        ],
         "architecture": [
           "Eine mehrstufige Pipeline: Audioaufnahme → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → eine hybride Intent-Schicht → ein Dispatcher, der zu Dutzenden Action-Modulen routet → Silero-TTS für die Antwort",
           "Hybrides Intent-Matching, nicht nur Keyword-Suche: zuerst schnelles Keyword-/Fuzzy-Matching, mit semantischer Satz-Embedding-Suche (lokal gecacht) als Fallback für Formulierungen, die es noch nicht exakt gesehen hat",
@@ -213,7 +226,7 @@
         "Vite"
       ],
       "links": {
-        "repo": null,
+        "repo": "https://github.com/Vlad-developer004/paper-trader",
         "live": "https://paper-trader-ten-pi.vercel.app/"
       },
       "highlight": false,

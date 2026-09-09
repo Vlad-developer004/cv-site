@@ -15,12 +15,18 @@
     "label": "Sprache"
   },
   "githubActivity": "GitHub-Aktivität",
+  "githubActivityNote": "Ein Teil der Arbeit — etwa die Bachelorarbeit oder das größere Projekt Jarvis — spiegelt sich hier nicht immer in Commits wider. An Jarvis arbeite ich allein, halte Arbeitsstände lokal fest und committe nur fertige, stabile Versionen statt zehnmal täglich kleine Änderungen — das ist für die Solo-Entwicklung praktischer. Im Team an einem Produktionsprojekt braucht es aber genau das Gegenteil — häufige, kleine atomare Commits, eine nachvollziehbare Historie und Code-Reviews per Pull Request, ähnlich wie der CI/CD-Workflow in meinen anderen Projekten.",
   "footer": {
     "builtWith": "Erstellt mit Next.js, Tailwind CSS und motion.",
     "rights": "Alle Rechte vorbehalten.",
     "navigation": "Navigation",
     "backToTop": "Nach oben",
-    "sourceCode": "Quellcode ansehen"
+    "sourceCode": "Quellcode ansehen",
+    "availability": "Offen für Angebote",
+    "ctaLine": "Bereit, ein Projekt zu besprechen",
+    "closingLead": "Suchen Sie jemanden, der Dinge",
+    "closingAccent": "zu Ende bringt?",
+    "closingSub": "Von der Idee bis zum Produktivbetrieb — inklusive Tests, CI/CD und durchdachter Architektur."
   },
   "months": {
     "jan": "Jan",
