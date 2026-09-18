@@ -35,6 +35,16 @@ type Project = {
   detail: Detail;
 };
 
+function initials(name: string) {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+}
+
 export function generateStaticParams() {
   return i18nConfig.locales.flatMap((locale) => PROJECT_IDS.map((slug) => ({ locale, slug })));
 }
@@ -183,8 +193,8 @@ export default async function ProjectDetailPage({
         <Reveal delay={0.32}>
           <section className="mt-12">
             <h2 className="text-lg font-semibold text-foreground">{labels.testimonial}</h2>
-            <figure className="glass mt-4 rounded-2xl p-6">
-              <Quote className="h-6 w-6 text-primary/40" aria-hidden="true" />
+            <figure className="rounded-2xl border border-primary/20 bg-[linear-gradient(135deg,color-mix(in_oklch,var(--primary)_8%,transparent),transparent_60%)] p-6 sm:p-7">
+              <Quote className="h-5 w-5 text-primary/50" aria-hidden="true" />
               <blockquote className="mt-3 text-lg leading-relaxed text-foreground/90">
                 {project.testimonial.translation ?? project.testimonial.quote}
               </blockquote>
@@ -196,12 +206,16 @@ export default async function ProjectDetailPage({
                   <p className="mt-1 text-xs text-muted-foreground">{labels.testimonialTranslated}</p>
                 </>
               )}
-              <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-2">
-                <span className="text-sm text-foreground/80">
-                  <span className="font-medium text-foreground">{project.testimonial.author}</span>
-                  {' · '}
-                  {project.testimonial.role}
-                </span>
+              <figcaption className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-primary/15 pt-5">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary),color-mix(in_oklch,var(--primary)_55%,var(--foreground)))] text-sm font-bold text-primary-foreground shadow-sm">
+                    {initials(project.testimonial.author)}
+                  </span>
+                  <span className="text-sm">
+                    <span className="block font-medium text-foreground">{project.testimonial.author}</span>
+                    <span className="block text-muted-foreground">{project.testimonial.role}</span>
+                  </span>
+                </div>
                 {project.testimonial.sourceUrl && (
                   <a
                     href={project.testimonial.sourceUrl}

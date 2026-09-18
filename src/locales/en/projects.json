@@ -1,7 +1,8 @@
 {
   "eyebrow": "Portfolio",
   "headingLead": "The last",
-  "headingAccent": "5 projects",
+  "headingCount": "5",
+  "headingAccentLabel": "projects",
   "subheading": "Deliberately-scoped pet projects, each built with the practices a real production system needs — not just demos, and not a repeat of the last.",
   "readMore": "Read more",
   "detailLabels": {

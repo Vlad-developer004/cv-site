@@ -42,7 +42,7 @@
   ],
   "languagesLabel": "Languages",
   "languages": [
-    { "code": "DE", "level": "B2" },
+    { "code": "DE", "level": "B2 (certified)" },
     { "code": "EN", "level": "working proficiency" },
     { "code": "UK", "level": "native" },
     { "code": "RU", "level": "fluent" }

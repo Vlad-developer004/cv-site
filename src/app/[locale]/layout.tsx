@@ -10,6 +10,8 @@ import { SiteFooter } from '@/components/site-footer';
 import { ScrollProgress } from '@/components/scroll-progress';
 import { SitePreloader } from '@/components/site-preloader';
 import { AmbientBackground } from '@/components/ambient-background';
+import { ConsoleEasterEgg } from '@/components/console-easter-egg';
+import { KonamiCode } from '@/components/konami-code';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -122,11 +124,16 @@ export default async function LocaleLayout({
   const skipToContent = t('skipToContent', { ns: 'common' }) as string;
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}>
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
         <a
           href="#main-content"
@@ -137,6 +144,8 @@ export default async function LocaleLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <TranslationsProvider locale={locale} resources={resources[locale] as Record<string, unknown>}>
             <SitePreloader />
+            <ConsoleEasterEgg />
+            <KonamiCode />
             <div className="page-reveal flex min-h-full flex-1 flex-col">
               <AmbientBackground />
               <ScrollProgress />

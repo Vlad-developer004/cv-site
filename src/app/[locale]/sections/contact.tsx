@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mail, MapPin, MessageSquare, Send, User } from 'lucide-react';
+import { Check, CheckCircle2, Clock, Copy, Mail, MapPin, MessageSquare, Send, User } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 import { TiltCard } from '@/components/tilt-card';
+import { Confetti } from '@/components/confetti';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
@@ -20,6 +21,22 @@ export function Contact() {
   const [message, setMessage] = useState('');
   const [botField, setBotField] = useState('');
   const [status, setStatus] = useState<Status>('idle');
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  async function onCopyEmail() {
+    try {
+      await navigator.clipboard.writeText(email);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 1500);
+    } catch {}
+  }
+
+  function onFieldFocus(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const target = e.target;
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -93,6 +110,10 @@ export function Contact() {
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
               {t('description', { ns: 'contact' })}
             </p>
+            <span className="mx-auto mt-4 inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground">
+              <Clock className="h-3.5 w-3.5 text-primary" />
+              {t('responseTimeNote', { ns: 'contact' })}
+            </span>
           </div>
         </Reveal>
 
@@ -124,6 +145,7 @@ export function Contact() {
                         maxLength={100}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        onFocus={onFieldFocus}
                         placeholder={form.namePlaceholder}
                         className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
                       />
@@ -143,6 +165,7 @@ export function Contact() {
                         maxLength={150}
                         value={replyTo}
                         onChange={(e) => setReplyTo(e.target.value)}
+                        onFocus={onFieldFocus}
                         placeholder={form.emailPlaceholder}
                         className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
                       />
@@ -162,6 +185,7 @@ export function Contact() {
                       maxLength={2000}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
+                      onFocus={onFieldFocus}
                       placeholder={form.messagePlaceholder}
                       rows={5}
                       className="w-full flex-1 resize-none rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
@@ -179,7 +203,16 @@ export function Contact() {
                 </button>
 
                 {status === 'success' && (
-                  <p className="text-sm text-emerald-600 dark:text-emerald-400">{form.success}</p>
+                  <div className="relative flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+                    <Confetti />
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
+                    <div>
+                      <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                        {form.successTitle}
+                      </p>
+                      <p className="mt-0.5 text-sm text-muted-foreground">{form.successDetail}</p>
+                    </div>
+                  </div>
                 )}
                 {status === 'error' && <p className="text-sm text-red-500">{form.error}</p>}
               </form>
@@ -193,17 +226,27 @@ export function Contact() {
                   {t('infoHeading', { ns: 'contact' })}
                 </h3>
                 <div className="mt-4 space-y-4">
-                  <a href={`mailto:${email}`} className="flex items-center gap-3 group">
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Mail className="h-4 w-4" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block text-xs text-muted-foreground">{form.emailLabel}</span>
-                      <span className="block truncate text-sm font-medium text-foreground group-hover:text-primary">
-                        {email}
+                  <div className="flex items-center gap-3">
+                    <a href={`mailto:${email}`} className="group flex min-w-0 flex-1 items-center gap-3">
+                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <Mail className="h-4 w-4" />
                       </span>
-                    </span>
-                  </a>
+                      <span className="min-w-0">
+                        <span className="block text-xs text-muted-foreground">{form.emailLabel}</span>
+                        <span className="block truncate text-sm font-medium text-foreground group-hover:text-primary">
+                          {email}
+                        </span>
+                      </span>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={onCopyEmail}
+                      aria-label={form.copyEmail}
+                      className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                    >
+                      {emailCopied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
+                    </button>
+                  </div>
 
                   <div className="flex items-center gap-3">
                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">

@@ -1,5 +1,5 @@
 import type { TFunction } from 'i18next';
-import { Suspense } from 'react';
+import { cache, Suspense } from 'react';
 import { Reveal } from '@/components/reveal';
 import { GithubIcon } from '@/components/icons';
 
@@ -31,7 +31,7 @@ const MONTH_KEYS = [
   'dec',
 ] as const;
 
-async function getContributions(): Promise<Contribution[] | null> {
+const getContributions = cache(async (): Promise<Contribution[] | null> => {
   try {
     const year = new Date().getFullYear();
     const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=${year}`, {
@@ -43,7 +43,7 @@ async function getContributions(): Promise<Contribution[] | null> {
   } catch {
     return null;
   }
-}
+});
 
 function toWeeks(days: Contribution[]) {
   const first = days[0];

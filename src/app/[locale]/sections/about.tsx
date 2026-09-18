@@ -1,8 +1,10 @@
 import type { TFunction } from 'i18next';
 import type { ReactNode } from 'react';
 import { Briefcase, BookOpen, Bug, Download, GraduationCap, Languages, MapPin, Target, Workflow, Wand2, Zap } from 'lucide-react';
+import { GB, DE, RU, UA } from 'country-flag-icons/react/3x2';
 import { Reveal } from '@/components/reveal';
 import { TiltCard } from '@/components/tilt-card';
+import { CvPreview } from '@/components/cv-preview';
 
 type Fact = { label: string; value: string };
 type LanguageItem = { code: string; level: string };
@@ -18,6 +20,13 @@ const ICONS: Record<string, typeof BookOpen> = {
 };
 
 const FACT_ICONS = [MapPin, GraduationCap, Briefcase];
+
+const LANGUAGE_FLAGS: Record<string, typeof GB> = {
+  EN: GB,
+  DE: DE,
+  RU: RU,
+  UK: UA,
+};
 
 const HIGHLIGHT_PATTERN = /(B1|B2|H\+|CI\/CD)/;
 
@@ -106,13 +115,19 @@ export function About({ t }: { t: TFunction }) {
                     <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       {languagesLabel}
                     </p>
-                    <ul className="mt-1.5 space-y-1">
-                      {languages.map((lang) => (
-                        <li key={lang.code} className="flex items-baseline gap-2 text-sm">
-                          <span className="w-6 shrink-0 font-semibold text-foreground">{lang.code}</span>
-                          <span className="text-foreground/70">{lang.level}</span>
-                        </li>
-                      ))}
+                    <ul className="mt-2 space-y-1.5">
+                      {languages.map((lang) => {
+                        const Flag = LANGUAGE_FLAGS[lang.code];
+                        return (
+                          <li key={lang.code} className="flex items-center gap-2.5 text-sm">
+                            {Flag && (
+                              <Flag className="h-3.5 w-5 shrink-0 rounded-[2px] ring-1 ring-inset ring-white/15" />
+                            )}
+                            <span className="sr-only">{lang.code}</span>
+                            <span className="text-foreground/90">{lang.level}</span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
@@ -141,13 +156,15 @@ export function About({ t }: { t: TFunction }) {
             })}
 
             <Reveal delay={0.04 + (facts.length + 1) * 0.05} className="sm:col-span-2 lg:col-span-1">
-              <a
-                href="/cv.pdf"
-                className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-border px-4 py-3.5 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary"
-              >
-                <Download className="h-4 w-4" />
-                {t('ctaDownloadCv', { ns: 'hero' })}
-              </a>
+              <CvPreview href="/cv.pdf" className="block w-full">
+                <a
+                  href="/cv.pdf"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-border px-4 py-3.5 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary"
+                >
+                  <Download className="h-4 w-4" />
+                  {t('ctaDownloadCv', { ns: 'hero' })}
+                </a>
+              </CvPreview>
             </Reveal>
           </div>
 
@@ -189,7 +206,7 @@ export function About({ t }: { t: TFunction }) {
               <Reveal key={skill.id} delay={0.15 + i * 0.06}>
                 <TiltCard className="h-full">
                   <div className="h-full p-5">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                       <Icon className="h-5 w-5" />
                     </span>
                     <h3 className="mt-4 text-sm font-semibold text-foreground">{skill.title}</h3>

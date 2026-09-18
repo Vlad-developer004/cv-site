@@ -42,7 +42,7 @@
   ],
   "languagesLabel": "Языки",
   "languages": [
-    { "code": "DE", "level": "B2" },
+    { "code": "DE", "level": "B2 (сертифицирован)" },
     { "code": "EN", "level": "рабочий уровень" },
     { "code": "UK", "level": "родной" },
     { "code": "RU", "level": "свободно" }

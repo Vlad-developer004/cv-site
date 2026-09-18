@@ -5,6 +5,7 @@
   "headingMid": "etwas bauen,",
   "headingItalic": "das funktioniert.",
   "description": "Ich bin offen für eine Full-Stack-Stelle und erzähle gerne mehr über jedes der oben genannten Projekte.",
+  "responseTimeNote": "Antwort in der Regel innerhalb von 24 Stunden",
   "email": "terehovvlad29@gmail.com",
   "github": "Vlad-developer004",
   "cta": "E-Mail schreiben",
@@ -18,8 +19,10 @@
     "messagePlaceholder": "Ihre Nachricht...",
     "submit": "Nachricht senden",
     "sending": "Wird gesendet...",
-    "success": "Danke! Ich melde mich bald bei Ihnen.",
-    "error": "Etwas ist schiefgelaufen — schreiben Sie mir bitte direkt eine E-Mail."
+    "successTitle": "Nachricht gesendet!",
+    "successDetail": "Danke für Ihre Nachricht — ich melde mich in der Regel innerhalb von 24 Stunden bei Ihnen.",
+    "error": "Etwas ist schiefgelaufen — schreiben Sie mir bitte direkt eine E-Mail.",
+    "copyEmail": "E-Mail-Adresse kopieren"
   },
   "infoHeading": "Kontaktinformationen",
   "locationLabel": "Standort",

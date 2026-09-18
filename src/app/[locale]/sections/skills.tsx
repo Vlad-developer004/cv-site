@@ -180,7 +180,7 @@ export function Skills({ t }: { t: TFunction }) {
                   <TiltCard className="h-full">
                     <div className="h-full p-5">
                       <div className="flex items-center gap-2.5">
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                           <GroupIcon aria-hidden="true" className="h-4 w-4" />
                         </span>
                         <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">

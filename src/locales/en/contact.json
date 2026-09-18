@@ -5,6 +5,7 @@
   "headingMid": "something",
   "headingItalic": "that works.",
   "description": "I'm open to full-stack roles and happy to talk about any of the projects above in more detail.",
+  "responseTimeNote": "Typically reply within 24 hours",
   "email": "terehovvlad29@gmail.com",
   "github": "Vlad-developer004",
   "cta": "Send an email",
@@ -18,8 +19,10 @@
     "messagePlaceholder": "Your message...",
     "submit": "Send message",
     "sending": "Sending...",
-    "success": "Thanks! I'll get back to you soon.",
-    "error": "Something went wrong — please email me directly instead."
+    "successTitle": "Message sent!",
+    "successDetail": "Thanks for reaching out — I typically reply within 24 hours.",
+    "error": "Something went wrong — please email me directly instead.",
+    "copyEmail": "Copy email address"
   },
   "infoHeading": "Contact information",
   "locationLabel": "Location",

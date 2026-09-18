@@ -1,4 +1,11 @@
 {
+  "konamiMessage": "Gefunden. Lass uns reden.",
+  "notFound": {
+    "code": "404",
+    "title": "Diese Route existiert nicht.",
+    "description": "Anders als meine Testabdeckung ist dieser Pfad nicht abgedeckt.",
+    "cta": "Zurück zur Startseite"
+  },
   "nav": {
     "about": "Über mich",
     "expertise": "Schwerpunkte",
@@ -17,7 +24,7 @@
   "githubActivity": "GitHub-Aktivität",
   "githubActivityNote": "Ein Teil der Arbeit — etwa die Bachelorarbeit oder das größere Projekt Jarvis — spiegelt sich hier nicht immer in Commits wider. An Jarvis arbeite ich allein, halte Arbeitsstände lokal fest und committe nur fertige, stabile Versionen statt zehnmal täglich kleine Änderungen — das ist für die Solo-Entwicklung praktischer. Im Team an einem Produktionsprojekt braucht es aber genau das Gegenteil — häufige, kleine atomare Commits, eine nachvollziehbare Historie und Code-Reviews per Pull Request, ähnlich wie der CI/CD-Workflow in meinen anderen Projekten.",
   "footer": {
-    "builtWith": "Erstellt mit Next.js, Tailwind CSS und motion.",
+    "builtWith": "Erstellt mit Next.js, Tailwind CSS und motion — geschrieben in Antigravity.",
     "rights": "Alle Rechte vorbehalten.",
     "navigation": "Navigation",
     "backToTop": "Nach oben",

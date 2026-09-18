@@ -1,7 +1,8 @@
 {
   "eyebrow": "Portfolio",
   "headingLead": "Die letzten",
-  "headingAccent": "5 Projekte",
+  "headingCount": "5",
+  "headingAccentLabel": "Projekte",
   "subheading": "Bewusst geplante Nebenprojekte, jedes gebaut mit den Praktiken, die ein echtes Produktionssystem braucht — keine bloßen Demos, und keine Wiederholung des Vorherigen.",
   "readMore": "Mehr lesen",
   "detailLabels": {

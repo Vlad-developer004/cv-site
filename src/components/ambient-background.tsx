@@ -1,6 +1,6 @@
 export function AmbientBackground() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-screen overflow-hidden">
+    <div aria-hidden className="pointer-events-none absolute inset-x-0 top-16 -z-10 h-screen overflow-hidden">
       <div
         className="ambient-blob left-[-10%] top-[-10%] h-104 w-104 opacity-[0.12]"
         style={{ background: 'oklch(0.62 0.13 175)' }}

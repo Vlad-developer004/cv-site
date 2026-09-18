@@ -7,6 +7,17 @@ import { useState } from 'react';
 export function MobileNav({ navItems }: { navItems: { href: string; label: string }[] }) {
   const [open, setOpen] = useState(false);
 
+  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    e.preventDefault();
+    setOpen(false);
+    setTimeout(() => {
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+      history.pushState(null, '', href);
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  }
+
   return (
     <div className="min-[880px]:hidden">
       <button
@@ -32,7 +43,7 @@ export function MobileNav({ navItems }: { navItems: { href: string; label: strin
                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-foreground"
                 >
                   {item.label}

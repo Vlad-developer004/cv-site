@@ -7,6 +7,7 @@ import { localizePath } from '@/lib/locale-path';
 import { ICONS, SCREENSHOTS, TONES, tagTone } from '@/lib/project-visuals';
 import { Reveal } from '@/components/reveal';
 import { TiltCard } from '@/components/tilt-card';
+import { CountUp } from '@/components/count-up';
 import { GithubIcon } from '@/components/icons';
 
 type Project = {
@@ -37,7 +38,10 @@ export function Projects({ t, locale }: { t: TFunction; locale: Locale }) {
           </span>
           <h2 className="mt-2 text-3xl font-bold tracking-tight sm:mt-3 sm:text-4xl">
             {t('headingLead', { ns: 'projects' })}{' '}
-            <span className="text-primary">{t('headingAccent', { ns: 'projects' })}</span>
+            <span className="text-primary">
+              <CountUp to={Number(t('headingCount', { ns: 'projects' }))} />{' '}
+              {t('headingAccentLabel', { ns: 'projects' })}
+            </span>
           </h2>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
             {t('subheading', { ns: 'projects' })}
@@ -65,7 +69,7 @@ export function Projects({ t, locale }: { t: TFunction; locale: Locale }) {
                           </div>
                         )}
                         <div
-                          className={`relative w-full ${
+                          className={`relative w-full overflow-hidden ${
                             project.highlight ? 'aspect-video max-h-80 sm:max-h-96' : 'aspect-video'
                           }`}
                         >
@@ -73,8 +77,13 @@ export function Projects({ t, locale }: { t: TFunction; locale: Locale }) {
                             src={screenshot.src}
                             alt={project.name}
                             fill
-                            className="object-cover object-top"
-                            sizes={project.highlight ? '100vw' : '(min-width: 640px) 50vw, 100vw'}
+                            priority={project.highlight}
+                            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+                            sizes={
+                              project.highlight
+                                ? '(min-width: 1152px) 1100px, 100vw'
+                                : '(min-width: 640px) 50vw, 100vw'
+                            }
                           />
                         </div>
                       </div>
@@ -82,7 +91,7 @@ export function Projects({ t, locale }: { t: TFunction; locale: Locale }) {
                     <div className="p-6 pb-0">
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${tone.icon}`}>
+                          <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${tone.icon}`}>
                             <Icon className="h-5 w-5" />
                           </span>
                           <h3 className="text-lg font-medium text-foreground group-hover:text-primary">
