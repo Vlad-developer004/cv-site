@@ -20,7 +20,7 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <header className="glass sticky top-0 z-50 border-b">
+    <header className="glass-static sticky top-0 z-50 border-b">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <LogoLink href={localizePath('/', locale)} className="group flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary),color-mix(in_oklch,var(--primary)_55%,var(--foreground)))] text-sm font-bold text-primary-foreground shadow-sm transition-transform group-hover:scale-105">
