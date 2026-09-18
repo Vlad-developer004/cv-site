@@ -1,7 +1,23 @@
 'use client';
 
 import { motion, useMotionTemplate, useMotionValue, useSpring } from 'motion/react';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useRef, useSyncExternalStore, type ReactNode } from 'react';
+
+const COARSE_POINTER_QUERY = '(pointer: coarse)';
+
+function subscribeToCoarsePointer(callback: () => void) {
+  const mql = window.matchMedia(COARSE_POINTER_QUERY);
+  mql.addEventListener('change', callback);
+  return () => mql.removeEventListener('change', callback);
+}
+
+function getCoarsePointerSnapshot() {
+  return window.matchMedia(COARSE_POINTER_QUERY).matches;
+}
+
+function getCoarsePointerServerSnapshot() {
+  return false;
+}
 
 export function TiltCard({
   children,
@@ -12,10 +28,11 @@ export function TiltCard({
   className?: string;
   disableTilt?: boolean;
 }) {
-  const [isCoarsePointer, setIsCoarsePointer] = useState(false);
-  useEffect(() => {
-    setIsCoarsePointer(window.matchMedia('(pointer: coarse)').matches);
-  }, []);
+  const isCoarsePointer = useSyncExternalStore(
+    subscribeToCoarsePointer,
+    getCoarsePointerSnapshot,
+    getCoarsePointerServerSnapshot,
+  );
   const tiltDisabled = disableTilt || isCoarsePointer;
 
   const x = useMotionValue(0);

@@ -15,13 +15,20 @@ export function SiteNav({ navItems }: { navItems: { href: string; label: string 
       .filter((el): el is HTMLElement => el !== null);
     if (sections.length === 0) return;
 
+    let offsets: { id: string; top: number }[] = [];
+
+    function measure() {
+      offsets = sections.map((el) => ({ id: el.id, top: el.getBoundingClientRect().top + window.scrollY }));
+    }
+
     function update() {
       rafRef.current = null;
-      let current = sections[0];
-      for (const el of sections) {
-        if (el.getBoundingClientRect().top <= REFERENCE_LINE) current = el;
+      const y = window.scrollY + REFERENCE_LINE;
+      let current = offsets[0];
+      for (const entry of offsets) {
+        if (entry.top <= y) current = entry;
       }
-      setActive((prev) => (prev === `#${current.id}` ? prev : `#${current.id}`));
+      if (current) setActive((prev) => (prev === `#${current.id}` ? prev : `#${current.id}`));
     }
 
     function onScroll() {
@@ -29,12 +36,18 @@ export function SiteNav({ navItems }: { navItems: { href: string; label: string 
       rafRef.current = requestAnimationFrame(update);
     }
 
+    function onResize() {
+      measure();
+      onScroll();
+    }
+
+    measure();
     update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', onResize);
     return () => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('resize', onResize);
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
   }, [navItems]);

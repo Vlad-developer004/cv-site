@@ -22,6 +22,10 @@ const FLAGS: Record<string, typeof GB> = {
   uk: UA,
 };
 
+function setLocaleCookie(locale: string) {
+  document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000; samesite=lax`;
+}
+
 export function LanguageSwitcher() {
   const pathname = usePathname();
   const { t, i18n } = useTranslation('common');
@@ -33,7 +37,7 @@ export function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        aria-label={t('languageSwitcher.label')}
+        aria-label={`${t('languageSwitcher.label')}: ${LABELS[i18n.language] ?? i18n.language.toUpperCase()}`}
         aria-expanded={open}
         className="inline-flex h-9 items-center gap-1 rounded-full border border-border px-3 text-sm font-medium text-foreground/80 transition-colors hover:text-primary hover:border-primary/50"
       >
@@ -51,7 +55,11 @@ export function LanguageSwitcher() {
               <Link
                 key={locale}
                 href={localizePath(pathname, locale)}
-                onClick={() => setOpen(false)}
+                scroll={false}
+                onClick={() => {
+                  setLocaleCookie(locale);
+                  setOpen(false);
+                }}
                 className={`flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted ${
                   locale === i18n.language ? 'text-primary font-medium' : 'text-foreground/80'
                 }`}

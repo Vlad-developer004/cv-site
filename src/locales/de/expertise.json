@@ -21,6 +21,12 @@
       "title": "Full-Stack TypeScript",
       "description": "React, Next.js und Node.js durchgängig, mit Präzision dort, wo es am wichtigsten ist: Zahlungen, gleichzeitige Kontostandsänderungen und race-condition-sichere Transaktionen.",
       "linkedProjectIds": ["shop", "paper-trader", "bus-tickets"]
+    },
+    {
+      "id": "quality",
+      "title": "Tests & Korrektheit",
+      "description": "Unit- und End-to-End-Tests, race-condition-sichere Transaktionen und CI-Pipelines, die bei jedem Push automatisch laufen — Korrektheit wird geprüft, nicht nur behauptet.",
+      "linkedProjectIds": ["rechtsform", "shop"]
     }
   ]
 }

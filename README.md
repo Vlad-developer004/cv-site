@@ -12,11 +12,14 @@ Personal portfolio / CV site, built with the Next.js App Router. Multilingual (E
 
 ## Features
 
-- 4 languages (English, German, Russian, Ukrainian), German as the default
+- 4 languages (English, German, Russian, Ukrainian), German as the default, with cookie-based locale persistence (explicit links always win over the remembered choice)
 - Dark theme by default, no flash on load
 - Live GitHub contribution graph, fetched server-side
-- Contact form wired to [Web3Forms](https://web3forms.com) (falls back to a `mailto:` link if no API key is set)
+- Contact form wired to [Web3Forms](https://web3forms.com) (honeypot + server-side validation, falls back to a `mailto:` link if no API key is set)
 - Fully static — every locale is pre-rendered at build time
+- SEO: `sitemap.xml`, `robots.txt`, per-locale `hreflang` alternates, per-project OG images (`next/og`), JSON-LD `Person` schema, `llms.txt`
+- Security: CSP, HSTS, and other hardening headers (`next.config.ts`), `SECURITY.md` + `/.well-known/security.txt`, CI (lint/typecheck/build on every push), Dependabot
+- Impressum and Datenschutzerklärung pages (German-only, TMG/DSGVO)
 
 ## Getting started
 

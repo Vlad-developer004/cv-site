@@ -1,6 +1,6 @@
 import type { TFunction } from 'i18next';
 import Link from 'next/link';
-import { ArrowUpRight, Code2, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, ClipboardCheck, Code2, ShieldCheck, Sparkles } from 'lucide-react';
 import type { Locale } from '@/i18nConfig';
 import { localizePath } from '@/lib/locale-path';
 import { ICONS as PROJECT_ICONS, TONES as PROJECT_TONES } from '@/lib/project-visuals';
@@ -14,6 +14,7 @@ const ICONS: Record<string, typeof ShieldCheck> = {
   privacy: ShieldCheck,
   ai: Sparkles,
   fullstack: Code2,
+  quality: ClipboardCheck,
 };
 
 export function Expertise({ t, locale }: { t: TFunction; locale: Locale }) {
@@ -42,7 +43,7 @@ export function Expertise({ t, locale }: { t: TFunction; locale: Locale }) {
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {pillars.map((pillar, i) => {
             const Icon = ICONS[pillar.id] ?? Code2;
             const primaryHref = localizePath(`/projects/${pillar.linkedProjectIds[0]}`, locale);

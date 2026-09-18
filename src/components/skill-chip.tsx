@@ -31,7 +31,7 @@ export function SkillChip({
       className="flex items-center gap-1.5 rounded-lg border border-border/70 bg-background/40 px-2.5 py-1.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-[0_4px_16px_-4px_color-mix(in_oklch,var(--primary)_40%,transparent)]"
     >
       {icon}
-      <span className="text-xs font-medium text-foreground/90">{label}</span>
+      <span className="text-[13px] font-medium text-foreground/90">{label}</span>
 
       {pos &&
         usedIn.length > 0 &&

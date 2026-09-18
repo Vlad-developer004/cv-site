@@ -38,13 +38,19 @@
   "facts": [
     { "label": "Standort", "value": "Berlin, Deutschland" },
     { "label": "Ausbildung", "value": "B.Sc. Informatik, mit Auszeichnung" },
-    { "label": "Sprachen", "value": "4 — DE, EN, UK, RU" },
     { "label": "Arbeitserlaubnis", "value": "Uneingeschränkter Arbeitsmarktzugang in Deutschland" }
+  ],
+  "languagesLabel": "Sprachen",
+  "languages": [
+    { "code": "DE", "level": "B2" },
+    { "code": "EN", "level": "Arbeitsniveau" },
+    { "code": "UK", "level": "Muttersprache" },
+    { "code": "RU", "level": "fließend" }
   ],
   "paragraphs": [
     "Fürs Programmieren begeistert habe ich mich schon als Teenager, 2020 — angefangen mit Selbststudium über YouTube und Bücher, und aus dieser Leidenschaft wurde ein Beruf. Heute bin ich Full-Stack-Entwickler und baue vollständige, produktionsreif gedachte Systeme — Authentifizierung, Zahlungen, race-condition-sichere Transaktionen, CI/CD — nicht nur einzelne Features. Ich habe einen B.Sc. in Informatik mit Auszeichnung von der Nationalen Universität „Zaporizhzhia Polytechnic“. Aktuell offen für Vollzeitmöglichkeiten im Full-Stack-Bereich.",
     "Meine Universität ist in Anabin mit H+ bewertet (gleichwertig zu einer deutschen Hochschule), die formale Anerkennung meines Abschlusses steht aber noch aus. Ich habe uneingeschränkten Zugang zum deutschen Arbeitsmarkt — kein Visum-Sponsoring nötig. Ich lebe in Berlin und habe ein zertifiziertes Deutsch-Niveau B2.",
-    "Statt bei Tutorials stehenzubleiben, baue ich vollständige, anspruchsvolle Projekte: eine E-Commerce-Plattform mit Zahlungen im Testmodus und CI/CD, einen lokalen KI-Sprachassistenten, ein Tool zur Digitalisierung von Formularen sowie einen Krypto-Paper-Trading-Simulator mit Fokus auf finanzielle Präzision und Race-Condition-Sicherheit.",
+    "Statt bei Tutorials stehenzubleiben, baue ich vollständige, anspruchsvolle Projekte — zuletzt zum Beispiel ein live genutztes Tool zur Digitalisierung von Formularen mit vollständiger Testabdeckung, eine Buchungsplattform für Busfahrkarten, einen Krypto-Paper-Trading-Simulator mit Fokus auf finanzielle Präzision, eine E-Commerce-Plattform mit Zahlungen im Testmodus und CI/CD sowie einen lokalen KI-Sprachassistenten.",
     "Meine Bachelorarbeit befasste sich mit Algorithmen zur Kennzeichenerkennung unter schwierigen Wetterbedingungen — mein erster tieferer Einstieg in Computer Vision, der meine Denkweise über Robustheit in Software geprägt hat."
   ]
 }

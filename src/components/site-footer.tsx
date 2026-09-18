@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArrowRight, ArrowUp, Mail } from 'lucide-react';
 import type { Locale } from '@/i18nConfig';
 import initTranslations from '@/lib/i18n';
@@ -124,21 +125,35 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
             </nav>
           </div>
 
-          <div className="mt-6 flex flex-col gap-3 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              &copy; {year} {t('name', { ns: 'hero' })}. {t('footer.rights', { ns: 'common' })}
-            </p>
-            <div className="flex items-center gap-4">
+          <div className="mt-6 flex flex-col gap-4 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-1.5">
+              <p>
+                &copy; {year} {t('name', { ns: 'hero' })}. {t('footer.rights', { ns: 'common' })}
+              </p>
               <p>
                 {t('footer.builtWith', { ns: 'common' })}{' '}
-                <a href={SITE_REPO_URL} target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-primary">
+                <a href={SITE_REPO_URL} target="_blank" rel="noreferrer" className="hover:text-primary hover:underline underline-offset-4">
                   {t('footer.sourceCode', { ns: 'common' })}
                 </a>
               </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <nav className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                <Link href={localizePath('/impressum', locale)} className="hover:text-primary hover:underline underline-offset-4">
+                  {t('footer.legalImpressum', { ns: 'common' })}
+                </Link>
+                <span aria-hidden className="text-border">
+                  ·
+                </span>
+                <Link href={localizePath('/datenschutz', locale)} className="hover:text-primary hover:underline underline-offset-4">
+                  {t('footer.legalPrivacy', { ns: 'common' })}
+                </Link>
+              </nav>
               <a
                 href="#top"
                 aria-label={t('footer.backToTop', { ns: 'common' })}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary"
+                className="ml-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary"
               >
                 <ArrowUp className="h-3.5 w-3.5" />
               </a>

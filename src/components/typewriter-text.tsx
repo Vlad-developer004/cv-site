@@ -16,13 +16,11 @@ export function TypewriterText({
 }) {
   const prefersReducedMotion = useReducedMotion();
   const [count, setCount] = useState(0);
-  const done = count >= text.length;
+  const displayCount = prefersReducedMotion ? text.length : count;
+  const done = displayCount >= text.length;
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setCount(text.length);
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     let i = 0;
     let interval: ReturnType<typeof setInterval>;
@@ -43,7 +41,7 @@ export function TypewriterText({
   return (
     <span className={className}>
       <span aria-hidden>
-        {text.slice(0, count)}
+        {text.slice(0, displayCount)}
         <span
           className={`ml-0.5 inline-block w-0.5 translate-y-[0.1em] bg-primary align-middle ${done ? 'opacity-0' : 'animate-pulse'}`}
           style={{ height: '0.85em' }}

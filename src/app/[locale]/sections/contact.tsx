@@ -18,15 +18,24 @@ export function Contact() {
   const [name, setName] = useState('');
   const [replyTo, setReplyTo] = useState('');
   const [message, setMessage] = useState('');
+  const [botField, setBotField] = useState('');
   const [status, setStatus] = useState<Status>('idle');
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (botField) return;
+
+    const cleanName = name.trim();
+    const cleanEmail = replyTo.trim();
+    const cleanMessage = message.trim();
+    if (!cleanName || !cleanEmail || !cleanMessage) return;
+
     const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
     if (!accessKey) {
-      const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-      const body = encodeURIComponent(`${message}\n\n— ${name} (${replyTo})`);
+      const subject = encodeURIComponent(`Portfolio contact from ${cleanName}`);
+      const body = encodeURIComponent(`${cleanMessage}\n\n— ${cleanName} (${cleanEmail})`);
       window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
       return;
     }
@@ -38,10 +47,10 @@ export function Contact() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: accessKey,
-          name,
-          email: replyTo,
-          message,
-          subject: `Portfolio contact from ${name}`,
+          name: cleanName,
+          email: cleanEmail,
+          message: cleanMessage,
+          subject: `Portfolio contact from ${cleanName}`,
         }),
       });
       const data = await res.json();
@@ -91,6 +100,16 @@ export function Contact() {
           <Reveal delay={0.06}>
             <TiltCard className="h-full" disableTilt>
               <form onSubmit={onSubmit} className="flex h-full flex-col gap-4 p-6">
+                <input
+                  type="text"
+                  name="company"
+                  value={botField}
+                  onChange={(e) => setBotField(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                />
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="contact-name" className="text-sm font-medium text-foreground">
@@ -102,6 +121,7 @@ export function Contact() {
                         id="contact-name"
                         type="text"
                         required
+                        maxLength={100}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder={form.namePlaceholder}
@@ -120,6 +140,7 @@ export function Contact() {
                         id="contact-email"
                         type="email"
                         required
+                        maxLength={150}
                         value={replyTo}
                         onChange={(e) => setReplyTo(e.target.value)}
                         placeholder={form.emailPlaceholder}
@@ -138,6 +159,7 @@ export function Contact() {
                     <textarea
                       id="contact-message"
                       required
+                      maxLength={2000}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder={form.messagePlaceholder}

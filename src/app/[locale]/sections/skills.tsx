@@ -181,7 +181,7 @@ export function Skills({ t }: { t: TFunction }) {
                     <div className="h-full p-5">
                       <div className="flex items-center gap-2.5">
                         <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                          <GroupIcon className="h-4 w-4" />
+                          <GroupIcon aria-hidden="true" className="h-4 w-4" />
                         </span>
                         <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
                           {group.name}
@@ -198,7 +198,7 @@ export function Skills({ t }: { t: TFunction }) {
                               className={`absolute inset-x-0 top-0 h-0.75 bg-linear-to-r ${TIER_BAR[tier]}`}
                             />
                             <div
-                              className={`mb-2.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider ${TIER_LABEL[tier]}`}
+                              className={`mb-2.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider ${TIER_LABEL[tier]}`}
                             >
                               <span className={`h-1.5 w-1.5 rounded-full ${TIER_DOT[tier]}`} />
                               {tierLabel(tier)}
@@ -213,6 +213,7 @@ export function Skills({ t }: { t: TFunction }) {
                                     key={item}
                                     icon={
                                       <Icon
+                                        aria-hidden="true"
                                         className="h-3.5 w-3.5 shrink-0"
                                         style={meta?.color ? { color: meta.color } : undefined}
                                       />

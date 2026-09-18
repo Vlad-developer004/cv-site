@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, CheckCircle2, ExternalLink } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ExternalLink, Quote } from 'lucide-react';
 import { i18nConfig, type Locale } from '@/i18nConfig';
 import initTranslations from '@/lib/i18n';
 import { localizePath } from '@/lib/locale-path';
@@ -16,6 +16,14 @@ type Detail = {
   highlights: string[];
 };
 
+type Testimonial = {
+  quote: string;
+  translation?: string;
+  author: string;
+  role: string;
+  sourceUrl: string;
+};
+
 type Project = {
   id: string;
   name: string;
@@ -23,6 +31,7 @@ type Project = {
   description: string;
   stack: string[];
   links: { repo: string | null; repoClient?: string | null; live: string | null };
+  testimonial?: Testimonial;
   detail: Detail;
 };
 
@@ -169,6 +178,44 @@ export default async function ProjectDetailPage({
           </ul>
         </section>
       </Reveal>
+
+      {project.testimonial && (
+        <Reveal delay={0.32}>
+          <section className="mt-12">
+            <h2 className="text-lg font-semibold text-foreground">{labels.testimonial}</h2>
+            <figure className="glass mt-4 rounded-2xl p-6">
+              <Quote className="h-6 w-6 text-primary/40" aria-hidden="true" />
+              <blockquote className="mt-3 text-lg leading-relaxed text-foreground/90">
+                {project.testimonial.translation ?? project.testimonial.quote}
+              </blockquote>
+              {project.testimonial.translation && (
+                <>
+                  <p className="mt-4 text-sm italic leading-relaxed text-muted-foreground">
+                    „{project.testimonial.quote}“
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">{labels.testimonialTranslated}</p>
+                </>
+              )}
+              <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-2">
+                <span className="text-sm text-foreground/80">
+                  <span className="font-medium text-foreground">{project.testimonial.author}</span>
+                  {' · '}
+                  {project.testimonial.role}
+                </span>
+                <a
+                  href={project.testimonial.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+                >
+                  {labels.testimonialSource}
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </figcaption>
+            </figure>
+          </section>
+        </Reveal>
+      )}
 
       {(project.links.repo || project.links.repoClient || project.links.live) && (
         <Reveal delay={0.34}>

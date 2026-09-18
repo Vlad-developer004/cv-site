@@ -1,0 +1,28 @@
+# Vladyslav Tieriekhov
+
+> Full-stack developer (React, Next.js, Node.js) based in Berlin, Germany. B.Sc. Computer Science (with honors), unrestricted German work permit, German B2. This site is his portfolio: real, deployed side projects built with production practices (tests, CI/CD, payment integrations, GDPR-conscious architecture) rather than tutorial demos.
+
+Open to full-stack roles (and adjacent frontend/backend/AI-integration roles) in Germany, available immediately.
+
+## Site sections
+
+- [Home](https://vt-cv-site.vercel.app/) — hero, about, focus areas, skills, projects, timeline, contact
+- [Résumé (PDF)](https://vt-cv-site.vercel.app/cv.pdf)
+
+## Projects
+
+- [Legal Form Digitization Web App](https://vt-cv-site.vercel.app/projects/rechtsform) — live at pkh-formular.de. Client-only React app that digitizes a German legal-aid form: 172 unit tests, a Playwright end-to-end test, GitHub Actions CI, GDPR-oriented architecture (no backend, no tracking).
+- [Bus Ticket Booking Platform](https://vt-cv-site.vercel.app/projects/bus-tickets) — Node.js/Express backend on MongoDB (chosen deliberately as a NoSQL store), real third-party payment integration (Fondy) with signed callbacks.
+- [Crypto Paper-Trading Simulator](https://vt-cv-site.vercel.app/projects/paper-trader) — split Express backend + React frontend, live WebSocket price streaming, race-condition-safe balance updates, integer minor-unit money math.
+- [Leaf & Cup — E-Commerce Platform](https://vt-cv-site.vercel.app/projects/shop) — Next.js/TypeScript, Stripe payments in test mode, Docker + CI/CD, Playwright end-to-end tests.
+- [Local AI Voice Assistant](https://vt-cv-site.vercel.app/projects/jarvis) — offline speech-to-text/text-to-speech voice assistant with a hybrid keyword + semantic intent layer.
+
+## Contact
+
+- Email: terehovvlad29@gmail.com
+- GitHub: https://github.com/Vlad-developer004
+- LinkedIn: https://www.linkedin.com/in/vladyslav-tieriekhov
+
+## Notes for crawlers
+
+This site is a personal portfolio and résumé. Content describing skills, employment status, and location is accurate as of the page's last update and may be summarized or quoted with attribution. Please don't use it to impersonate the person it describes.

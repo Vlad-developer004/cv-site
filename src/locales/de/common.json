@@ -26,8 +26,15 @@
     "ctaLine": "Bereit, ein Projekt zu besprechen",
     "closingLead": "Suchen Sie jemanden, der Dinge",
     "closingAccent": "zu Ende bringt?",
-    "closingSub": "Von der Idee bis zum Produktivbetrieb — inklusive Tests, CI/CD und durchdachter Architektur."
+    "closingSub": "Von der Idee bis zum Produktivbetrieb — inklusive Tests, CI/CD und durchdachter Architektur.",
+    "legalImpressum": "Impressum",
+    "legalPrivacy": "Datenschutz"
   },
+  "legal": {
+    "germanNotice": "Diese Seite ist aus rechtlichen Gründen auf Deutsch.",
+    "backHome": "Zurück zur Startseite"
+  },
+  "skipToContent": "Zum Inhalt springen",
   "months": {
     "jan": "Jan",
     "feb": "Feb",

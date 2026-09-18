@@ -21,6 +21,12 @@
       "title": "Full-Stack TypeScript",
       "description": "React, Next.js та Node.js від початку до кінця, з точністю там, де це критично: платежі, конкурентне оновлення балансу, транзакції, захищені від гонок.",
       "linkedProjectIds": ["shop", "paper-trader", "bus-tickets"]
+    },
+    {
+      "id": "quality",
+      "title": "Тести та коректність",
+      "description": "Юніт- та end-to-end-тести, транзакції, захищені від гонок, і CI-пайплайни, що автоматично запускаються при кожному push — коректність перевіряється, а не просто заявляється.",
+      "linkedProjectIds": ["rechtsform", "shop"]
     }
   ]
 }

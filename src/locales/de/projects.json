@@ -14,14 +14,70 @@
     "links": "Links",
     "frontendCode": "Code (Frontend)",
     "problem": "Problem",
-    "solution": "Lösung"
+    "solution": "Lösung",
+    "testimonial": "Stimme aus der Praxis",
+    "testimonialSource": "Beitrag auf LinkedIn ansehen"
   },
   "items": [
+    {
+      "id": "rechtsform",
+      "name": "Webanwendung zur Formular-Digitalisierung",
+      "status": "Live",
+      "description": "Live im produktiven Einsatz unter pkh-formular.de: eine Single-Page-Application, die das amtliche Formular zur Prozesskostenhilfe digitalisiert, mit DSGVO-orientierter clientseitiger Architektur — sensible Daten bleiben ausschließlich im Session Storage. 172 Unit-Tests, ein Playwright-E2E-Test und eine GitHub-Actions-CI-Pipeline sichern die PDF-Pipeline ab. 14 Sprachen, digitale Signatur, clientseitige PDF-Generierung samt Rückimport.",
+      "stack": [
+        "React",
+        "JavaScript",
+        "pdf-lib",
+        "Vercel"
+      ],
+      "links": {
+        "repo": null,
+        "live": "https://www.pkh-formular.de/"
+      },
+      "highlight": true,
+      "testimonial": {
+        "quote": "PKH-Formular.de ist eine kostenlose Ausfüllhilfe, die die Fehlerdichte bei Anträgen deutlich reduziert. Für die technische Umsetzung bedanke ich mich herzlich bei Vladyslav Tieriekhov!!!",
+        "author": "Richard Mertens, LL.M.",
+        "role": "Rechtsanwalt für Familienrecht",
+        "sourceUrl": "https://lnkd.in/p/dA3ae8HZ"
+      },
+      "detail": {
+        "overview": [
+          "Ein schrittweiser Assistent, der das offizielle Formular zur Prozesskostenhilfe ausfüllt — unentgeltlich für eine Privatperson aus meinem Bekanntenkreis gebaut, damit Antragstellende ein dichtes amtliches Formular nicht allein entschlüsseln müssen. Er reicht nie etwas im Namen der Antragstellenden ein, sondern hilft nur beim korrekten Ausfüllen.",
+          "Später hat das Bundesministerium der Justiz selbst ein ähnliches Tool — „Justiz-Services“ — als Pilotprojekt gestartet — ein weiterer Beleg dafür, dass ich ein reales, aktuelles Problem gelöst habe.",
+          "Den Code veröffentliche ich bisher nicht öffentlich: Die Oberfläche bildet das offizielle Formular für personenbezogene und finanzielle Daten exakt nach, und öffentlich zugänglich wäre das eine fertige Vorlage für betrügerische Klone. Das ganze Projekt ist ohnehin auf Datenschutz ausgelegt, und der Verzicht auf ein öffentliches Repo folgt derselben Logik. Bei einer konkreten Perspektive mit einem Arbeitgeber zeige ich den Code gerne direkt."
+        ],
+        "architecture": [
+          "Reine Client-App mit React (Create React App, reines JavaScript) — i18next für 14 Sprachen, framer-motion für den Assistenten, pdf-lib für das PDF, react-signature-canvas für die Unterschrift — kein Backend, nichts wird jemals irgendwohin gesendet",
+          "Ein 10-Abschnitte-Assistent (A–J), der das echte amtliche Formular abbildet, plus ein Schritt für Dokument-Uploads und ein Prüfbildschirm vor der Unterschrift",
+          "Das Formular selbst wird immer auf Deutsch ausgefüllt — obwohl die Oberfläche in 14 Sprachen übersetzt ist, macht ein Zustimmungsschritt klar, dass das amtliche Dokument auf Deutsch bleiben muss",
+          "Das fertige PDF mit eingebetteter Unterschrift und angehängten Dokumenten wird vollständig clientseitig erzeugt, indem die Daten mit pdf-lib über das echte amtliche Formularlayout gelegt werden",
+          "Ein separater PDF-Import (pdfImporter.js): Nutzer können ein zuvor heruntergeladenes, teilweise ausgefülltes PDF wieder hochladen, die App liest die pdf-lib-Formularfelder aus und mappt sie zurück in den Assistenten-Zustand — kein reiner Einwegpfad Formular → PDF"
+        ],
+        "challenges": [
+          {
+            "problem": "Sensible Daten (Einkommen, Miete, Kontoauszüge) ohne Backend zum Speichern",
+            "solution": "Den gesamten Ablauf bewusst clientseitig gehalten; der Kompromiss ist fehlende serverseitige Validierung, daher besondere Sorgfalt bei der clientseitigen Sanitisierung."
+          },
+          {
+            "problem": "Ein langes amtliches Formular ist allein einschüchternd auszufüllen",
+            "solution": "In einen geführten Schritt-für-Schritt-Assistenten mit Prüfbildschirm aufgeteilt, statt eines langen Formulars."
+          }
+        ],
+        "highlights": [
+          "Vollständige Testabdeckung der Kernlogik (172 Unit-Tests mit Jest/React Testing Library für PDF-Erzeugung, PDF-Rückimport, Formular-Hooks und Validierung) plus ein End-to-End-Smoketest mit Playwright, der den gesamten Antragsprozess von der Einwilligung bis zum heruntergeladenen PDF abdeckt",
+          "GitHub-Actions-CI: Bei jedem Push/PR auf main laufen automatisch Install, Tests und Build",
+          "Konkreter Nachweis der DSGVO-Kompetenz aus dem Schwerpunkte-Bereich dieser Seite: Datenminimierung — erfasst wird ausschließlich, was das amtliche Formular verlangt — und kein einziges Tracking- oder Analytics-Cookie im gesamten Projekt",
+          "Vollständig deployed und funktionsfähig, nicht nur eine lokale Demo",
+          "Reicht nichts im Namen der Antragstellenden ein — hilft nur beim korrekten Ausfüllen des amtlichen Formulars, sodass die rechtliche Verantwortung dort bleibt, wo sie hingehört"
+        ]
+      }
+    },
     {
       "id": "bus-tickets",
       "name": "Buchungsplattform für Busfahrkarten",
       "status": "Nebenprojekt",
-      "description": "Eine Buchungsplattform für Busfahrkarten — ein gemeinsames Nebenprojekt mit einem Bekannten: Ich habe hauptsächlich das Backend übernommen, er das Frontend. Praktische Erfahrung mit einer wachsenden Codebasis statt einem einmaligen Build.",
+      "description": "Eine Buchungsplattform für Busfahrkarten — Node.js/Express-Backend mit MongoDB, bewusst als NoSQL-Dokumentendatenbank statt relational gewählt, plus eine echte Zahlungsintegration (Fondy, Testmodus). Ein gemeinsames Nebenprojekt mit einem Bekannten: ich das Backend, er das Frontend — über Zeit gewachsen statt einmal gebaut.",
       "stack": [
         "MongoDB",
         "Node.js",
@@ -42,7 +98,8 @@
           "Geschichtetes Backend: Routen → Controller → eine Service-Schicht (Mail, Tickets, Tokens, Nutzer) → Mongoose-Modelle, statt Logik in den Route-Handlern",
           "JWT-Authentifizierung mit getrennten Access- und Refresh-Tokens, mit eigenem Token-Service und Token-Modell in MongoDB",
           "Zahlungen über Fondy, ein ukrainisches Zahlungsgateway, im Sandbox-/Testmodus — es wird nie echtes Geld abgebucht; Anfragen werden mit einem SHA-1-Hash über die sortierten Parameter plus einem Secret Key signiert",
-          "Ein Telegram-Bot im Backend für Bestellübersicht auf Admin-Seite"
+          "Ein Telegram-Bot im Backend für Bestellübersicht auf Admin-Seite",
+          "MongoDB bewusst statt einer relationalen Datenbank gewählt: Fahrpläne, Routen und Buchungen sind dokumentenförmig und ändern sich häufig, ohne den Bedarf an mehrtabelligen Joins oder strengen Schema-Migrationen, für die Postgres & Co. eigentlich gebaut sind"
         ],
         "challenges": [
           {
@@ -60,9 +117,59 @@
         ],
         "highlights": [
           "Das älteste Projekt in diesem Portfolio — über Zeit gepflegt und erweitert statt einmal gebaut",
+          "Der NoSQL-Gegenpart zu den Postgres-Projekten in diesem Portfolio (Leaf & Cup, Paper-Trading-Simulator) — MongoDB/Mongoose statt eines relationalen Schemas, weil die Domäne das eher braucht als verlangt",
           "Eine echte Zahlungsintegration eines Drittanbieters (Fondy, nur Testmodus — kein echtes Geld) mit signierten Anfragen und Callback-Verifizierung, kein simulierter Checkout",
           "Backend plus die daran hängenden Frontend-Teile (Authentifizierung, Formulare) — nicht nur Code auf der eigenen Seite, sondern Frontend und Backend zu einem System verbunden",
           "Eine der ersten Erfahrungen, nicht allein, sondern im Zusammenspiel mit jemand anderem zu entwickeln"
+        ]
+      }
+    },
+    {
+      "id": "paper-trader",
+      "name": "Krypto-Paper-Trading-Simulator",
+      "status": "Fertig",
+      "description": "Eine Demo-Trading-Plattform (virtuelles Guthaben von 10.000 $, Live-Kurse für BTC/ETH/SOL), gebaut um finanzielle Präzision und Korrektheit zu demonstrieren: Ganzzahl-Arithmetik in kleinsten Einheiten, race-condition-sichere Kontostandsänderungen über abgesicherte Transaktionen, Limit-Orders und eine abgeleitete PnL-Rangliste.",
+      "stack": [
+        "Express",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "React",
+        "Vite"
+      ],
+      "links": {
+        "repo": "https://github.com/Vlad-developer004/paper-trader",
+        "live": "https://paper-trader-ten-pi.vercel.app/"
+      },
+      "highlight": false,
+      "detail": {
+        "overview": "Gezielt gebaut, um zu zeigen, was ein Next.js-Monolith wie Leaf & Cup nicht zeigt: ein getrenntes Backend, Live-WebSocket-Preisstreaming und race-condition-sichere Trade-Ausführung — genau die Art von Korrektheitsfehler, die in einer Demo unsichtbar, im Produktionsbetrieb aber teuer ist.",
+        "architecture": [
+          "Getrennte Services aus einem Repo: ein Express/TypeScript-Backend und ein Vite/React-Frontend, jeweils als eigener Vercel-Service deployed",
+          "Das Frontend verbindet sich direkt mit Binances öffentlichem WebSocket für Live-Kurse — das Backend ist nur für Trades und Kontostände zuständig, nie fürs Streaming",
+          "Geld wird als Ganzzahl-Cent gespeichert, Krypto-Mengen als 1e8-Minimaleinheiten — keine Fließkomma-Arithmetik in der Nähe von Kontostand, Preis oder PnL",
+          "Kontostandsändernde Operationen laufen in abgesicherten Datenbank-Transaktionen, damit zwei gleichzeitige Trades denselben Kontostand nicht beschädigen können",
+          "Limit-Orders werden über einen ~5-Minuten-Sweep innerhalb des Backend-Prozesses selbst abgewickelt, der sich darauf verlässt, dass die Plattform eine warme Instanz am Leben hält, statt auf einen externen Scheduler — mit einem manuellen GitHub-Actions-Workflow als Fallback"
+        ],
+        "challenges": [
+          {
+            "problem": "Zwei Trades treffen gleichzeitig auf denselben Kontostand",
+            "solution": "Kontostandsänderungen in Transaktionen mit Row-Level-Locks verpackt, sodass einer auf den anderen wartet, statt dass beide einen veralteten Stand lesen."
+          },
+          {
+            "problem": "Fließkomma-Arithmetik verliert stillschweigend Cent-Beträge",
+            "solution": "Alle Beträge als Ganzzahlen in der kleinsten Einheit dargestellt und erst zur Anzeige in Dezimalform formatiert."
+          },
+          {
+            "problem": "Die Deploy-Plattform übernahm das Modulformat des Backends nicht zuverlässig in die deployte Funktion",
+            "solution": "Das Backend zu einer einzigen gebündelten Datei gebaut und dieses Build-Artefakt committed, da die Plattform vor dem Build bei einem frischen Deploy prüft, ob die Entry-Point-Datei im Repo existiert."
+          }
+        ],
+        "highlights": [
+          "Das Projekt mit dem stärksten Fokus auf Korrektheit statt Features — bei einer Trading-App ist Präzision keine Option",
+          "Limit-Orders und eine abgeleitete PnL-Rangliste, nicht nur eine simple Kauf-Demo",
+          "Bewusst in getrennte Services aufgeteilt (anders als Leaf & Cup), gezielt um Service-Grenzen und Live-Datenstreaming zu üben",
+          "Vollständig lokalisiert (DE/EN/RU/UK)"
         ]
       }
     },
@@ -117,52 +224,6 @@
       }
     },
     {
-      "id": "rechtsform",
-      "name": "Webanwendung zur Formular-Digitalisierung",
-      "status": "Live",
-      "description": "Eine Single-Page-Application zur Digitalisierung von Rechtsformularen mit DSGVO-orientierter clientseitiger Architektur: sensible Daten verbleiben ausschließlich im Session Storage, mit strikter clientseitiger Datensanitisierung. Unterstützt 14 Sprachen, digitale Signaturen und clientseitige PDF-Generierung.",
-      "stack": [
-        "React",
-        "Vite",
-        "TypeScript",
-        "pdf-lib",
-        "Vercel"
-      ],
-      "links": {
-        "repo": null,
-        "live": "https://www.pkh-formular.de/"
-      },
-      "highlight": false,
-      "detail": {
-        "overview": [
-          "Ein schrittweiser Assistent, der das offizielle Formular zur Prozesskostenhilfe ausfüllt — unentgeltlich für eine Privatperson aus meinem Bekanntenkreis gebaut, damit Antragstellende ein dichtes amtliches Formular nicht allein entschlüsseln müssen. Er reicht nie etwas im Namen der Antragstellenden ein, sondern hilft nur beim korrekten Ausfüllen.",
-          "Später hat das Bundesministerium der Justiz selbst ein ähnliches Tool — „Justiz-Services“ — als Pilotprojekt gestartet — ein weiterer Beleg dafür, dass ich ein reales, aktuelles Problem gelöst habe.",
-          "Den Code veröffentliche ich bisher nicht öffentlich: Die Oberfläche bildet das offizielle Formular für personenbezogene und finanzielle Daten exakt nach, und öffentlich zugänglich wäre das eine fertige Vorlage für betrügerische Klone. Das ganze Projekt ist ohnehin auf Datenschutz ausgelegt — kein Backend, Daten bleiben nur im Browser der Nutzer —, und der Verzicht auf ein öffentliches Repo folgt derselben Logik. Bei einer konkreten Perspektive mit einem Arbeitgeber zeige ich den Code gerne direkt."
-        ],
-        "architecture": [
-          "Reine Client-App mit React (CRA) — i18next für 14 Sprachen, framer-motion für den Assistenten, pdf-lib für das PDF, react-signature-canvas für die Unterschrift — kein Backend, nichts wird jemals irgendwohin gesendet",
-          "Ein 10-Abschnitte-Assistent (A–J), der das echte amtliche Formular abbildet, plus ein Schritt für Dokument-Uploads und ein Prüfbildschirm vor der Unterschrift",
-          "Das Formular selbst wird immer auf Deutsch ausgefüllt — obwohl die Oberfläche in 14 Sprachen übersetzt ist, macht ein Zustimmungsschritt klar, dass das amtliche Dokument auf Deutsch bleiben muss",
-          "Das fertige PDF mit eingebetteter Unterschrift und angehängten Dokumenten wird vollständig clientseitig erzeugt, indem die Daten mit pdf-lib über das echte amtliche Formularlayout gelegt werden"
-        ],
-        "challenges": [
-          {
-            "problem": "Sensible Daten (Einkommen, Miete, Kontoauszüge) ohne Backend zum Speichern",
-            "solution": "Den gesamten Ablauf bewusst clientseitig gehalten; der Kompromiss ist fehlende serverseitige Validierung, daher besondere Sorgfalt bei der clientseitigen Sanitisierung."
-          },
-          {
-            "problem": "Ein langes amtliches Formular ist allein einschüchternd auszufüllen",
-            "solution": "In einen geführten Schritt-für-Schritt-Assistenten mit Prüfbildschirm aufgeteilt, statt eines langen Formulars."
-          }
-        ],
-        "highlights": [
-          "Kein Backend — bewusste Designentscheidung für Datenschutz, keine Abkürzung",
-          "Vollständig deployed und funktionsfähig, nicht nur eine lokale Demo",
-          "Reicht nichts im Namen der Antragstellenden ein — hilft nur beim korrekten Ausfüllen des amtlichen Formulars, sodass die rechtliche Verantwortung dort bleibt, wo sie hingehört"
-        ]
-      }
-    },
-    {
       "id": "jarvis",
       "name": "Lokaler KI-Sprachassistent",
       "status": "In Arbeit",
@@ -209,55 +270,6 @@
           "Dutzende Action-Module weit über „App öffnen“ hinaus: Systembereinigung, Diktieren, OCR, Zwischenablage, E-Mail, Kalender, Git-Commits, Gaming-Integrationen",
           "Eine hybride Keyword- + Semantik-Intent-Schicht statt einer starren Befehlsliste",
           "Als eigenständiger Windows-Build mit sauberer Startsequenz gepackt, kein Skript, das man im Terminal startet"
-        ]
-      }
-    },
-    {
-      "id": "paper-trader",
-      "name": "Krypto-Paper-Trading-Simulator",
-      "status": "Fertig",
-      "description": "Eine Demo-Trading-Plattform (virtuelles Guthaben von 10.000 $, Live-Kurse für BTC/ETH/SOL), gebaut um finanzielle Präzision und Korrektheit zu demonstrieren: Ganzzahl-Arithmetik in kleinsten Einheiten, race-condition-sichere Kontostandsänderungen über abgesicherte Transaktionen, Limit-Orders und eine abgeleitete PnL-Rangliste.",
-      "stack": [
-        "Express",
-        "TypeScript",
-        "Prisma",
-        "PostgreSQL",
-        "React",
-        "Vite"
-      ],
-      "links": {
-        "repo": "https://github.com/Vlad-developer004/paper-trader",
-        "live": "https://paper-trader-ten-pi.vercel.app/"
-      },
-      "highlight": false,
-      "detail": {
-        "overview": "Gezielt gebaut, um zu zeigen, was ein Next.js-Monolith wie Leaf & Cup nicht zeigt: ein getrenntes Backend, Live-WebSocket-Preisstreaming und race-condition-sichere Trade-Ausführung — genau die Art von Korrektheitsfehler, die in einer Demo unsichtbar, im Produktionsbetrieb aber teuer ist.",
-        "architecture": [
-          "Getrennte Services aus einem Repo: ein Express/TypeScript-Backend und ein Vite/React-Frontend, jeweils als eigener Vercel-Service deployed",
-          "Das Frontend verbindet sich direkt mit Binances öffentlichem WebSocket für Live-Kurse — das Backend ist nur für Trades und Kontostände zuständig, nie fürs Streaming",
-          "Geld wird als Ganzzahl-Cent gespeichert, Krypto-Mengen als 1e8-Minimaleinheiten — keine Fließkomma-Arithmetik in der Nähe von Kontostand, Preis oder PnL",
-          "Kontostandsändernde Operationen laufen in abgesicherten Datenbank-Transaktionen, damit zwei gleichzeitige Trades denselben Kontostand nicht beschädigen können",
-          "Limit-Orders werden über einen ~5-Minuten-Sweep innerhalb des Backend-Prozesses selbst abgewickelt, der sich darauf verlässt, dass die Plattform eine warme Instanz am Leben hält, statt auf einen externen Scheduler — mit einem manuellen GitHub-Actions-Workflow als Fallback"
-        ],
-        "challenges": [
-          {
-            "problem": "Zwei Trades treffen gleichzeitig auf denselben Kontostand",
-            "solution": "Kontostandsänderungen in Transaktionen mit Row-Level-Locks verpackt, sodass einer auf den anderen wartet, statt dass beide einen veralteten Stand lesen."
-          },
-          {
-            "problem": "Fließkomma-Arithmetik verliert stillschweigend Cent-Beträge",
-            "solution": "Alle Beträge als Ganzzahlen in der kleinsten Einheit dargestellt und erst zur Anzeige in Dezimalform formatiert."
-          },
-          {
-            "problem": "Die Deploy-Plattform übernahm das Modulformat des Backends nicht zuverlässig in die deployte Funktion",
-            "solution": "Das Backend zu einer einzigen gebündelten Datei gebaut und dieses Build-Artefakt committed, da die Plattform vor dem Build bei einem frischen Deploy prüft, ob die Entry-Point-Datei im Repo existiert."
-          }
-        ],
-        "highlights": [
-          "Das Projekt mit dem stärksten Fokus auf Korrektheit statt Features — bei einer Trading-App ist Präzision keine Option",
-          "Limit-Orders und eine abgeleitete PnL-Rangliste, nicht nur eine simple Kauf-Demo",
-          "Bewusst in getrennte Services aufgeteilt (anders als Leaf & Cup), gezielt um Service-Grenzen und Live-Datenstreaming zu üben",
-          "Vollständig lokalisiert (DE/EN/RU/UK)"
         ]
       }
     }

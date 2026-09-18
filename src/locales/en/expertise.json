@@ -21,6 +21,12 @@
       "title": "Full-Stack TypeScript",
       "description": "React, Next.js and Node.js end to end, with correctness where it matters most: payments, concurrent balance updates, and race-condition-safe transactions.",
       "linkedProjectIds": ["shop", "paper-trader", "bus-tickets"]
+    },
+    {
+      "id": "quality",
+      "title": "Testing & Correctness",
+      "description": "Unit and end-to-end tests, race-condition-safe transactions, and CI pipelines that run automatically on every push — correctness is verified, not just claimed.",
+      "linkedProjectIds": ["rechtsform", "shop"]
     }
   ]
 }

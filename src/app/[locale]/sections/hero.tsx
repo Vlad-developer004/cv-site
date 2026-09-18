@@ -143,7 +143,7 @@ export function Hero({ t }: { t: TFunction }) {
                   style={{ ...style, boxShadow: `0 0 0 1px color-mix(in oklch, ${color} 35%, transparent), 0 4px 14px color-mix(in oklch, ${color} 25%, transparent)` }}
                   className={`glass-static absolute ${position} hidden h-10 w-10 items-center justify-center rounded-full sm:flex sm:h-12 sm:w-12`}
                 >
-                  <Icon className={size ?? 'h-5 w-5 sm:h-6 sm:w-6'} style={{ color }} />
+                  <Icon aria-hidden="true" className={size ?? 'h-5 w-5 sm:h-6 sm:w-6'} style={{ color }} />
                 </span>
               ))}
             </div>

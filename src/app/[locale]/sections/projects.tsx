@@ -64,13 +64,17 @@ export function Projects({ t, locale }: { t: TFunction; locale: Locale }) {
                             <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
                           </div>
                         )}
-                        <div className="relative aspect-video w-full">
+                        <div
+                          className={`relative w-full ${
+                            project.highlight ? 'aspect-video max-h-80 sm:max-h-96' : 'aspect-video'
+                          }`}
+                        >
                           <Image
                             src={screenshot.src}
                             alt={project.name}
                             fill
                             className="object-cover object-top"
-                            sizes="(min-width: 640px) 50vw, 100vw"
+                            sizes={project.highlight ? '100vw' : '(min-width: 640px) 50vw, 100vw'}
                           />
                         </div>
                       </div>

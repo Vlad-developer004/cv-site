@@ -5,6 +5,7 @@ import { Reveal } from '@/components/reveal';
 import { TiltCard } from '@/components/tilt-card';
 
 type Fact = { label: string; value: string };
+type LanguageItem = { code: string; level: string };
 type SoftSkill = { id: string; title: string; description: string };
 
 const ICONS: Record<string, typeof BookOpen> = {
@@ -16,7 +17,7 @@ const ICONS: Record<string, typeof BookOpen> = {
   debugging: Bug,
 };
 
-const FACT_ICONS = [MapPin, GraduationCap, Languages, Briefcase];
+const FACT_ICONS = [MapPin, GraduationCap, Briefcase];
 
 const HIGHLIGHT_PATTERN = /(B1|B2|H\+|CI\/CD)/;
 
@@ -37,6 +38,8 @@ function highlight(text: string): ReactNode {
 export function About({ t }: { t: TFunction }) {
   const paragraphs = t('paragraphs', { ns: 'about', returnObjects: true }) as string[];
   const facts = t('facts', { ns: 'about', returnObjects: true }) as Fact[];
+  const languagesLabel = t('languagesLabel', { ns: 'about' });
+  const languages = t('languages', { ns: 'about', returnObjects: true }) as LanguageItem[];
   const softSkills = t('softSkills', { ns: 'about', returnObjects: true }) as SoftSkill[];
 
   return (
@@ -72,7 +75,7 @@ export function About({ t }: { t: TFunction }) {
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[280px_1fr] lg:gap-16">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 lg:sticky lg:top-24 lg:self-start">
-            {facts.map((fact, i) => {
+            {facts.slice(0, 2).map((fact, i) => {
               const Icon = FACT_ICONS[i] ?? MapPin;
               return (
                 <Reveal key={fact.label} delay={0.04 + i * 0.05}>
@@ -81,19 +84,63 @@ export function About({ t }: { t: TFunction }) {
                       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                         <Icon className="h-4 w-4" />
                       </span>
-                      <div>
+                      <dl>
                         <dt className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                           {fact.label}
                         </dt>
                         <dd className="mt-1 text-sm font-medium text-foreground">{fact.value}</dd>
-                      </div>
+                      </dl>
                     </div>
                   </TiltCard>
                 </Reveal>
               );
             })}
 
-            <Reveal delay={0.04 + facts.length * 0.05} className="sm:col-span-2 lg:col-span-1">
+            <Reveal delay={0.14}>
+              <TiltCard>
+                <div className="flex items-start gap-3 p-4">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Languages className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      {languagesLabel}
+                    </p>
+                    <ul className="mt-1.5 space-y-1">
+                      {languages.map((lang) => (
+                        <li key={lang.code} className="flex items-baseline gap-2 text-sm">
+                          <span className="w-6 shrink-0 font-semibold text-foreground">{lang.code}</span>
+                          <span className="text-foreground/70">{lang.level}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </TiltCard>
+            </Reveal>
+
+            {facts.slice(2).map((fact, i) => {
+              const Icon = FACT_ICONS[i + 2] ?? MapPin;
+              return (
+                <Reveal key={fact.label} delay={0.18 + i * 0.05}>
+                  <TiltCard>
+                    <div className="flex items-start gap-3 p-4">
+                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <dl>
+                        <dt className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                          {fact.label}
+                        </dt>
+                        <dd className="mt-1 text-sm font-medium text-foreground">{fact.value}</dd>
+                      </dl>
+                    </div>
+                  </TiltCard>
+                </Reveal>
+              );
+            })}
+
+            <Reveal delay={0.04 + (facts.length + 1) * 0.05} className="sm:col-span-2 lg:col-span-1">
               <a
                 href="/cv.pdf"
                 className="flex items-center justify-center gap-2 rounded-xl border border-dashed border-border px-4 py-3.5 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary"

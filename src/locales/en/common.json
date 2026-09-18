@@ -26,8 +26,15 @@
     "ctaLine": "Ready to talk about a project",
     "closingLead": "Looking for someone who",
     "closingAccent": "sees things through?",
-    "closingSub": "From idea to production — testing, CI/CD, and thought-out architecture included."
+    "closingSub": "From idea to production — testing, CI/CD, and thought-out architecture included.",
+    "legalImpressum": "Legal notice",
+    "legalPrivacy": "Privacy policy"
   },
+  "legal": {
+    "germanNotice": "This page is provided in German for legal reasons.",
+    "backHome": "Back to home"
+  },
+  "skipToContent": "Skip to content",
   "months": {
     "jan": "Jan",
     "feb": "Feb",

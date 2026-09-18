@@ -76,6 +76,39 @@ export async function generateMetadata(
   };
 }
 
+function buildJsonLd(locale: Locale, tagline: string) {
+  const siteUrl = 'https://vt-cv-site.vercel.app';
+  const roles: Record<Locale, string> = {
+    en: 'Full-Stack Developer',
+    de: 'Full-Stack Entwickler',
+    ru: 'Full-Stack разработчик',
+    uk: 'Full-Stack розробник',
+  };
+  const path = locale === i18nConfig.defaultLocale ? '/' : `/${locale}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Vladyslav Tieriekhov',
+    jobTitle: roles[locale],
+    description: tagline,
+    url: `${siteUrl}${path}`,
+    image: `${siteUrl}/profile.jpg`,
+    email: 'mailto:terehovvlad29@gmail.com',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Berlin',
+      addressCountry: 'DE',
+    },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'National University "Zaporizhzhia Polytechnic"',
+    },
+    knowsLanguage: ['de', 'en', 'uk', 'ru'],
+    sameAs: ['https://github.com/Vlad-developer004', 'https://www.linkedin.com/in/vladyslav-tieriekhov'],
+  };
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -84,11 +117,23 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = (await params) as { locale: Locale };
-  const { resources } = await initTranslations(locale);
+  const { t, resources } = await initTranslations(locale);
+  const jsonLd = buildJsonLd(locale, t('tagline', { ns: 'hero' }) as string);
+  const skipToContent = t('skipToContent', { ns: 'common' }) as string;
 
   return (
     <html lang={locale} suppressHydrationWarning className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+        >
+          {skipToContent}
+        </a>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <TranslationsProvider locale={locale} resources={resources[locale] as Record<string, unknown>}>
             <SitePreloader />
@@ -96,7 +141,7 @@ export default async function LocaleLayout({
               <AmbientBackground />
               <ScrollProgress />
               <SiteHeader locale={locale} />
-              <main className="flex-1">{children}</main>
+              <main id="main-content" className="flex-1">{children}</main>
               <SiteFooter locale={locale} />
             </div>
           </TranslationsProvider>
