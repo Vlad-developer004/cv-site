@@ -21,7 +21,7 @@ type Testimonial = {
   translation?: string;
   author: string;
   role: string;
-  sourceUrl: string;
+  sourceUrl?: string;
 };
 
 type Project = {
@@ -202,15 +202,17 @@ export default async function ProjectDetailPage({
                   {' · '}
                   {project.testimonial.role}
                 </span>
-                <a
-                  href={project.testimonial.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
-                >
-                  {labels.testimonialSource}
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
+                {project.testimonial.sourceUrl && (
+                  <a
+                    href={project.testimonial.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+                  >
+                    {labels.testimonialSource}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                )}
               </figcaption>
             </figure>
           </section>

@@ -89,6 +89,11 @@
         "live": null
       },
       "highlight": false,
+      "testimonial": {
+        "quote": "Vlad und ich haben diese Plattform gemeinsam gebaut — ich habe das Frontend übernommen, er das Backend, und es war eines der ersten Projekte, bei dem ich wirklich verstanden habe, was es heißt, im Team statt allein zu arbeiten. Er hat das Backend von Anfang an so aufgebaut, dass es sich leicht erweitern lässt, nicht nur, damit es im Moment funktioniert — damals kam mir das wie unnötige Komplexität vor. Jetzt, wo ich selbst Full-Stack mit Next.js, Nest.js, React und Vite bei Condien schreibe, verstehe ich, warum er das so gemacht hat: Der Unterschied zwischen Wegwerf-Code und Code, den man wirklich pflegen kann, ist genau das, was ich von ihm gelernt habe.",
+        "author": "Artem Balabukha",
+        "role": "Full-Stack Developer bei Condien"
+      },
       "detail": {
         "overview": [
           "Eine Buchungsplattform für Busfahrkarten — ein gemeinsames Nebenprojekt mit einem Bekannten, über Zeit gebaut und erweitert statt einmal veröffentlicht und liegen gelassen. Ich habe das Backend übernommen sowie den Teil des Frontends, der direkt daran hängt — Authentifizierung, Formulare, die Verbindung von Frontend und Backend zu einem funktionierenden Ganzen; das grundlegende UI und Markup kamen von ihm. Schon damals war das eine Erfahrung, nicht allein, sondern im Zusammenspiel mit jemand anderem zu entwickeln.",

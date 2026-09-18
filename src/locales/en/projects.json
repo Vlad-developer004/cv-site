@@ -91,6 +91,11 @@
         "live": null
       },
       "highlight": false,
+      "testimonial": {
+        "quote": "Vlad and I built this platform together — I handled the frontend, he handled the backend, and it was one of the first projects where I truly understood what it means to work as a team instead of alone. From the start he structured the backend to be easy to extend, not just to make it work in the moment — back then that felt like unnecessary complexity to me. Now that I write full-stack myself with Next.js, Nest.js, React and Vite at Condien, I get why he did it that way: the difference between throwaway code and code you can actually maintain is exactly what I learned from him.",
+        "author": "Artem Balabukha",
+        "role": "Full-Stack Developer at Condien"
+      },
       "detail": {
         "overview": [
           "A bus ticket booking platform — a side project built with a friend, extended over time rather than shipped once and abandoned. I took the backend plus the part of the frontend tied directly to it — auth, forms, wiring the frontend and backend into one working system; the base UI and markup were his. Even back then, that was an early experience of building something not alone, but together with someone else.",
