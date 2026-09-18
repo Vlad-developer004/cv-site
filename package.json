@@ -33,5 +33,12 @@
     "eslint-config-next": "16.3.4",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@img/sharp-wasm32": false,
+    "@img/sharp-freebsd-wasm32": false,
+    "@img/sharp-webcontainers-wasm32": false,
+    "@tailwindcss/oxide-wasm32-wasi": false,
+    "@unrs/resolver-binding-wasm32-wasi": false
   }
 }
