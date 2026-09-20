@@ -3,13 +3,27 @@
 import { useEffect, useRef, useState } from 'react';
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
-const DURATION = 1200;
+const DURATION = 1500;
 
 function easeOutQuad(t: number) {
   return 1 - (1 - t) * (1 - t);
 }
 
-export function CountUp({ to, className }: { to: number; className?: string }) {
+export function CountUp({
+  to,
+  decimals = 0,
+  prefix = '',
+  suffix = '',
+  decimalSeparator = '.',
+  className,
+}: {
+  to: number;
+  decimals?: number;
+  prefix?: string;
+  suffix?: string;
+  decimalSeparator?: string;
+  className?: string;
+}) {
   const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const runId = useRef(0);
@@ -35,7 +49,7 @@ export function CountUp({ to, className }: { to: number; className?: string }) {
         function tick(now: number) {
           if (runId.current !== thisRun) return;
           const progress = Math.min((now - start) / DURATION, 1);
-          setValue(Math.round(easeOutQuad(progress) * to));
+          setValue(easeOutQuad(progress) * to);
           if (progress < 1) requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
@@ -47,9 +61,13 @@ export function CountUp({ to, className }: { to: number; className?: string }) {
     return () => observer.disconnect();
   }, [to]);
 
+  const formatted = value.toFixed(decimals).replace('.', decimalSeparator);
+
   return (
     <span ref={ref} className={className}>
-      {value}
+      {prefix}
+      {formatted}
+      {suffix}
     </span>
   );
 }

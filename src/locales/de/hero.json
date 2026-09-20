@@ -9,11 +9,10 @@
   "availability": "Sofort verfügbar",
   "photoAvailableBadge": "Offen für Angebote",
   "locationCity": "Berlin",
-  "statValue": "5",
-  "statLabel": "Ausgewählte Projekte",
   "visaBadge": "Uneingeschränkter Arbeitsmarktzugang in Deutschland",
   "ctaContact": "Kontakt aufnehmen",
   "ctaDownloadCv": "Lebenslauf herunterladen",
+  "ctaProjects": "Projekte ansehen",
   "followMe": "Folgen:",
   "scrollHint": "Scrollen"
 }

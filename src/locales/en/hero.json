@@ -9,11 +9,10 @@
   "availability": "Available immediately",
   "photoAvailableBadge": "Available for work",
   "locationCity": "Berlin",
-  "statValue": "5",
-  "statLabel": "Featured projects",
   "visaBadge": "Full labor market access in Germany, no visa needed",
   "ctaContact": "Get in touch",
   "ctaDownloadCv": "Download CV",
+  "ctaProjects": "View projects",
   "followMe": "Follow me:",
   "scrollHint": "Scroll"
 }

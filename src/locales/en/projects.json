@@ -3,7 +3,13 @@
   "headingLead": "The last",
   "headingCount": "5",
   "headingAccentLabel": "projects",
-  "subheading": "Deliberately-scoped pet projects, each built with the practices a real production system needs — not just demos, and not a repeat of the last.",
+  "subheading": "A mix of projects — from one running live in production to side projects built with the practices a real production system needs, not just demos. Each one shows a different skill, without repeating the last.",
+  "stats": [
+    { "value": 6, "suffix": " years", "label": "of hands-on practice", "link": "timeline" },
+    { "value": 172, "label": "unit tests", "link": "rechtsform" },
+    { "value": 14, "label": "languages live in production", "link": "rechtsform" },
+    { "value": 99.2, "decimals": 1, "suffix": "%", "label": "license-plate recognition accuracy", "link": "timeline" }
+  ],
   "readMore": "Read more",
   "detailLabels": {
     "back": "Back to projects",
@@ -13,6 +19,8 @@
     "highlights": "Highlights",
     "stack": "Tech stack",
     "links": "Links",
+    "code": "Code",
+    "backendCode": "Code (backend)",
     "frontendCode": "Code (frontend)",
     "problem": "Problem",
     "solution": "Solution",
@@ -79,7 +87,7 @@
     {
       "id": "bus-tickets",
       "name": "Bus Ticket Booking Platform",
-      "status": "Pet project",
+      "status": "Done",
       "description": "A bus ticket booking platform — Node.js/Express backend on MongoDB, deliberately chosen as a NoSQL document store over a relational one, plus a genuine payment integration (Fondy, test mode). A side project built with a friend: I handled the backend, he handled the frontend — grown over time rather than built once.",
       "stack": [
         "MongoDB",
@@ -93,7 +101,7 @@
       },
       "highlight": false,
       "testimonial": {
-        "quote": "Vlad and I built this platform together — I handled the frontend, he handled the backend, and it was one of the first projects where I truly understood what it means to work as a team instead of alone. From the start he structured the backend to be easy to extend, not just to make it work in the moment — back then that felt like unnecessary complexity to me. Now that I write full-stack myself with Next.js, Nest.js, React and Vite at Condien, I get why he did it that way: the difference between throwaway code and code you can actually maintain is exactly what I learned from him.",
+        "quote": "Vlad and I built this platform together — I handled the frontend, he handled the backend. From the start he structured the backend to be easy to extend, not just to make it work in the moment — back then that felt like unnecessary complexity to me. Now that I write full-stack myself at Condien, I get why: the difference between throwaway code and code you can actually maintain is exactly what I learned from him.",
         "author": "Artem Balabukha",
         "role": "Full-Stack Developer at Condien"
       },
@@ -184,7 +192,7 @@
     {
       "id": "shop",
       "name": "Leaf & Cup — E-Commerce Platform",
-      "status": "Pet project",
+      "status": "Done",
       "description": "A full e-commerce platform with a focus on the engineering practices that matter in production: Docker + CI/CD, Stripe payments in test mode (embedded Payment Element, idempotent webhooks) — no real money is ever charged, a role-based admin panel, and Playwright end-to-end tests.",
       "stack": [
         "Next.js",
@@ -250,7 +258,7 @@
       "detail": {
         "overview": [
           "A local, offline voice assistant for Windows (Russian/Ukrainian) that goes well beyond voice commands — system control, gaming integrations, dictation, and a small ecosystem of installable extensions, all running without a single cloud call by default.",
-          "It's a large, actively evolving project, so for now it's developed locally on my own machine, without a public repo or production deployment."
+          "It's a large project that's growing faster than I can tidy it up for outside eyes, so for now there's no public repo or production deployment — that's about scale, not about being unwilling to show the code."
         ],
         "architecture": [
           "A layered pipeline: audio capture → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → a hybrid intent layer → a dispatcher routing to dozens of action modules → Silero TTS for the reply",

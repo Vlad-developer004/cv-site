@@ -3,7 +3,13 @@
   "headingLead": "Die letzten",
   "headingCount": "5",
   "headingAccentLabel": "Projekte",
-  "subheading": "Bewusst geplante Nebenprojekte, jedes gebaut mit den Praktiken, die ein echtes Produktionssystem braucht — keine bloßen Demos, und keine Wiederholung des Vorherigen.",
+  "subheading": "Unterschiedliche Projekte — von einem System, das produktiv im Einsatz ist, bis zu Nebenprojekten, gebaut mit den Praktiken eines echten Produktionssystems statt bloßer Demos. Jedes zeigt eine eigene Fähigkeit, ohne das vorherige zu wiederholen.",
+  "stats": [
+    { "value": 6, "suffix": " Jahre", "label": "praktische Erfahrung", "link": "timeline" },
+    { "value": 172, "label": "Unit-Tests", "link": "rechtsform" },
+    { "value": 14, "label": "Sprachen live im Einsatz", "link": "rechtsform" },
+    { "value": 99.2, "decimals": 1, "suffix": "%", "decimalSeparator": ",", "label": "Erkennungsgenauigkeit bei Kennzeichen", "link": "timeline" }
+  ],
   "readMore": "Mehr lesen",
   "detailLabels": {
     "back": "Zurück zu den Projekten",
@@ -13,6 +19,8 @@
     "highlights": "Highlights",
     "stack": "Tech-Stack",
     "links": "Links",
+    "code": "Code",
+    "backendCode": "Code (Backend)",
     "frontendCode": "Code (Frontend)",
     "problem": "Problem",
     "solution": "Lösung",
@@ -77,7 +85,7 @@
     {
       "id": "bus-tickets",
       "name": "Buchungsplattform für Busfahrkarten",
-      "status": "Nebenprojekt",
+      "status": "Fertig",
       "description": "Eine Buchungsplattform für Busfahrkarten — Node.js/Express-Backend mit MongoDB, bewusst als NoSQL-Dokumentendatenbank statt relational gewählt, plus eine echte Zahlungsintegration (Fondy, Testmodus). Ein gemeinsames Nebenprojekt mit einem Bekannten: ich das Backend, er das Frontend — über Zeit gewachsen statt einmal gebaut.",
       "stack": [
         "MongoDB",
@@ -91,7 +99,7 @@
       },
       "highlight": false,
       "testimonial": {
-        "quote": "Vlad und ich haben diese Plattform gemeinsam gebaut — ich habe das Frontend übernommen, er das Backend, und es war eines der ersten Projekte, bei dem ich wirklich verstanden habe, was es heißt, im Team statt allein zu arbeiten. Er hat das Backend von Anfang an so aufgebaut, dass es sich leicht erweitern lässt, nicht nur, damit es im Moment funktioniert — damals kam mir das wie unnötige Komplexität vor. Jetzt, wo ich selbst Full-Stack mit Next.js, Nest.js, React und Vite bei Condien schreibe, verstehe ich, warum er das so gemacht hat: Der Unterschied zwischen Wegwerf-Code und Code, den man wirklich pflegen kann, ist genau das, was ich von ihm gelernt habe.",
+        "quote": "Vlad und ich haben diese Plattform gemeinsam gebaut — ich habe das Frontend übernommen, er das Backend. Er hat das Backend von Anfang an so aufgebaut, dass es sich leicht erweitern lässt, nicht nur, damit es im Moment funktioniert — damals kam mir das wie unnötige Komplexität vor. Jetzt, wo ich selbst Full-Stack bei Condien schreibe, verstehe ich warum: Der Unterschied zwischen Wegwerf-Code und Code, den man wirklich pflegen kann, ist genau das, was ich von ihm gelernt habe.",
         "author": "Artem Balabukha",
         "role": "Full-Stack Developer bei Condien"
       },
@@ -182,7 +190,7 @@
     {
       "id": "shop",
       "name": "Leaf & Cup — E-Commerce-Plattform",
-      "status": "Nebenprojekt",
+      "status": "Fertig",
       "description": "Eine vollständige E-Commerce-Plattform mit Fokus auf die Engineering-Praktiken, die im Produktionsbetrieb zählen: Docker + CI/CD, Stripe-Zahlungen im Testmodus (eingebettetes Payment Element, idempotente Webhooks) — es wird nie echtes Geld abgebucht, rollenbasiertes Admin-Panel und Playwright End-to-End-Tests.",
       "stack": [
         "Next.js",
@@ -248,7 +256,7 @@
       "detail": {
         "overview": [
           "Ein lokaler, offline laufender Sprachassistent für Windows (Russisch/Ukrainisch), der weit über Sprachbefehle hinausgeht — Systemsteuerung, Gaming-Integrationen, Diktierfunktion und ein kleines Ökosystem installierbarer Erweiterungen, standardmäßig ganz ohne Cloud-Aufruf.",
-          "Das Projekt ist umfangreich und wird aktiv weiterentwickelt, deshalb entsteht es bisher lokal auf meinem Rechner, ohne öffentliches Repo oder Produktions-Deployment."
+          "Das Projekt ist groß und wächst schneller, als ich es für fremde Augen aufräumen kann — deshalb bislang kein öffentliches Repo und kein Produktions-Deployment. Der Grund ist der Umfang, nicht mangelnde Bereitschaft, den Code zu zeigen."
         ],
         "architecture": [
           "Eine mehrstufige Pipeline: Audioaufnahme → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → eine hybride Intent-Schicht → ein Dispatcher, der zu Dutzenden Action-Modulen routet → Silero-TTS für die Antwort",

@@ -146,7 +146,7 @@ export default async function LocaleLayout({
             <SitePreloader />
             <ConsoleEasterEgg />
             <KonamiCode />
-            <div className="page-reveal flex min-h-full flex-1 flex-col">
+            <div className="flex min-h-full flex-1 flex-col">
               <AmbientBackground />
               <ScrollProgress />
               <SiteHeader locale={locale} />

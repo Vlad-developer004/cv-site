@@ -14,6 +14,15 @@ const ICONS: Record<string, typeof GraduationCap> = {
   job: Briefcase,
 };
 
+const TONE: Record<string, string> = {
+  start: '#6366f1',
+  education: '#8b5cf6',
+  thesis: '#f43f5e',
+  language: '#14b8a6',
+  diploma: '#f59e0b',
+  job: '#10b981',
+};
+
 export function Timeline({ t }: { t: TFunction }) {
   const items = t('items', { ns: 'timeline', returnObjects: true }) as TimelineItem[];
 
@@ -39,14 +48,25 @@ export function Timeline({ t }: { t: TFunction }) {
         <div className="relative mt-12 space-y-6 before:absolute before:left-6 before:top-2 before:bottom-2 before:w-px before:bg-border sm:before:left-7">
           {items.map((item, i) => {
             const Icon = ICONS[item.icon] ?? GraduationCap;
+            const accent = TONE[item.icon] ?? TONE.education;
             return (
               <Reveal key={i} delay={i * 0.06} className="relative pl-16 sm:pl-20">
-                <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-primary sm:h-14 sm:w-14">
+                <span
+                  className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background sm:h-14 sm:w-14"
+                  style={{ color: accent, boxShadow: `0 4px 18px -6px ${accent}66` }}
+                >
                   <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
-                <TiltCard>
-                  <div className="p-5">
-                    <p className="text-xs font-medium uppercase tracking-wider text-primary">{item.date}</p>
+                <TiltCard className="relative">
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 top-0 h-1"
+                    style={{ background: `linear-gradient(to right, ${accent}, transparent)` }}
+                  />
+                  <div className="relative p-5">
+                    <p className="text-xs font-medium uppercase tracking-wider" style={{ color: accent }}>
+                      {item.date}
+                    </p>
                     <h3 className="mt-1 font-medium text-foreground">{item.title}</h3>
                     <p className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">{item.description}</p>
                   </div>

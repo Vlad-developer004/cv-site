@@ -13,7 +13,7 @@
     {
       "id": "ai",
       "title": "AI & LLM Tooling",
-      "description": "Integrating speech-to-text, text-to-speech and LLM APIs into complete, low-latency projects — not just calling an API, but engineering around its constraints.",
+      "description": "Integrating speech-to-text, text-to-speech and LLM APIs into complete projects at 150–200ms latency — not just calling an API, but engineering around its constraints.",
       "linkedProjectIds": ["jarvis"]
     },
     {
@@ -26,7 +26,7 @@
       "id": "quality",
       "title": "Testing & Correctness",
       "description": "Unit and end-to-end tests, race-condition-safe transactions, and CI pipelines that run automatically on every push — correctness is verified, not just claimed.",
-      "linkedProjectIds": ["rechtsform", "shop"]
+      "linkedProjectIds": ["rechtsform", "shop", "paper-trader"]
     }
   ]
 }

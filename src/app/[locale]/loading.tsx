@@ -1,3 +1,5 @@
+import { BrandMark } from '@/components/brand-mark';
+
 export default function Loading() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center">
@@ -33,9 +35,7 @@ export default function Loading() {
           </defs>
         </svg>
 
-        <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--primary),color-mix(in_oklch,var(--primary)_55%,var(--foreground)))] text-sm font-bold text-primary-foreground shadow-lg">
-          VT
-        </span>
+        <BrandMark className="h-12 w-12 rounded-2xl text-sm shadow-lg" />
       </div>
     </div>
   );

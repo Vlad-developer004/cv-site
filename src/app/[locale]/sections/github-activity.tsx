@@ -1,5 +1,6 @@
 import type { TFunction } from 'i18next';
 import { cache, Suspense } from 'react';
+import { Info } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 import { GithubIcon } from '@/components/icons';
 
@@ -60,9 +61,9 @@ function toWeeks(days: Contribution[]) {
 export function GithubActivity({ t }: { t: TFunction }) {
   return (
     <section className="section-divider">
-      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6 sm:py-10">
         <Reveal>
-          <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1">
+          <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1">
             <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
               {t('githubActivity', { ns: 'common' })}
             </p>
@@ -70,19 +71,22 @@ export function GithubActivity({ t }: { t: TFunction }) {
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+              className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium text-foreground/90 transition-colors hover:text-primary"
             >
               <GithubIcon className="h-3.5 w-3.5" />@{GITHUB_USERNAME}
             </a>
           </div>
 
-          <p className="mb-4 max-w-3xl text-sm text-muted-foreground">
-            {t('githubActivityNote', { ns: 'common' })}
-          </p>
-
           <Suspense fallback={<HeatmapSkeleton />}>
             <HeatmapData t={t} />
           </Suspense>
+
+          <div className="mt-4 flex max-w-2xl items-start gap-2.5 rounded-lg border-l-2 border-slate-400/50 bg-slate-400/10 py-3 pl-3.5 pr-4">
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-slate-300" />
+            <p className="text-sm leading-relaxed text-foreground/80">
+              {t('githubActivityNote', { ns: 'common' })}
+            </p>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -101,6 +105,10 @@ async function HeatmapData({ t }: { t: TFunction }) {
     wed: t('weekdays.wed', { ns: 'common', defaultValue: 'Wed' }),
     fri: t('weekdays.fri', { ns: 'common', defaultValue: 'Fri' }),
   };
+  const legendLabels = {
+    less: t('activityLess', { ns: 'common', defaultValue: 'Less' }),
+    more: t('activityMore', { ns: 'common', defaultValue: 'More' }),
+  };
 
   if (!contributions) {
     return (
@@ -117,17 +125,26 @@ async function HeatmapData({ t }: { t: TFunction }) {
     );
   }
 
-  return <GithubHeatmap contributions={contributions} monthLabels={monthLabels} weekdayLabels={weekdayLabels} />;
+  return (
+    <GithubHeatmap
+      contributions={contributions}
+      monthLabels={monthLabels}
+      weekdayLabels={weekdayLabels}
+      legendLabels={legendLabels}
+    />
+  );
 }
 
 function GithubHeatmap({
   contributions,
   monthLabels,
   weekdayLabels,
+  legendLabels,
 }: {
   contributions: Contribution[];
   monthLabels: string[];
   weekdayLabels: { mon: string; wed: string; fri: string };
+  legendLabels: { less: string; more: string };
 }) {
   const weeks = toWeeks(contributions);
 
@@ -138,12 +155,20 @@ function GithubHeatmap({
   });
 
   return (
-    <div className="relative rounded-2xl border border-border bg-card">
+    <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-linear-to-r from-slate-400/60 to-transparent"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-slate-400/15 opacity-60 blur-2xl"
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 rounded-l-2xl bg-[linear-gradient(90deg,var(--card),transparent)]"
       />
-      <div dir="rtl" className="overflow-x-auto p-4">
+      <div dir="rtl" className="relative overflow-x-auto p-4">
         <div dir="ltr" className="inline-flex min-w-full gap-2 sm:min-w-0">
           <div className="grid auto-rows-2.5 grid-rows-7 gap-0.75 pt-4 text-[9px] leading-none text-muted-foreground sm:auto-rows-2.75 sm:text-[10px]">
             <span className="row-start-2">{weekdayLabels.mon}</span>
@@ -167,7 +192,7 @@ function GithubHeatmap({
                     <div
                       key={di}
                       title={day ? `${day.date}: ${day.count}` : undefined}
-                      className={`h-2.5 w-2.5 rounded-xs sm:h-2.75 sm:w-2.75 ${
+                      className={`h-2.5 w-2.5 rounded-xs transition-transform duration-150 hover:scale-125 sm:h-2.75 sm:w-2.75 ${
                         day ? LEVEL_CLASS[day.level] : 'bg-transparent'
                       }`}
                     />
@@ -177,6 +202,14 @@ function GithubHeatmap({
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="relative flex items-center justify-end gap-1.5 border-t border-border/60 px-4 py-2 text-[9px] text-muted-foreground sm:text-[10px]">
+        <span>{legendLabels.less}</span>
+        {([0, 1, 2, 3, 4] as const).map((level) => (
+          <span key={level} className={`h-2.5 w-2.5 rounded-xs sm:h-2.75 sm:w-2.75 ${LEVEL_CLASS[level]}`} />
+        ))}
+        <span>{legendLabels.more}</span>
       </div>
     </div>
   );

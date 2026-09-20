@@ -3,6 +3,7 @@
   "headingAccent": "Kenntnisse",
   "levels": { "advanced": "Fortgeschritten", "comfortable": "Sicher", "familiar": "Vertraut" },
   "usedIn": "Eingesetzt in",
+  "dailyUse": "täglich",
   "groups": [
     {
       "id": "languages",

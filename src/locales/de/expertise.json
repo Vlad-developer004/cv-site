@@ -13,7 +13,7 @@
     {
       "id": "ai",
       "title": "KI & LLM-Tools",
-      "description": "Integration von Speech-to-Text, Text-to-Speech und LLM-APIs in vollständige, latenzarme Projekte — nicht nur ein API-Aufruf, sondern gezieltes Engineering rund um dessen Grenzen.",
+      "description": "Integration von Speech-to-Text, Text-to-Speech und LLM-APIs in vollständige Projekte mit niedriger Latenz (150–200ms) — nicht nur ein API-Aufruf, sondern gezieltes Engineering rund um dessen Grenzen.",
       "linkedProjectIds": ["jarvis"]
     },
     {
@@ -26,7 +26,7 @@
       "id": "quality",
       "title": "Tests & Korrektheit",
       "description": "Unit- und End-to-End-Tests, race-condition-sichere Transaktionen und CI-Pipelines, die bei jedem Push automatisch laufen — Korrektheit wird geprüft, nicht nur behauptet.",
-      "linkedProjectIds": ["rechtsform", "shop"]
+      "linkedProjectIds": ["rechtsform", "shop", "paper-trader"]
     }
   ]
 }

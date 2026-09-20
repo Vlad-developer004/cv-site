@@ -2,17 +2,23 @@
 
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { useState } from 'react';
+import { useState, type CSSProperties, type ReactNode } from 'react';
 
-export function MobileNav({ navItems }: { navItems: { href: string; label: string }[] }) {
+type NavItem = { href: string; label: string; icon?: ReactNode; accent?: string };
+
+export function MobileNav({ navItems }: { navItems: NavItem[] }) {
   const [open, setOpen] = useState(false);
 
   function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    const id = href.split('#')[1];
+    const target = id ? document.getElementById(id) : null;
+    if (!target) {
+      setOpen(false);
+      return;
+    }
     e.preventDefault();
     setOpen(false);
     setTimeout(() => {
-      const target = document.getElementById(href.slice(1));
-      if (!target) return;
       history.pushState(null, '', href);
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 0);
@@ -44,8 +50,10 @@ export function MobileNav({ navItems }: { navItems: { href: string; label: strin
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-foreground"
+                  style={{ '--nav-icon-color': item.accent } as CSSProperties}
+                  className="group flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-foreground"
                 >
+                  {item.icon}
                   {item.label}
                 </a>
               ))}

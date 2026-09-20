@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { BrandMark } from '@/components/brand-mark';
 
-const MIN_VISIBLE_MS = 150;
-const EXIT_MS = 300;
+const VISIBLE_MS = 280;
+const EXIT_MS = 260;
 const CIRCUMFERENCE = 2 * Math.PI * 35;
 
 export function SitePreloader() {
@@ -11,30 +12,27 @@ export function SitePreloader() {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    // The page is already server-rendered by the time this mounts — no need
-    // to wait for window 'load' (every image/font network-wide). Just cover
-    // the brief hydration flash.
+    // Purely a brand flourish over content that's already fully rendered
+    // (SSR) — skip it entirely for reduced-motion, and never delay or hide
+    // real content: it's an overlay, not a gate.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setVisible(false);
+      return;
+    }
     const timer = setTimeout(() => {
       setExiting(true);
       setTimeout(() => setVisible(false), EXIT_MS);
-    }, MIN_VISIBLE_MS);
-
+    }, VISIBLE_MS);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    document.documentElement.style.overflow = visible ? 'hidden' : '';
-    return () => {
-      document.documentElement.style.overflow = '';
-    };
-  }, [visible]);
 
   if (!visible) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-100 flex items-center justify-center bg-background transition-opacity duration-300 ease-out ${
-        exiting ? 'pointer-events-none opacity-0' : 'opacity-100'
+      aria-hidden
+      className={`pointer-events-none fixed inset-0 z-100 flex items-center justify-center bg-background transition-opacity duration-260 ease-out ${
+        exiting ? 'opacity-0' : 'opacity-100'
       }`}
     >
       <div
@@ -47,7 +45,7 @@ export function SitePreloader() {
       />
 
       <div
-        className={`relative flex flex-col items-center gap-5 transition-all duration-300 ease-in-out ${
+        className={`relative flex flex-col items-center gap-5 transition-all duration-260 ease-in-out ${
           exiting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
         }`}
       >
@@ -73,9 +71,7 @@ export function SitePreloader() {
             </defs>
           </svg>
 
-          <span className="preloader-badge flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--primary),color-mix(in_oklch,var(--primary)_55%,var(--foreground)))] text-sm font-bold text-primary-foreground shadow-lg">
-            VT
-          </span>
+          <BrandMark className="preloader-badge h-12 w-12 rounded-2xl text-sm shadow-lg" />
         </div>
 
         <div className="h-0.5 w-24 overflow-hidden rounded-full bg-border" aria-hidden>

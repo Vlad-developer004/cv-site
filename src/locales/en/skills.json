@@ -3,6 +3,7 @@
   "headingAccent": "skill set",
   "levels": { "advanced": "Advanced", "comfortable": "Comfortable", "familiar": "Familiar" },
   "usedIn": "Used in",
+  "dailyUse": "daily",
   "groups": [
     {
       "id": "languages",

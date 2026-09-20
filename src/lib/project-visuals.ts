@@ -41,6 +41,14 @@ export const TONES: Record<string, { badge: string; icon: string; StatusIcon: Ic
   },
 };
 
+export const ACCENT: Record<string, string> = {
+  rechtsform: '#14b8a6',
+  'bus-tickets': '#3b82f6',
+  'paper-trader': '#f97316',
+  shop: '#f43f5e',
+  jarvis: '#8b5cf6',
+};
+
 export const SCREENSHOTS: Record<string, { src: string; chrome: 'browser' | 'native' }> = {
   'bus-tickets': { src: '/projects/bus-tickets.png', chrome: 'browser' },
   shop: { src: '/projects/shop.png', chrome: 'browser' },

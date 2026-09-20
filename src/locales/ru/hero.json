@@ -9,11 +9,10 @@
   "availability": "Готов приступить немедленно",
   "photoAvailableBadge": "Открыт к предложениям",
   "locationCity": "Берлин",
-  "statValue": "5",
-  "statLabel": "Избранных проектов",
   "visaBadge": "Полный доступ к рынку труда Германии, виза не нужна",
   "ctaContact": "Связаться",
   "ctaDownloadCv": "Скачать резюме",
+  "ctaProjects": "Смотреть проекты",
   "followMe": "Соцсети:",
   "scrollHint": "Листать"
 }

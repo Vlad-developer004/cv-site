@@ -42,6 +42,15 @@ const GROUP_ICONS: Record<string, IconComp> = {
   tools: Wrench,
 };
 
+const GROUP_TONE: Record<string, { icon: string; accent: string }> = {
+  languages: { icon: 'bg-blue-500/10 text-blue-500', accent: '#3b82f6' },
+  frontend: { icon: 'bg-sky-500/10 text-sky-500', accent: '#0ea5e9' },
+  backend: { icon: 'bg-emerald-500/10 text-emerald-500', accent: '#10b981' },
+  data: { icon: 'bg-amber-500/10 text-amber-500', accent: '#f59e0b' },
+  ai: { icon: 'bg-violet-500/10 text-violet-500', accent: '#8b5cf6' },
+  tools: { icon: 'bg-rose-500/10 text-rose-500', accent: '#f43f5e' },
+};
+
 const TECH: Record<string, { Icon: IconComp; color?: string; tier: 1 | 2 | 3 }> = {
   'Claude Code': { Icon: SiClaudecode, color: '#D97757', tier: 3 },
   TypeScript: { Icon: SiTypescript, color: '#3178C6', tier: 3 },
@@ -86,10 +95,10 @@ const TECH: Record<string, { Icon: IconComp; color?: string; tier: 1 | 2 | 3 }> 
 
 const TIER_ORDER = [3, 2, 1] as const;
 
-const TIER_BAR: Record<1 | 2 | 3, string> = {
-  3: 'from-primary via-primary/60 to-transparent',
-  2: 'from-foreground/40 to-transparent',
-  1: 'from-foreground/20 to-transparent',
+const TIER_ALPHA: Record<1 | 2 | 3, string> = {
+  3: 'ff',
+  2: '99',
+  1: '40',
 };
 
 const TIER_DOT: Record<1 | 2 | 3, string> = {
@@ -108,11 +117,14 @@ export function Skills({ t }: { t: TFunction }) {
   const groups = t('groups', { ns: 'skills', returnObjects: true }) as SkillGroup[];
   const projects = t('items', { ns: 'projects', returnObjects: true }) as ProjectRef[];
   const usedInLabel = t('usedIn', { ns: 'skills' });
+  const dailyUseLabel = t('dailyUse', { ns: 'skills' });
   const levels = t('levels', { ns: 'skills', returnObjects: true }) as {
     advanced: string;
     comfortable: string;
     familiar: string;
   };
+
+  const totalProjects = projects.length;
 
   const usageMap = new Map<string, string[]>();
   projects.forEach((project) => {
@@ -167,21 +179,39 @@ export function Skills({ t }: { t: TFunction }) {
             className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_15%,color-mix(in_oklch,var(--primary)_10%,transparent),transparent_55%)]"
           />
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="columns-1 gap-5 sm:columns-2 lg:columns-3">
             {groups.map((group, i) => {
               const GroupIcon = GROUP_ICONS[group.id] ?? Code2;
+              const tone = GROUP_TONE[group.id] ?? { icon: 'bg-primary/10 text-primary', accent: undefined };
               const buckets = TIER_ORDER.map((tier) => ({
                 tier,
                 items: group.items.filter((item) => (TECH[item]?.tier ?? 2) === tier),
               })).filter((bucket) => bucket.items.length > 0);
 
               return (
-                <Reveal key={group.id} delay={i * 0.05}>
-                  <TiltCard className="h-full">
-                    <div className="h-full p-5">
-                      <div className="flex items-center gap-2.5">
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                          <GroupIcon aria-hidden="true" className="h-4 w-4" />
+                <Reveal key={group.id} delay={i * 0.05} className="mb-5 break-inside-avoid">
+                  <TiltCard className="relative">
+                    {tone.accent && (
+                      <>
+                        <span
+                          aria-hidden
+                          className="absolute inset-x-0 top-0 h-1"
+                          style={{ background: `linear-gradient(to right, ${tone.accent}, transparent)` }}
+                        />
+                        <span
+                          aria-hidden
+                          className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-25 blur-2xl"
+                          style={{ background: tone.accent }}
+                        />
+                      </>
+                    )}
+                    <div className="relative p-5">
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`inline-flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 ${tone.icon}`}
+                          style={tone.accent ? { boxShadow: `0 4px 18px -6px ${tone.accent}66` } : undefined}
+                        >
+                          <GroupIcon aria-hidden="true" className="h-5 w-5" />
                         </span>
                         <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
                           {group.name}
@@ -195,7 +225,13 @@ export function Skills({ t }: { t: TFunction }) {
                             className="relative overflow-hidden rounded-xl border border-border/60 bg-background/30 p-4"
                           >
                             <span
-                              className={`absolute inset-x-0 top-0 h-0.75 bg-linear-to-r ${TIER_BAR[tier]}`}
+                              aria-hidden
+                              className="absolute inset-x-0 top-0 h-0.75"
+                              style={{
+                                background: tone.accent
+                                  ? `linear-gradient(to right, ${tone.accent}${TIER_ALPHA[tier]}, transparent)`
+                                  : undefined,
+                              }}
                             />
                             <div
                               className={`mb-2.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider ${TIER_LABEL[tier]}`}
@@ -221,6 +257,9 @@ export function Skills({ t }: { t: TFunction }) {
                                     label={item}
                                     usedIn={usageMap.get(item) ?? []}
                                     usedInLabel={usedInLabel}
+                                    totalProjects={totalProjects}
+                                    accent={tone.accent}
+                                    badge={item === 'Claude Code' ? dailyUseLabel : undefined}
                                   />
                                 );
                               })}

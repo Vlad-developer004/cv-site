@@ -2,6 +2,7 @@
   "eyebrow": "Wer ich bin",
   "headingLead": "Über",
   "headingAccent": "mich",
+  "pitch": "Full-Stack-Entwickler, der Projekte zu Ende bringt — nicht nur startet.",
   "quote": "Mir ist ein Projekt, das unter echten Bedingungen wirklich funktioniert, lieber als zehn abgeschlossene Tutorials.",
   "softSkills": [
     {
@@ -48,9 +49,26 @@
     { "code": "RU", "level": "fließend" }
   ],
   "paragraphs": [
-    "Fürs Programmieren begeistert habe ich mich schon als Teenager, 2020 — angefangen mit Selbststudium über YouTube und Bücher, und aus dieser Leidenschaft wurde ein Beruf. Heute bin ich Full-Stack-Entwickler und baue vollständige, produktionsreif gedachte Systeme — Authentifizierung, Zahlungen, race-condition-sichere Transaktionen, CI/CD — nicht nur einzelne Features. Ich habe einen B.Sc. in Informatik mit Auszeichnung von der Nationalen Universität „Zaporizhzhia Polytechnic“. Aktuell offen für Vollzeitmöglichkeiten im Full-Stack-Bereich.",
-    "Meine Universität ist in Anabin mit H+ bewertet (gleichwertig zu einer deutschen Hochschule), die formale Anerkennung meines Abschlusses steht aber noch aus. Ich habe uneingeschränkten Zugang zum deutschen Arbeitsmarkt — kein Visum-Sponsoring nötig. Ich lebe in Berlin und habe ein zertifiziertes Deutsch-Niveau B2.",
-    "Statt bei Tutorials stehenzubleiben, baue ich vollständige, anspruchsvolle Projekte — zuletzt zum Beispiel ein live genutztes Tool zur Digitalisierung von Formularen mit vollständiger Testabdeckung, eine Buchungsplattform für Busfahrkarten, einen Krypto-Paper-Trading-Simulator mit Fokus auf finanzielle Präzision, eine E-Commerce-Plattform mit Zahlungen im Testmodus und CI/CD sowie einen lokalen KI-Sprachassistenten.",
-    "Meine Bachelorarbeit befasste sich mit Algorithmen zur Kennzeichenerkennung unter schwierigen Wetterbedingungen — mein erster tieferer Einstieg in Computer Vision, der meine Denkweise über Robustheit in Software geprägt hat."
+    "Ich baue vollständige, produktionsreif gedachte Systeme — Authentifizierung, Zahlungen, race-condition-sichere Transaktionen, CI/CD — nicht nur einzelne Features. Fürs Programmieren begeistert habe ich mich schon als Teenager, 2020, angefangen mit Selbststudium über YouTube und Bücher; aus dieser Leidenschaft wurde ein Beruf. Ich habe einen B.Sc. in Informatik mit Auszeichnung von der Nationalen Universität „Zaporizhzhia Polytechnic“ und bin aktuell offen für Vollzeitmöglichkeiten im Full-Stack-Bereich.",
+    "Ich habe uneingeschränkten Zugang zum deutschen Arbeitsmarkt — kein Visum-Sponsoring nötig — und lebe in Berlin mit zertifiziertem Deutsch-Niveau B2. Meine Universität ist zudem in Anabin mit H+ bewertet, gleichwertig zu einer deutschen Hochschule; die formale Anerkennung meines Abschlusses läuft aktuell noch.",
+    "Meine Bachelorarbeit war kein reines Theoriepapier, sondern ein vollständiges System: Kennzeichenerkennung in C#/.NET mit OpenCV, YOLO-Objekterkennung, Tesseract-OCR (LSTM) und Fuzzy-Matching per Levenshtein-Distanz, das per MQTT eine Torsteuerung live ansteuert — 99,2 % Genauigkeit unter normalen Bedingungen, 92–96,5 % bei simuliertem Regen, Schnee oder verschmutzten Kennzeichen, in Echtzeit (rund 300 ms pro Bild)."
+  ],
+  "paragraphLabels": ["Wie ich baue", "Zugang zum Arbeitsmarkt", "Bachelorarbeit"],
+  "projectsIntro": "Statt bei Tutorials stehenzubleiben, baue ich vollständige, anspruchsvolle Projekte — zuletzt zum Beispiel diese fünf:",
+  "projectTags": [
+    { "id": "rechtsform", "label": "Formular-Digitalisierungstool (live im Einsatz)" },
+    { "id": "bus-tickets", "label": "Busticket-Buchungsplattform" },
+    { "id": "paper-trader", "label": "Krypto-Paper-Trading-Simulator" },
+    { "id": "shop", "label": "E-Commerce mit Zahlungen & CI/CD" },
+    { "id": "jarvis", "label": "Lokaler KI-Sprachassistent" }
+  ],
+  "highlightWords": [
+    "Authentifizierung",
+    "Zahlungen",
+    "race-condition-sichere Transaktionen",
+    "produktionsreif",
+    "uneingeschränkten Zugang zum deutschen Arbeitsmarkt",
+    "kein Visum-Sponsoring",
+    "Echtzeit"
   ]
 }

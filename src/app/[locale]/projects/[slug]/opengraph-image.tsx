@@ -3,7 +3,7 @@ import path from 'node:path';
 import { ImageResponse } from 'next/og';
 import type { Locale } from '@/i18nConfig';
 import initTranslations from '@/lib/i18n';
-import { SCREENSHOTS } from '@/lib/project-visuals';
+import { PROJECT_IDS } from '@/lib/project-visuals';
 
 export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
@@ -20,14 +20,16 @@ export default async function Image({
   const { t } = await initTranslations(locale);
   const projects = t('items', { ns: 'projects', returnObjects: true }) as Project[];
   const project = projects.find((p) => p.id === slug);
-  const screenshot = SCREENSHOTS[slug];
 
+  // Pre-generated small JPEG (see scripts/generate-og-thumbnails.mjs), not the
+  // full source screenshot — keeps this function's payload tiny across every
+  // locale × project combination instead of embedding a multi-hundred-KB PNG.
   let screenshotDataUri: string | null = null;
-  if (screenshot) {
+  if ((PROJECT_IDS as readonly string[]).includes(slug)) {
     try {
-      const filePath = path.join(process.cwd(), 'public', screenshot.src);
+      const filePath = path.join(process.cwd(), 'public', 'projects', 'og', `${slug}.jpg`);
       const file = await readFile(filePath);
-      screenshotDataUri = `data:image/png;base64,${file.toString('base64')}`;
+      screenshotDataUri = `data:image/jpeg;base64,${file.toString('base64')}`;
     } catch {
       screenshotDataUri = null;
     }

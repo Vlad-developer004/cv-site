@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Check, CheckCircle2, Clock, Copy, Mail, MapPin, MessageSquare, Send, User } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
@@ -9,6 +9,21 @@ import { Confetti } from '@/components/confetti';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
+
+const CONTACT_TONE = {
+  email: { icon: 'bg-sky-500/10 text-sky-500', accent: '#0ea5e9' },
+  location: { icon: 'bg-rose-500/10 text-rose-500', accent: '#f43f5e' },
+  github: { icon: 'bg-foreground/10 text-foreground', accent: '#94a3b8' },
+  linkedin: { icon: 'bg-[#0A66C2]/10 text-[#0A66C2]', accent: '#0A66C2' },
+};
+
+const FORM_TONE = {
+  name: '#6366f1',
+  email: '#0ea5e9',
+  message: '#14b8a6',
+};
+
+const MESSAGE_MAX_LENGTH = 2000;
 
 export function Contact() {
   const { t } = useTranslation('contact');
@@ -117,7 +132,7 @@ export function Contact() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_320px]">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]">
           <Reveal delay={0.06}>
             <TiltCard className="h-full" disableTilt>
               <form onSubmit={onSubmit} className="flex h-full flex-col gap-4 p-6">
@@ -137,7 +152,10 @@ export function Contact() {
                       {form.nameLabel}
                     </label>
                     <div className="relative mt-1.5">
-                      <User className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <User
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2"
+                        style={{ color: FORM_TONE.name }}
+                      />
                       <input
                         id="contact-name"
                         type="text"
@@ -147,7 +165,8 @@ export function Contact() {
                         onChange={(e) => setName(e.target.value)}
                         onFocus={onFieldFocus}
                         placeholder={form.namePlaceholder}
-                        className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
+                        style={{ '--field-accent': FORM_TONE.name } as CSSProperties}
+                        className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-(--field-accent) focus:ring-4 focus:ring-[color-mix(in_oklch,var(--field-accent)_12%,transparent)]"
                       />
                     </div>
                   </div>
@@ -157,7 +176,10 @@ export function Contact() {
                       {form.emailLabel}
                     </label>
                     <div className="relative mt-1.5">
-                      <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <Mail
+                        className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2"
+                        style={{ color: FORM_TONE.email }}
+                      />
                       <input
                         id="contact-email"
                         type="email"
@@ -167,28 +189,42 @@ export function Contact() {
                         onChange={(e) => setReplyTo(e.target.value)}
                         onFocus={onFieldFocus}
                         placeholder={form.emailPlaceholder}
-                        className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
+                        style={{ '--field-accent': FORM_TONE.email } as CSSProperties}
+                        className="w-full rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-(--field-accent) focus:ring-4 focus:ring-[color-mix(in_oklch,var(--field-accent)_12%,transparent)]"
                       />
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-1 flex-col">
-                  <label htmlFor="contact-message" className="text-sm font-medium text-foreground">
-                    {form.messageLabel}
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="contact-message" className="text-sm font-medium text-foreground">
+                      {form.messageLabel}
+                    </label>
+                    <span
+                      className={`text-xs tabular-nums ${
+                        message.length >= MESSAGE_MAX_LENGTH ? 'text-red-500' : 'text-muted-foreground'
+                      }`}
+                    >
+                      {message.length}/{MESSAGE_MAX_LENGTH}
+                    </span>
+                  </div>
                   <div className="relative mt-1.5 flex flex-1 flex-col">
-                    <MessageSquare className="pointer-events-none absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground" />
+                    <MessageSquare
+                      className="pointer-events-none absolute left-3.5 top-3.5 h-4 w-4"
+                      style={{ color: FORM_TONE.message }}
+                    />
                     <textarea
                       id="contact-message"
                       required
-                      maxLength={2000}
+                      maxLength={MESSAGE_MAX_LENGTH}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       onFocus={onFieldFocus}
                       placeholder={form.messagePlaceholder}
                       rows={5}
-                      className="w-full flex-1 resize-none rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-primary/50 focus:ring-4 focus:ring-primary/10"
+                      style={{ '--field-accent': FORM_TONE.message } as CSSProperties}
+                      className="w-full flex-1 resize-none rounded-lg border border-border bg-background/50 py-2.5 pl-10 pr-3.5 text-sm outline-none transition-all focus:border-(--field-accent) focus:ring-4 focus:ring-[color-mix(in_oklch,var(--field-accent)_12%,transparent)]"
                     />
                   </div>
                 </div>
@@ -228,7 +264,10 @@ export function Contact() {
                 <div className="mt-4 space-y-4">
                   <div className="flex items-center gap-3">
                     <a href={`mailto:${email}`} className="group flex min-w-0 flex-1 items-center gap-3">
-                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <span
+                        className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 ${CONTACT_TONE.email.icon}`}
+                        style={{ boxShadow: `0 4px 14px -6px ${CONTACT_TONE.email.accent}66` }}
+                      >
                         <Mail className="h-4 w-4" />
                       </span>
                       <span className="min-w-0">
@@ -248,15 +287,18 @@ export function Contact() {
                     </button>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span
+                      className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${CONTACT_TONE.location.icon}`}
+                      style={{ boxShadow: `0 4px 14px -6px ${CONTACT_TONE.location.accent}66` }}
+                    >
                       <MapPin className="h-4 w-4" />
                     </span>
-                    <span>
+                    <span className="min-w-0">
                       <span className="block text-xs text-muted-foreground">
                         {t('locationLabel', { ns: 'contact' })}
                       </span>
-                      <span className="block text-sm font-medium text-foreground">
+                      <span className="block truncate text-sm font-medium text-foreground">
                         {t('location', { ns: 'contact' })}
                       </span>
                     </span>
@@ -264,14 +306,17 @@ export function Contact() {
 
                   <a
                     href={`https://github.com/${github}`}
-                    className="flex items-center gap-3 group"
+                    className="group flex min-w-0 items-center gap-3"
                   >
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <span
+                      className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 ${CONTACT_TONE.github.icon}`}
+                      style={{ boxShadow: `0 4px 14px -6px ${CONTACT_TONE.github.accent}66` }}
+                    >
                       <GithubIcon className="h-4 w-4" />
                     </span>
-                    <span>
+                    <span className="min-w-0">
                       <span className="block text-xs text-muted-foreground">GitHub</span>
-                      <span className="block text-sm font-medium text-foreground group-hover:text-primary">
+                      <span className="block truncate text-sm font-medium text-foreground group-hover:text-primary">
                         {github}
                       </span>
                     </span>
@@ -281,14 +326,17 @@ export function Contact() {
                     href="https://www.linkedin.com/in/vladyslav-tieriekhov"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-3 group"
+                    className="group flex min-w-0 items-center gap-3"
                   >
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <span
+                      className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 ${CONTACT_TONE.linkedin.icon}`}
+                      style={{ boxShadow: `0 4px 14px -6px ${CONTACT_TONE.linkedin.accent}66` }}
+                    >
                       <LinkedinIcon className="h-4 w-4" />
                     </span>
-                    <span>
+                    <span className="min-w-0">
                       <span className="block text-xs text-muted-foreground">LinkedIn</span>
-                      <span className="block text-sm font-medium text-foreground group-hover:text-primary">
+                      <span className="block truncate text-sm font-medium text-foreground group-hover:text-primary">
                         vladyslav-tieriekhov
                       </span>
                     </span>

@@ -17,7 +17,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <Hero t={t} />
       <Expertise t={t} locale={locale} />
-      <About t={t} />
+      <About t={t} locale={locale} />
       <Skills t={t} />
       <Projects t={t} locale={locale} />
       <Timeline t={t} />

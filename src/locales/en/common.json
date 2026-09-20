@@ -22,8 +22,11 @@
     "label": "Language"
   },
   "githubActivity": "GitHub activity",
-  "githubActivityNote": "Some of the work — like my thesis or the larger Jarvis project — doesn't always show up as commits here. I build Jarvis solo, keep working copies locally, and only commit finished, stable versions instead of ten small tweaks a day — that's just more practical for solo development. On a team production project it calls for exactly the opposite — frequent, small atomic commits, a clear change history, and code review through pull requests, similar to the CI/CD workflow already set up on my other projects.",
+  "activityLess": "Less",
+  "activityMore": "More",
+  "githubActivityNote": "Here I commit whole, finished solutions rather than drafts — it keeps the history clean, with each commit showing exactly what changed and why. On a team the process is different: frequent atomic commits and CI/CD on every push, as my other projects show.",
   "footer": {
+    "role": "Full-Stack Developer",
     "builtWith": "Built with Next.js, Tailwind CSS and motion — written in Antigravity.",
     "rights": "All rights reserved.",
     "navigation": "Navigation",

@@ -3,6 +3,7 @@
   "headingAccent": "навыки",
   "levels": { "advanced": "Продвинутый", "comfortable": "Уверенно", "familiar": "Знаком" },
   "usedIn": "Использовал в",
+  "dailyUse": "ежедневно",
   "groups": [
     {
       "id": "languages",

@@ -9,11 +9,10 @@
   "availability": "Готовий приступити негайно",
   "photoAvailableBadge": "Відкритий до пропозицій",
   "locationCity": "Берлін",
-  "statValue": "5",
-  "statLabel": "Обраних проєктів",
   "visaBadge": "Повний доступ до ринку праці Німеччини, віза не потрібна",
   "ctaContact": "Зв'язатися",
   "ctaDownloadCv": "Завантажити резюме",
+  "ctaProjects": "Переглянути проєкти",
   "followMe": "Соцмережі:",
   "scrollHint": "Гортати"
 }

@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, CheckCircle2, ExternalLink, Quote } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CheckCircle2, ExternalLink, FileText, Layers, Link2, MessageSquareQuote, Quote, Sparkles } from 'lucide-react';
 import { i18nConfig, type Locale } from '@/i18nConfig';
 import initTranslations from '@/lib/i18n';
 import { localizePath } from '@/lib/locale-path';
-import { ICONS, PROJECT_IDS, SCREENSHOTS, TONES, tagTone } from '@/lib/project-visuals';
+import { ACCENT, ICONS, PROJECT_IDS, SCREENSHOTS, TONES, tagTone } from '@/lib/project-visuals';
 import { Reveal } from '@/components/reveal';
 import { GithubIcon } from '@/components/icons';
 
@@ -66,6 +66,7 @@ export default async function ProjectDetailPage({
   const tone = TONES[project.id] ?? TONES.shop;
   const StatusIcon = tone.StatusIcon;
   const screenshot = SCREENSHOTS[project.id];
+  const accent = ACCENT[project.id] ?? '#10b981';
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-12 sm:px-6 sm:py-20">
@@ -81,7 +82,10 @@ export default async function ProjectDetailPage({
 
       <Reveal delay={0.06}>
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <span className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${tone.icon}`}>
+          <span
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+            style={{ background: `${accent}1a`, color: accent, boxShadow: `0 4px 18px -6px ${accent}66` }}
+          >
             <Icon className="h-5 w-5" />
           </span>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{project.name}</h1>
@@ -97,6 +101,11 @@ export default async function ProjectDetailPage({
       {screenshot && (
         <Reveal delay={0.1}>
           <div className="relative mt-8 overflow-hidden rounded-2xl border border-border bg-[#0b0b0f]">
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-1"
+              style={{ background: `linear-gradient(to right, ${accent}, transparent)` }}
+            />
             {screenshot.chrome === 'browser' && (
               <div className="flex items-center gap-1.5 px-3.5 py-2.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
@@ -112,14 +121,20 @@ export default async function ProjectDetailPage({
       )}
 
       <Reveal delay={0.14}>
-        <div className="mt-8 space-y-4">
-          {(Array.isArray(project.detail.overview) ? project.detail.overview : [project.detail.overview]).map(
-            (para, i) => (
-              <p key={i} className="text-lg leading-relaxed text-foreground/90">
-                {para}
-              </p>
-            )
-          )}
+        <div className="mt-8 border-l-2 pl-4" style={{ borderColor: `${accent}40` }}>
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider" style={{ color: accent }}>
+            <FileText className="h-3.5 w-3.5" />
+            {labels.overview}
+          </span>
+          <div className="mt-2 space-y-4">
+            {(Array.isArray(project.detail.overview) ? project.detail.overview : [project.detail.overview]).map(
+              (para, i) => (
+                <p key={i} className="text-lg leading-relaxed text-foreground/90">
+                  {para}
+                </p>
+              )
+            )}
+          </div>
         </div>
       </Reveal>
 
@@ -139,11 +154,19 @@ export default async function ProjectDetailPage({
 
       <Reveal delay={0.22}>
         <section className="mt-12">
-          <h2 className="text-lg font-semibold text-foreground">{labels.architecture}</h2>
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+            <span
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+              style={{ background: `${accent}1a`, color: accent }}
+            >
+              <Layers className="h-3.5 w-3.5" />
+            </span>
+            {labels.architecture}
+          </h2>
           <ul className="mt-4 space-y-3">
             {project.detail.architecture.map((point, i) => (
               <li key={i} className="flex gap-3 text-base leading-relaxed text-muted-foreground">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
                 <span>{point}</span>
               </li>
             ))}
@@ -153,18 +176,26 @@ export default async function ProjectDetailPage({
 
       <Reveal delay={0.26}>
         <section className="mt-12">
-          <h2 className="text-lg font-semibold text-foreground">{labels.challenges}</h2>
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+            <span
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+              style={{ background: `${accent}1a`, color: accent }}
+            >
+              <AlertTriangle className="h-3.5 w-3.5" />
+            </span>
+            {labels.challenges}
+          </h2>
           <div className="mt-4 space-y-4">
             {project.detail.challenges.map((c, i) => (
-              <div key={i} className="glass overflow-hidden rounded-xl">
-                <div className="border-l-2 border-foreground/25 py-4 pl-4 pr-5">
+              <div key={i} className="overflow-hidden rounded-xl border border-border bg-card">
+                <div className="border-l-2 border-border bg-muted/40 py-4 pl-4 pr-5">
                   <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {labels.problem}
                   </p>
                   <p className="mt-1 text-base text-foreground/90">{c.problem}</p>
                 </div>
-                <div className="border-l-2 border-primary bg-primary/5 py-4 pl-4 pr-5">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                <div className="border-l-2 py-4 pl-4 pr-5" style={{ borderColor: accent, background: `${accent}14` }}>
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: accent }}>
                     {labels.solution}
                   </p>
                   <p className="mt-1 text-base leading-relaxed text-muted-foreground">{c.solution}</p>
@@ -177,7 +208,15 @@ export default async function ProjectDetailPage({
 
       <Reveal delay={0.3}>
         <section className="mt-12">
-          <h2 className="text-lg font-semibold text-foreground">{labels.highlights}</h2>
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+            <span
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+              style={{ background: `${accent}1a`, color: accent }}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+            </span>
+            {labels.highlights}
+          </h2>
           <ul className="mt-4 space-y-3">
             {project.detail.highlights.map((point, i) => (
               <li key={i} className="flex gap-3 text-base leading-relaxed text-foreground/90">
@@ -192,10 +231,34 @@ export default async function ProjectDetailPage({
       {project.testimonial && (
         <Reveal delay={0.32}>
           <section className="mt-12">
-            <h2 className="text-lg font-semibold text-foreground">{labels.testimonial}</h2>
-            <figure className="rounded-2xl border border-primary/20 bg-[linear-gradient(135deg,color-mix(in_oklch,var(--primary)_8%,transparent),transparent_60%)] p-6 sm:p-7">
-              <Quote className="h-5 w-5 text-primary/50" aria-hidden="true" />
-              <blockquote className="mt-3 text-lg leading-relaxed text-foreground/90">
+            <h2 className="flex items-center gap-2 text-lg font-semibold text-foreground">
+              <span
+                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+                style={{ background: `${accent}1a`, color: accent }}
+              >
+                <MessageSquareQuote className="h-3.5 w-3.5" />
+              </span>
+              {labels.testimonial}
+            </h2>
+            <figure
+              className="relative mt-4 overflow-hidden rounded-2xl border p-6 sm:p-7"
+              style={{
+                borderColor: `${accent}33`,
+                background: `linear-gradient(135deg, ${accent}14, transparent 65%)`,
+              }}
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-1"
+                style={{ background: `linear-gradient(to right, ${accent}, transparent)` }}
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full blur-3xl"
+                style={{ background: `${accent}26` }}
+              />
+              <Quote className="h-9 w-9" style={{ color: `${accent}55` }} aria-hidden="true" />
+              <blockquote className="mt-3 text-lg font-medium leading-relaxed text-foreground/90">
                 {project.testimonial.translation ?? project.testimonial.quote}
               </blockquote>
               {project.testimonial.translation && (
@@ -206,9 +269,15 @@ export default async function ProjectDetailPage({
                   <p className="mt-1 text-xs text-muted-foreground">{labels.testimonialTranslated}</p>
                 </>
               )}
-              <figcaption className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-primary/15 pt-5">
+              <figcaption
+                className="relative mt-6 flex flex-wrap items-center justify-between gap-3 border-t pt-5"
+                style={{ borderColor: `${accent}22` }}
+              >
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary),color-mix(in_oklch,var(--primary)_55%,var(--foreground)))] text-sm font-bold text-primary-foreground shadow-sm">
+                  <span
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white shadow-sm"
+                    style={{ background: `linear-gradient(135deg, ${accent}, color-mix(in oklch, ${accent} 55%, black))` }}
+                  >
                     {initials(project.testimonial.author)}
                   </span>
                   <span className="text-sm">
@@ -221,7 +290,8 @@ export default async function ProjectDetailPage({
                     href={project.testimonial.sourceUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium hover:underline"
+                    style={{ color: accent }}
                   >
                     {labels.testimonialSource}
                     <ExternalLink className="h-3.5 w-3.5" />
@@ -236,7 +306,8 @@ export default async function ProjectDetailPage({
       {(project.links.repo || project.links.repoClient || project.links.live) && (
         <Reveal delay={0.34}>
           <section className="mt-12 border-t border-border pt-8">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              <Link2 className="h-3.5 w-3.5" style={{ color: accent }} />
               {labels.links}
             </h2>
             <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -245,7 +316,8 @@ export default async function ProjectDetailPage({
                   href={project.links.repo}
                   className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary"
                 >
-                  <GithubIcon className="h-4 w-4" /> Code
+                  <GithubIcon className="h-4 w-4" />{' '}
+                  {project.links.repoClient ? labels.backendCode : labels.code}
                 </a>
               )}
               {project.links.repoClient && (

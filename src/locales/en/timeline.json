@@ -7,7 +7,7 @@
       "date": "2020",
       "icon": "start",
       "title": "First steps in programming",
-      "description": "Started teaching myself to code as a teenager — YouTube, books, early pet projects that haven't survived to this day. That's when I realized I wanted to do this professionally."
+      "description": "Started teaching myself to code as a teenager — YouTube, books, early pet projects that haven't survived to this day. That's 6 years of continuous practice since, from the first tutorials to systems running in production today."
     },
     {
       "date": "2022 – 2026",
@@ -19,13 +19,19 @@
       "date": "Since 2022",
       "icon": "diploma",
       "title": "University rated H+ in Anabin",
-      "description": "My university is rated H+ in Anabin, Germany's database of foreign institutions — equivalent to a German university. Formal recognition (Anerkennung) of my specific degree is still ahead."
+      "description": "My university is already rated H+ in Anabin, Germany's database of foreign institutions — equivalent to a German university. Formal recognition (Anerkennung) of the specific degree is a separate bureaucratic step, not a question of qualification."
     },
     {
       "date": "2024",
       "icon": "language",
       "title": "German B1 certified",
       "description": "Completed a BAMF integration course; passed the 'Leben in Deutschland' orientation test with a perfect score (33/33) — the same attention to detail I bring to code."
+    },
+    {
+      "date": "April 2025",
+      "icon": "diploma",
+      "title": "Machine learning fundamentals (IBM)",
+      "description": "Completed 'Machine Learning with Python' (IBM / Cognitive Class) — out of personal interest, not a career pivot. Gives me a solid grounding in the technology behind the AI tools I use daily, such as Claude Code."
     },
     {
       "date": "2025",

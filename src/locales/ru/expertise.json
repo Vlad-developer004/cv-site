@@ -13,7 +13,7 @@
     {
       "id": "ai",
       "title": "AI и LLM-инструменты",
-      "description": "Интеграция speech-to-text, text-to-speech и LLM API в законченные проекты с низкой задержкой — не просто вызов API, а инженерная работа вокруг его ограничений.",
+      "description": "Интеграция speech-to-text, text-to-speech и LLM API в законченные проекты с низкой задержкой (150–200мс) — не просто вызов API, а инженерная работа вокруг его ограничений.",
       "linkedProjectIds": ["jarvis"]
     },
     {
@@ -26,7 +26,7 @@
       "id": "quality",
       "title": "Тесты и корректность",
       "description": "Юнит- и end-to-end-тесты, транзакции, защищённые от гонок, и CI-пайплайны, которые автоматически запускаются при каждом push — корректность проверяется, а не просто заявляется.",
-      "linkedProjectIds": ["rechtsform", "shop"]
+      "linkedProjectIds": ["rechtsform", "shop", "paper-trader"]
     }
   ]
 }

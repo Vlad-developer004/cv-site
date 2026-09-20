@@ -17,6 +17,13 @@ const ICONS: Record<string, typeof ShieldCheck> = {
   quality: ClipboardCheck,
 };
 
+const TONE: Record<string, { icon: string; accent: string }> = {
+  privacy: { icon: 'bg-blue-500/10 text-blue-500', accent: '#3b82f6' },
+  ai: { icon: 'bg-violet-500/10 text-violet-500', accent: '#8b5cf6' },
+  fullstack: { icon: 'bg-cyan-500/10 text-cyan-500', accent: '#06b6d4' },
+  quality: { icon: 'bg-amber-500/10 text-amber-500', accent: '#f59e0b' },
+};
+
 export function Expertise({ t, locale }: { t: TFunction; locale: Locale }) {
   const pillars = t('pillars', { ns: 'expertise', returnObjects: true }) as Pillar[];
   const projects = t('items', { ns: 'projects', returnObjects: true }) as ProjectRef[];
@@ -46,14 +53,32 @@ export function Expertise({ t, locale }: { t: TFunction; locale: Locale }) {
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {pillars.map((pillar, i) => {
             const Icon = ICONS[pillar.id] ?? Code2;
+            const tone = TONE[pillar.id] ?? { icon: 'bg-primary/10 text-primary', accent: undefined };
             const primaryHref = localizePath(`/projects/${pillar.linkedProjectIds[0]}`, locale);
 
             return (
               <Reveal key={pillar.id} delay={i * 0.08}>
-                <TiltCard className="flex h-full flex-col">
-                  <Link href={primaryHref} className="group block p-6 pb-0">
+                <TiltCard className="relative flex h-full flex-col">
+                  {tone.accent && (
+                    <>
+                      <span
+                        aria-hidden
+                        className="absolute inset-x-0 top-0 h-1"
+                        style={{ background: `linear-gradient(to right, ${tone.accent}, transparent)` }}
+                      />
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-25 blur-2xl"
+                        style={{ background: tone.accent }}
+                      />
+                    </>
+                  )}
+                  <Link href={primaryHref} className="group relative block p-6 pb-0">
                     <div className="flex items-center justify-between">
-                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <span
+                        className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${tone.icon}`}
+                        style={tone.accent ? { boxShadow: `0 4px 18px -6px ${tone.accent}66` } : undefined}
+                      >
                         <Icon className="h-5 w-5" />
                       </span>
                       <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
