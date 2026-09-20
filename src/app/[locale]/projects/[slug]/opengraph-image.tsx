@@ -87,7 +87,6 @@ export default async function Image({
 
         {screenshotDataUri && (
           <div style={{ display: 'flex', flex: 1, padding: '0 64px 56px' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={screenshotDataUri}
               alt=""

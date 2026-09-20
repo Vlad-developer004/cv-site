@@ -16,8 +16,8 @@ export function SitePreloader() {
     // (SSR) — skip it entirely for reduced-motion, and never delay or hide
     // real content: it's an overlay, not a gate.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setVisible(false);
-      return;
+      const timer = setTimeout(() => setVisible(false), 0);
+      return () => clearTimeout(timer);
     }
     const timer = setTimeout(() => {
       setExiting(true);
