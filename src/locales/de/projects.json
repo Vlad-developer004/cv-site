@@ -6,7 +6,7 @@
   "subheading": "Unterschiedliche Projekte — von einem System, das produktiv im Einsatz ist, bis zu Nebenprojekten, gebaut mit den Praktiken eines echten Produktionssystems statt bloßer Demos. Jedes zeigt eine eigene Fähigkeit, ohne das vorherige zu wiederholen.",
   "stats": [
     { "value": 6, "suffix": " Jahre", "label": "praktische Erfahrung", "link": "timeline" },
-    { "value": 172, "label": "Unit-Tests", "link": "rechtsform" },
+    { "value": 2259, "label": "automatisierte Tests", "link": "jarvis" },
     { "value": 14, "label": "Sprachen live im Einsatz", "link": "rechtsform" },
     { "value": 99.2, "decimals": 1, "suffix": "%", "decimalSeparator": ",", "label": "Erkennungsgenauigkeit bei Kennzeichen", "link": "timeline" }
   ],
@@ -241,29 +241,31 @@
       "id": "jarvis",
       "name": "Lokaler KI-Sprachassistent",
       "status": "In Arbeit",
-      "description": "Ein hochperformanter lokaler Sprachassistent, der Speech-to-Text- und Text-to-Speech-Modelle mit einem LLM für komplexe Kontextverarbeitung kombiniert — über 300 Sprachbefehle mit 150–200 ms Latenz auf gewöhnlicher Hardware.",
+      "description": "Ein offline laufender Sprachassistent für Windows mit Aktivierungswort und rund 280 erkennbaren Kernbefehlen bei 150–200ms Antwortlatenz auf gewöhnlicher Hardware (deutlich mehr Befehle, sobald Spielprofile und Erweiterungen aktiv sind), einer vierstufigen Intent-Pipeline und einem lokalen LLM als letztem Fallback — 2259 automatisierte Tests, und nichts verlässt das Gerät, außer eine Funktion benötigt ausdrücklich das Netz.",
       "stack": [
         "Python",
-        "GigaAM STT",
+        "Vosk / sherpa-onnx",
         "Silero TTS",
-        "LLM-APIs"
+        "Sentence Embeddings",
+        "Lokales GGUF-LLM (llama-cpp-python)"
       ],
       "links": {
-        "repo": null,
+        "repo": "https://github.com/Vlad-developer004/Jarvis",
         "live": null
       },
       "highlight": false,
       "detail": {
         "overview": [
-          "Ein lokaler, offline laufender Sprachassistent für Windows (Russisch/Ukrainisch), der weit über Sprachbefehle hinausgeht — Systemsteuerung, Gaming-Integrationen, Diktierfunktion und ein kleines Ökosystem installierbarer Erweiterungen, standardmäßig ganz ohne Cloud-Aufruf.",
-          "Das Projekt ist groß und wächst schneller, als ich es für fremde Augen aufräumen kann — deshalb bislang kein öffentliches Repo und kein Produktions-Deployment. Der Grund ist der Umfang, nicht mangelnde Bereitschaft, den Code zu zeigen."
+          "Ein lokaler, offline laufender Sprachassistent für Windows, der weit über Sprachbefehle hinausgeht — Systemsteuerung, Gaming-Integrationen, Diktierfunktion, ein Wächtermodus über die Webcam, Fernsteuerung über einen privaten Telegram-Bot und ein Ökosystem installierbarer Erweiterungen, standardmäßig ganz ohne Cloud-Aufruf.",
+          "Jetzt öffentlich: mit vollständigem README, EULA, 2259 automatisierten Tests und einem fertigen Windows-Installer — aus einem privaten Pet-Projekt gewachsen zu etwas, das man guten Gewissens weitergeben kann."
         ],
         "architecture": [
-          "Eine mehrstufige Pipeline: Audioaufnahme → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → eine hybride Intent-Schicht → ein Dispatcher, der zu Dutzenden Action-Modulen routet → Silero-TTS für die Antwort",
-          "Hybrides Intent-Matching, nicht nur Keyword-Suche: zuerst schnelles Keyword-/Fuzzy-Matching, mit semantischer Satz-Embedding-Suche (lokal gecacht) als Fallback für Formulierungen, die es noch nicht exakt gesehen hat",
+          "Eine mehrstufige Pipeline: Audioaufnahme → VAD (RMS + Silero) → ASR (sherpa-onnx / Vosk) → eine vierstufige Intent-Schicht → ein Dispatcher, der zu Dutzenden Action-Modulen routet → Silero-TTS für die Antwort",
+          "Die Intent-Erkennung eskaliert nur bei Bedarf: exakte Keyword-Tabelle → semantischer Klassifikator (Satz-Embeddings mit Konfidenzschwelle) → nachgelagerter Fuzzy-Matcher → lokales LLM als letzte Instanz, sodass die meisten Formulierungen nie die teuren Schichten erreichen",
+          "Der lokale LLM-Fallback (ein LoRA-Finetune eines 1B-Vikhr-Llama-Modells, GGUF, reines CPU) löst Anfragen entweder per Function-Calling über dieselbe Intent-Liste auf oder antwortet im Gesprächsmodus — die Antwort wird gestreamt, Satz für Satz gesprochen, mit Kurzzeitkontext",
           "Ein HUD auf CustomTkinter-Basis (Zustände Laden/Bereit/Zuhören/Sprechen) läuft im Hintergrund-Thread mit Tray-Symbol, hinter einer strikten, reihenfolgeabhängigen Startsequenz, die native Windows-DLL-Konflikte umgeht",
-          "Ein eigener Spielmodus: engere Schwellenwerte für die Spracherkennung während des Spielens, plus Live-Telemetrie für Euro Truck Simulator 2 über UDP und Profile pro Spiel",
-          "Über Sprachbefehle hinaus: freihändiges Diktieren in jedes fokussierte Fenster, OCR, ein Zwischenablage-Manager, ein Befehls-„Tresor“ für eigene Makros und ein installierbarer Erweiterungskatalog"
+          "Ein eigener Spielmodus: engere Schwellenwerte für die Spracherkennung während des Spielens, plus Live-UDP-Telemetrie und KI-Briefings für Euro Truck Simulator 2 sowie Profile für Farming Simulator 22, Hogwarts Legacy, Planetbase, Photoshop und Figma",
+          "Der Wächtermodus beobachtet die Webcam in Abwesenheit auf unbekannte Gesichter und schickt einen Schnappschuss über einen privaten Telegram-Bot, der auch Textbefehle über denselben Intent-Matcher wie die Sprache entgegennimmt"
         ],
         "challenges": [
           {
@@ -271,8 +273,8 @@
             "solution": "Eine strikte, reihenfolgeabhängige Startsequenz erzwungen — CUDA/pynvml werden gestubbt, bevor Torch lädt, danach DLLs vorab geladen und Modelle in einem Hintergrund-Thread aufgewärmt, bevor UI oder Audio-Loop starten."
           },
           {
-            "problem": "Exaktes Keyword-Matching verpasste alles, was leicht anders formuliert war",
-            "solution": "Einen semantischen Fallback ergänzt — Satz-Embedding-Suche über einen lokalen Cache — der nur greift, wenn das schnelle Keyword-/Fuzzy-Matching nicht sicher trifft."
+            "problem": "Exaktes Keyword-Matching verpasste alles, was leicht anders formuliert war, und ein einzelner Fuzzy-Matcher allein war zu unzuverlässig, um ihm irreversible Aktionen anzuvertrauen",
+            "solution": "Die Intent-Erkennung über Schichten steigender Kosten eskalieren lassen — Keywords, semantische Embeddings mit Konfidenzschwelle, Fuzzy-Matching, dann LLM — und für jede destruktive Aktion eine gesprochene Ja/Nein-Bestätigung verlangt, unabhängig davon, welche Schicht sie erkannt hat."
           },
           {
             "problem": "Die Spracherkennung reagierte während lauter Spiele zu empfindlich",
@@ -280,10 +282,12 @@
           }
         ],
         "highlights": [
-          "Standardmäßig wirklich offline — ASR, Intent-Matching und TTS laufen komplett lokal; der einzige optionale Cloud-Aufruf ist für freies Chatten",
-          "Dutzende Action-Module weit über „App öffnen“ hinaus: Systembereinigung, Diktieren, OCR, Zwischenablage, E-Mail, Kalender, Git-Commits, Gaming-Integrationen",
-          "Eine hybride Keyword- + Semantik-Intent-Schicht statt einer starren Befehlsliste",
-          "Als eigenständiger Windows-Build mit sauberer Startsequenz gepackt, kein Skript, das man im Terminal startet"
+          "Standardmäßig wirklich offline — ASR, Intent-Matching und TTS laufen komplett lokal; optionale Cloud-Aufrufe gibt es nur für freies Chatten, Wetter, YouTube und NASAs Bild des Tages",
+          "2259 automatisierte Tests, darunter Integrationstests gegen ein echtes GGUF-Modell — mehrere gezielt gegen reale Befehlserkennungs-Bugs geschrieben",
+          "Dutzende Action-Module weit über „App öffnen“ hinaus: Systembereinigung, Diktieren, OCR, Zwischenablage, E-Mail, Kalender, Wächtermodus mit Eindringlingsalarm, Fernsteuerung über einen privaten Telegram-Bot",
+          "Vierstufige Intent-Pipeline (Keyword → Semantik → Fuzzy → lokales LLM) mit verpflichtender gesprochener Bestätigung vor jeder irreversiblen Aktion",
+          "150–200ms Antwortlatenz auf gewöhnlicher Hardware, trotz der mehrstufigen Erkennungspipeline",
+          "Als eigenständiger Windows-Installer mit sauberer Startsequenz gepackt, kein Skript, das man im Terminal startet"
         ]
       }
     }
