@@ -14,11 +14,17 @@ function idFromHref(href: string) {
 export function SiteNav({ navItems }: { navItems: NavItem[] }) {
   const [active, setActive] = useState(() => idFromHref(navItems[0]?.href ?? ''));
   const activeRef = useRef(active);
-  activeRef.current = active;
 
   useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
+
+  useEffect(() => {
+    // One-time sync with the URL hash after mount: the initial render must match the
+    // server (first nav item) for hydration, so the real hash can only be applied here.
     if (window.location.hash) {
       const fromHash = idFromHref(window.location.hash);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (navItems.some((item) => idFromHref(item.href) === fromHash)) setActive(fromHash);
     }
 
