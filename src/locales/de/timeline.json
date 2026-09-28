@@ -4,52 +4,46 @@
   "headingAccent": "Werdegang",
   "items": [
     {
-      "date": "2020",
-      "icon": "start",
-      "title": "Erste Schritte im Programmieren",
-      "description": "Als Teenager begonnen, mir das Programmieren selbst beizubringen — YouTube, Bücher, erste Pet-Projekte, die bis heute nicht erhalten sind. Seitdem sind es 6 Jahre durchgehende Praxis, von den ersten Tutorials bis zu Systemen, die heute produktiv laufen."
+      "tag": "Status",
+      "icon": "job",
+      "title": "Offen für Vollzeitstellen",
+      "description": "Portfolio produktionsreif gebauter Projekte aufgebaut — Authentifizierung, Zahlungen, race-condition-sichere Transaktionen, CI/CD — und baue laufend weiter. Offen für Full-Stack-Möglichkeiten und Gespräche."
     },
     {
-      "date": "2022 – 2026",
-      "icon": "education",
-      "title": "B.Sc. Informatik, mit Auszeichnung",
-      "description": "Nationale Universität „Zaporizhzhia Polytechnic“. Schwerpunkte: Softwarearchitektur, Full-Stack-Webentwicklung, Datenbanken, Algorithmen & Datenstrukturen, OOP."
-    },
-    {
-      "date": "Seit 2022",
-      "icon": "diploma",
-      "title": "Uni mit Anabin-Bewertung H+",
-      "description": "Meine Universität ist in Anabin, Deutschlands Datenbank ausländischer Hochschulen, bereits mit H+ bewertet — gleichwertig zu einer deutschen Hochschule. Das formale Anerkennungsverfahren meines Abschlusses ist ein separater bürokratischer Schritt, keine Frage der Qualifikation."
-    },
-    {
-      "date": "2024",
-      "icon": "language",
-      "title": "Deutsch B1",
-      "description": "Integrationskurs (BAMF) abgeschlossen; Test „Leben in Deutschland“ mit voller Punktzahl bestanden (33/33) — dieselbe Sorgfalt, mit der ich auch an Code herangehe."
-    },
-    {
-      "date": "April 2025",
-      "icon": "diploma",
-      "title": "Machine-Learning-Grundlagen (IBM)",
-      "description": "Kurs „Machine Learning with Python“ (IBM / Cognitive Class) abgeschlossen — aus Interesse, nicht als Fachrichtungswechsel. Gibt mir ein fundiertes Verständnis der Technologie hinter den KI-Tools, mit denen ich täglich arbeite, etwa Claude Code."
-    },
-    {
-      "date": "2025",
+      "tag": "Sprache",
       "icon": "language",
       "title": "Deutsch B2",
       "description": "Berufssprachkurs für den deutschen IT-Arbeitsmarkt abgeschlossen."
     },
     {
-      "date": "Sommer 2026",
+      "tag": "Zertifikat",
+      "icon": "diploma",
+      "title": "Machine-Learning-Grundlagen (IBM)",
+      "description": "Kurs „Machine Learning with Python“ (IBM / Cognitive Class) abgeschlossen — aus Interesse, nicht als Fachrichtungswechsel. Gibt mir ein fundiertes Verständnis der Technologie hinter den KI-Tools, mit denen ich täglich arbeite, etwa Claude Code."
+    },
+    {
+      "tag": "Sprache",
+      "icon": "language",
+      "title": "Deutsch B1",
+      "description": "Integrationskurs (BAMF) abgeschlossen; Test „Leben in Deutschland“ mit voller Punktzahl bestanden (33/33) — dieselbe Sorgfalt, mit der ich auch an Code herangehe."
+    },
+    {
+      "tag": "Projekt",
       "icon": "thesis",
       "title": "Bachelorarbeit: Kennzeichenerkennung",
       "description": "Untersuchung von Algorithmen zur Kennzeichenerkennung unter schwierigen Wetterbedingungen — mein erster tieferer Einstieg in Computer Vision."
     },
     {
-      "date": "August 2026",
-      "icon": "job",
-      "title": "Offen für Vollzeitstellen",
-      "description": "Studium mit Auszeichnung abgeschlossen, dabei parallel zum Studium ein Portfolio produktionsreif gebauter Projekte aufgebaut. Offen für Full-Stack-Möglichkeiten und Gespräche."
+      "tag": "Ausbildung",
+      "icon": "education",
+      "title": "B.Sc. Informatik, mit Auszeichnung",
+      "description": "Nationale Universität „Zaporizhzhia Polytechnic“. Schwerpunkte: Softwarearchitektur, Full-Stack-Webentwicklung, Datenbanken, Algorithmen & Datenstrukturen, OOP. In Anabin, Deutschlands Datenbank ausländischer Hochschulen, mit H+ bewertet — gleichwertig zu einer deutschen Hochschule; das formale Anerkennungsverfahren des Abschlusses ist ein separater bürokratischer Schritt, keine Frage der Qualifikation."
+    },
+    {
+      "tag": "Start",
+      "icon": "start",
+      "title": "Erste Schritte im Programmieren",
+      "description": "Als Teenager begonnen, mir das Programmieren selbst beizubringen — YouTube, Bücher, erste Pet-Projekte, die bis heute nicht erhalten sind. Seitdem sind es 6 Jahre durchgehende Praxis, von den ersten Tutorials bis zu Systemen, die heute produktiv laufen."
     }
   ]
 }

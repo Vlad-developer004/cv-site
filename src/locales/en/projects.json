@@ -107,8 +107,8 @@
       },
       "detail": {
         "overview": [
-          "A bus ticket booking platform — a side project built with a friend, extended over time rather than shipped once and abandoned. I took the backend plus the part of the frontend tied directly to it — auth, forms, wiring the frontend and backend into one working system; the base UI and markup were his. Even back then, that was an early experience of building something not alone, but together with someone else.",
-          "I shared my backend work as files over chat at the time instead of git commits, so the repo's commit history doesn't fully reflect my actual contribution. Since then I've moved to a normal git workflow — commits, PRs, CI/CD, like the other projects in this portfolio."
+          "A bus ticket booking platform — a side project built with a friend, extended over time rather than shipped once and abandoned. I took the backend plus the part of the frontend tied directly to it — auth, forms, wiring the frontend and backend into one working system; the base UI and markup were his.",
+          "The repo's commit history doesn't fully reflect the contribution — part of the early backend work predates the move to a full git workflow. Since then it's commits, PRs, and CI/CD, like the other projects in this portfolio."
         ],
         "architecture": [
           "Layered backend: routes → controllers → a service layer (mail, tickets, tokens, users) → Mongoose models, instead of logic living in route handlers",
@@ -135,8 +135,7 @@
           "The oldest project in this portfolio — kept alive and extended over time instead of a single build",
           "The NoSQL counterpart to the Postgres projects in this portfolio (Leaf & Cup, the paper-trading simulator) — MongoDB/Mongoose instead of a relational schema, because the domain calls for that rather than demanding it",
           "A genuine third-party payment integration (Fondy, test mode only — no real charges) with signed requests and callback verification, not a mocked checkout",
-          "Backend plus the frontend pieces tied to it (auth, forms) — not just code on my own side, but wiring frontend and backend into one system",
-          "One of my first experiences building something not alone, but together with someone else"
+          "Backend plus the frontend pieces tied to it (auth, forms) — not just code on my own side, but wiring frontend and backend into one system"
         ]
       }
     },

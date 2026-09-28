@@ -105,8 +105,8 @@
       },
       "detail": {
         "overview": [
-          "Eine Buchungsplattform für Busfahrkarten — ein gemeinsames Nebenprojekt mit einem Bekannten, über Zeit gebaut und erweitert statt einmal veröffentlicht und liegen gelassen. Ich habe das Backend übernommen sowie den Teil des Frontends, der direkt daran hängt — Authentifizierung, Formulare, die Verbindung von Frontend und Backend zu einem funktionierenden Ganzen; das grundlegende UI und Markup kamen von ihm. Schon damals war das eine Erfahrung, nicht allein, sondern im Zusammenspiel mit jemand anderem zu entwickeln.",
-          "Meine Backend-Arbeit habe ich damals noch per Datei im Chat geteilt statt über Git-Commits, deshalb spiegelt die Commit-Historie im Repo meinen tatsächlichen Anteil nicht vollständig wider. Inzwischen arbeite ich mit einem normalen Git-Workflow — Commits, PRs, CI/CD, wie in den anderen Projekten in diesem Portfolio."
+          "Eine Buchungsplattform für Busfahrkarten — ein gemeinsames Nebenprojekt mit einem Bekannten, über Zeit gebaut und erweitert statt einmal veröffentlicht und liegen gelassen. Ich habe das Backend übernommen sowie den Teil des Frontends, der direkt daran hängt — Authentifizierung, Formulare, die Verbindung von Frontend und Backend zu einem funktionierenden Ganzen; das grundlegende UI und Markup kamen von ihm.",
+          "Die Commit-Historie im Repo spiegelt den Beitrag nicht vollständig wider — ein Teil der frühen Backend-Arbeit entstand vor dem Umstieg auf einen vollständigen Git-Workflow. Inzwischen sind es Commits, PRs und CI/CD, wie in den anderen Projekten in diesem Portfolio."
         ],
         "architecture": [
           "Geschichtetes Backend: Routen → Controller → eine Service-Schicht (Mail, Tickets, Tokens, Nutzer) → Mongoose-Modelle, statt Logik in den Route-Handlern",
@@ -133,8 +133,7 @@
           "Das älteste Projekt in diesem Portfolio — über Zeit gepflegt und erweitert statt einmal gebaut",
           "Der NoSQL-Gegenpart zu den Postgres-Projekten in diesem Portfolio (Leaf & Cup, Paper-Trading-Simulator) — MongoDB/Mongoose statt eines relationalen Schemas, weil die Domäne das eher braucht als verlangt",
           "Eine echte Zahlungsintegration eines Drittanbieters (Fondy, nur Testmodus — kein echtes Geld) mit signierten Anfragen und Callback-Verifizierung, kein simulierter Checkout",
-          "Backend plus die daran hängenden Frontend-Teile (Authentifizierung, Formulare) — nicht nur Code auf der eigenen Seite, sondern Frontend und Backend zu einem System verbunden",
-          "Eine der ersten Erfahrungen, nicht allein, sondern im Zusammenspiel mit jemand anderem zu entwickeln"
+          "Backend plus die daran hängenden Frontend-Teile (Authentifizierung, Formulare) — nicht nur Code auf der eigenen Seite, sondern Frontend und Backend zu einem System verbunden"
         ]
       }
     },

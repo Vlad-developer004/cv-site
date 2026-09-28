@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 
 const REFERENCE_LINE = 120;
 
@@ -11,18 +11,17 @@ function idFromHref(href: string) {
   return href.split('#')[1] ?? '';
 }
 
-function initialActive(navItems: NavItem[]) {
-  if (typeof window !== 'undefined' && window.location.hash) {
-    const fromHash = idFromHref(window.location.hash);
-    if (navItems.some((item) => idFromHref(item.href) === fromHash)) return fromHash;
-  }
-  return idFromHref(navItems[0]?.href ?? '');
-}
-
 export function SiteNav({ navItems }: { navItems: NavItem[] }) {
-  const [active, setActive] = useState(() => initialActive(navItems));
+  const [active, setActive] = useState(() => idFromHref(navItems[0]?.href ?? ''));
+  const activeRef = useRef(active);
+  activeRef.current = active;
 
   useEffect(() => {
+    if (window.location.hash) {
+      const fromHash = idFromHref(window.location.hash);
+      if (navItems.some((item) => idFromHref(item.href) === fromHash)) setActive(fromHash);
+    }
+
     const sections = navItems
       .map((item) => document.getElementById(idFromHref(item.href)))
       .filter((el): el is HTMLElement => el !== null);
@@ -38,11 +37,9 @@ export function SiteNav({ navItems }: { navItems: NavItem[] }) {
             : b
         );
         const id = closest.target.id;
-        setActive((prev) => {
-          if (prev === id) return prev;
-          window.history.replaceState(null, '', `#${id}`);
-          return id;
-        });
+        if (id === activeRef.current) return;
+        window.history.replaceState(null, '', `#${id}`);
+        setActive(id);
       },
       { rootMargin: `-${REFERENCE_LINE}px 0px -60% 0px`, threshold: 0 }
     );

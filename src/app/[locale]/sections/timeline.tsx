@@ -3,7 +3,7 @@ import { Award, Briefcase, Code2, GraduationCap, MessageCircle, Microscope } fro
 import { Reveal } from '@/components/reveal';
 import { TiltCard } from '@/components/tilt-card';
 
-type TimelineItem = { date: string; icon: string; title: string; description: string };
+type TimelineItem = { tag: string; icon: string; title: string; description: string };
 
 const ICONS: Record<string, typeof GraduationCap> = {
   start: Code2,
@@ -65,7 +65,7 @@ export function Timeline({ t }: { t: TFunction }) {
                   />
                   <div className="relative p-5">
                     <p className="text-xs font-medium uppercase tracking-wider" style={{ color: accent }}>
-                      {item.date}
+                      {item.tag}
                     </p>
                     <h3 className="mt-1 font-medium text-foreground">{item.title}</h3>
                     <p className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">{item.description}</p>

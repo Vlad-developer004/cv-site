@@ -49,8 +49,8 @@
     { "code": "RU", "level": "fluent" }
   ],
   "paragraphs": [
-    "I build complete, production-minded systems — authentication, payments, race-condition-safe transactions, CI/CD — not just isolated features. I got into programming as a teenager back in 2020, self-taught through YouTube and books, and that hobby grew into a profession. I hold a B.Sc. in Computer Science with honors from Zaporizhzhia Polytechnic National University and I'm currently open to full-time full-stack opportunities.",
-    "I have full, unrestricted access to the German labor market — no visa sponsorship needed — and I'm based in Berlin, certified at German B2 level. My university is also rated H+ in Anabin, equivalent to a German university; formal recognition (Anerkennung) of my specific degree is still in progress.",
+    "I build complete, production-minded systems — authentication, payments, race-condition-safe transactions, CI/CD — not just isolated features. I got into programming as a teenager, self-taught through YouTube and books, and that hobby grew into a profession. I hold a B.Sc. in Computer Science with honors from Zaporizhzhia Polytechnic National University and I'm currently open to full-time full-stack opportunities.",
+    "I have full, unrestricted access to the German labor market — no visa sponsorship needed — and I'm based in Berlin, certified at German B2 level. My university is also rated H+ in Anabin, equivalent to a German university; the paperwork for formal recognition (Anerkennung) of my specific degree has already been filed.",
     "My Bachelor's thesis wasn't just a theory paper — it's a full working system: license-plate recognition in C#/.NET with OpenCV, YOLO object detection, Tesseract OCR (LSTM), and Levenshtein-based fuzzy matching, driving a real gate controller live over MQTT — 99.2% accuracy under normal conditions, 92–96.5% with simulated rain, snow, or dirty plates, running in real time (~300ms per frame)."
   ],
   "paragraphLabels": ["How I build", "Labor market access", "Bachelor's thesis"],
